@@ -28,23 +28,41 @@ class ViewController: UIViewController {
 
 
 extension ViewController: JTAppleCalendarViewDelegate, JTAppleCalendarViewDataSource {
+    func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
+        
+    }
+    
     
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
+        
         formatter.dateFormat = "yyy MM dd"
         formatter.timeZone = Calendar.current.timeZone
         formatter.locale = Calendar.current.locale
         
         guard let startDate = formatter.date(from: "2017 01 01"), let endDate = formatter.date(from: "2017 12 31") else {
-            return
-            //FIXME: - ERROR HANDLING CODE
-            
-            let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate)
-            
-            return parameters
+            print("Formatter couldn't create dates")
+            fatalError()
         }
+        
+        let parameters = ConfigurationParameters.init(startDate: startDate, endDate: endDate)
+        return parameters
     }
     
+    func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
+        let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "CalendarCell", for: indexPath) as! CalendarCell
+        
+        cell.dateLabel.text = cellState.text
+        
+        return cell
+        
+        
+    }
 }
+
+
+//could not dequeue a view of kind: UICollectionElementKindCell with identifier CalendarCell
+//- must register a nib or a class for the identifier or connect a prototype cell in a storyboard'
+
 
 
 
