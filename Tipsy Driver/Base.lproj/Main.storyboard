@@ -166,16 +166,32 @@
                                     <outlet property="ibCalendarDelegate" destination="BYZ-38-t0r" id="h5O-X8-bYX"/>
                                 </connections>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uz2-GF-5Po">
+                                <rect key="frame" x="164.5" y="615" width="46" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tips" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rql-5a-duN">
+                                <rect key="frame" x="171" y="553" width="32.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="lIP-vN-sBV" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="1Mj-mJ-54a"/>
                             <constraint firstItem="6bN-qy-aTq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="OJy-9H-pib"/>
+                            <constraint firstItem="uz2-GF-5Po" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SWM-CI-BSv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="6bN-qy-aTq" secondAttribute="top" constant="67" id="Vur-5e-uLs"/>
+                            <constraint firstItem="Rql-5a-duN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cdE-lL-Fua"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="uz2-GF-5Po" secondAttribute="bottom" constant="32" id="fMv-9W-u6y"/>
                             <constraint firstItem="lIP-vN-sBV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="j0i-GX-yRk"/>
                             <constraint firstItem="OJ1-LY-uM9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="80" id="lIf-9l-S4U"/>
                             <constraint firstItem="OJ1-LY-uM9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="nBl-dL-bDa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6bN-qy-aTq" secondAttribute="trailing" id="qy7-Xx-nNK"/>
+                            <constraint firstItem="uz2-GF-5Po" firstAttribute="top" secondItem="Rql-5a-duN" secondAttribute="bottom" constant="42" id="ucx-4B-ehd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="OJ1-LY-uM9" secondAttribute="trailing" id="upD-jH-syu"/>
                             <constraint firstItem="lIP-vN-sBV" firstAttribute="top" secondItem="OJ1-LY-uM9" secondAttribute="bottom" id="xYZ-uV-muk"/>
                         </constraints>
@@ -183,7 +199,9 @@
                     </view>
                     <connections>
                         <outlet property="calendarView" destination="lIP-vN-sBV" id="Bs2-Gx-rjh"/>
+                        <outlet property="hoursLabel" destination="uz2-GF-5Po" id="gi1-9T-OdA"/>
                         <outlet property="monthLabel" destination="VMw-Vf-DZG" id="D0c-ih-26X"/>
+                        <outlet property="tipsLabel" destination="Rql-5a-duN" id="PBy-dv-VuA"/>
                         <outlet property="yearLabel" destination="3Fq-Pg-dh1" id="ZzU-28-cuo"/>
                     </connections>
                 </viewController>

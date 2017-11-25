@@ -11,7 +11,6 @@
 		D8371D5C1FC615AC00ADA7E1 /* CalendarColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8371D5B1FC615AC00ADA7E1 /* CalendarColors.swift */; };
 		D8371D5E1FC64F3800ADA7E1 /* detailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8371D5D1FC64F3800ADA7E1 /* detailViewController.swift */; };
 		D8371D6D1FC655A500ADA7E1 /* Entry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8371D6B1FC655A500ADA7E1 /* Entry+CoreDataClass.swift */; };
-		D8371D6E1FC655A500ADA7E1 /* Entry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8371D6C1FC655A500ADA7E1 /* Entry+CoreDataProperties.swift */; };
 		D8371D701FC657A600ADA7E1 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8371D6F1FC657A600ADA7E1 /* CoreDataStack.swift */; };
 		D8371D721FC6859400ADA7E1 /* CalendarConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8371D711FC6859400ADA7E1 /* CalendarConfiguration.swift */; };
 		D881C7191FC52BB600018BD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D881C7181FC52BB600018BD1 /* AppDelegate.swift */; };
@@ -22,6 +21,7 @@
 		D881C7261FC52BB600018BD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D881C7241FC52BB600018BD1 /* LaunchScreen.storyboard */; };
 		D881C7321FC5372000018BD1 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D881C7311FC5372000018BD1 /* CalendarCell.swift */; };
 		D8D14F471FC77829005E486D /* DateSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D14F461FC77829005E486D /* DateSource.swift */; };
+		D8D14F491FC8AE85005E486D /* CalendarFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D14F481FC8AE85005E486D /* CalendarFetchedResultsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +31,6 @@
 		D8371D5B1FC615AC00ADA7E1 /* CalendarColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarColors.swift; sourceTree = "<group>"; };
 		D8371D5D1FC64F3800ADA7E1 /* detailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailViewController.swift; sourceTree = "<group>"; };
 		D8371D6B1FC655A500ADA7E1 /* Entry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entry+CoreDataClass.swift"; sourceTree = "<group>"; };
-		D8371D6C1FC655A500ADA7E1 /* Entry+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entry+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D8371D6F1FC657A600ADA7E1 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		D8371D711FC6859400ADA7E1 /* CalendarConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarConfiguration.swift; sourceTree = "<group>"; };
 		D881C7151FC52BB600018BD1 /* Tipsy Driver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tipsy Driver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +43,7 @@
 		D881C7271FC52BB600018BD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D881C7311FC5372000018BD1 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		D8D14F461FC77829005E486D /* DateSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSource.swift; sourceTree = "<group>"; };
+		D8D14F481FC8AE85005E486D /* CalendarFetchedResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarFetchedResultsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,8 +100,8 @@
 				D8371D6F1FC657A600ADA7E1 /* CoreDataStack.swift */,
 				D8D14F461FC77829005E486D /* DateSource.swift */,
 				D8371D6B1FC655A500ADA7E1 /* Entry+CoreDataClass.swift */,
-				D8371D6C1FC655A500ADA7E1 /* Entry+CoreDataProperties.swift */,
 				D881C71F1FC52BB600018BD1 /* Tipsy_Driver.xcdatamodeld */,
+				D8D14F481FC8AE85005E486D /* CalendarFetchedResultsController.swift */,
 			);
 			path = "Tipsy Driver";
 			sourceTree = "<group>";
@@ -252,8 +252,8 @@
 				D8D14F471FC77829005E486D /* DateSource.swift in Sources */,
 				D881C7321FC5372000018BD1 /* CalendarCell.swift in Sources */,
 				D8371D721FC6859400ADA7E1 /* CalendarConfiguration.swift in Sources */,
+				D8D14F491FC8AE85005E486D /* CalendarFetchedResultsController.swift in Sources */,
 				D8371D5C1FC615AC00ADA7E1 /* CalendarColors.swift in Sources */,
-				D8371D6E1FC655A500ADA7E1 /* Entry+CoreDataProperties.swift in Sources */,
 				D8371D5E1FC64F3800ADA7E1 /* detailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

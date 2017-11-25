@@ -8,29 +8,24 @@
 
 import Foundation
 import CoreData
-
+import UIKit
 
 class CoreDataStack {
-    
-    
-    
+
+
+
     // this is all the code needed to create the core data stack
-    
+
     lazy var managedObjectContext: NSManagedObjectContext = {
         let container = self.persistentContainer
         return container.viewContext
-        
+
     }()
-    
-    
+
+
     private lazy var persistentContainer: NSPersistentContainer = {
-        // FIXME: - Fix the container
-        let container = NSPersistentContainer(name: "Entry")
-        container.loadPersistentStores() { storeDiscription, error in
-            if let error = error as NSError? {
-                fatalError("Unresolved Error: \(error), \(error.userInfo)")
-            }
-        }
+
+        let container = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
         return container
     }()
 }
@@ -43,7 +38,7 @@ extension NSManagedObjectContext {
             do {
                 try save()
             } catch {
-                fatalError("Error: \(error.localizedDescription)")
+                fatalError("Saving changes is the worst....")
             }
         }
     }

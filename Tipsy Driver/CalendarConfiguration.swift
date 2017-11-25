@@ -8,60 +8,39 @@
 
 import UIKit
 import JTAppleCalendar
+import CoreData
 
 
+extension ViewController: JTAppleCalendarViewDelegate {
 
-
-
-
-extension ViewController: JTAppleCalendarViewDataSource {
+    
     func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
         
     }
     
-    
-    func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
-        
-        formatter.dateFormat = "yyy MM dd"
-        formatter.timeZone = Calendar.current.timeZone
-        formatter.locale = Calendar.current.locale
-        
-        guard let startDate = formatter.date(from: "2016 01 01"), let endDate = formatter.date(from: "2019 12 31") else {
-            print("Formatter couldn't create dates")
-            fatalError()
-        }
-        
-        let parameters = ConfigurationParameters.init(startDate: startDate, endDate: endDate)
-        return parameters
-    }
-    
-    
-}
-
-
-extension ViewController: JTAppleCalendarViewDelegate {
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "CalendarCell", for: indexPath) as! CalendarCell
-        
+
         cell.dateLabel.text = cellState.text
-        
+
         handleCellSelected(view: cell, cellState: cellState)
         handleCellTextColour(view: cell, cellState: cellState)
         return cell
     }
+// moved to Data Source
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         handleCellSelected(view: cell, cellState: cellState)
         handleCellTextColour(view: cell, cellState: cellState)
-        
+
     }
-    
+
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         handleCellSelected(view: cell, cellState: cellState)
         handleCellTextColour(view: cell, cellState: cellState)
     }
-    
-    
+
+
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
         setupCalendarView()
     }
@@ -102,12 +81,15 @@ extension ViewController {
         monthLabel.textColor = CalendarColors.white
     }
     
+
+    
     
     
     func handleCellSelected(view: JTAppleCell?, cellState: CellState) {
         guard let cell = view as? CalendarCell else { return }
         selectedCellState = cellState
         if cellState.isSelected {
+            displayForSelectedCell(cell: view!, cellState: cellState)
             cell.selectedView.isHidden = false
             cell.dateLabel.textColor = CalendarColors.white
         } else {
@@ -130,6 +112,36 @@ extension ViewController {
             }
             
         }
+    }
+    
+    
+    func displayForSelectedCell(cell: JTAppleCell, cellState: CellState) {
+        //let date = cellState.date
+
+print("CELL SELECTED!!!! ***")
+
+        //let fetch: NSFetchRequest<Entry> = Entry.fetchRequest()
+        let fetch = NSFetchRequest<Entry>(entityName: "Entry")
+        
+        do {
+            let fetchedEntries = try manangedObjectContext.fetch(fetch as! NSFetchRequest<NSFetchRequestResult>) as! [Entry]
+            print("HELLO::", fetchedEntries)
+            
+            print("HOURS:::: \(fetchedEntries[1].date!)")
+            
+            
+        } catch {
+            fatalError("FAILED GETTING ENTEIRES OUT...")
+        }
+        
+        //        let moc = …
+//        let employeesFetch = NSFetchRequest(entityName: "Employee")
+//
+//        do {
+//            let fetchedEmployees = try moc.executeFetchRequest(employeesFetch) as! [EmployeeMO]
+//        } catch {
+//            fatalError("Failed to fetch employees: \(error)")
+//        }
     }
 }
 

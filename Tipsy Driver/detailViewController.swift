@@ -15,9 +15,14 @@ class detailViewController: UIViewController {
     @IBOutlet weak var tipsTextField: UITextField!
     @IBOutlet weak var hoursTextField: UITextField!
     
+    
+    
     var managedObjectContext = CoreDataStack().managedObjectContext
     var calendarView: JTAppleCalendarView!
     var cellState: CellState!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -40,16 +45,17 @@ class detailViewController: UIViewController {
         }
         
         guard let entry = NSEntityDescription.insertNewObject(forEntityName: "Entry", into: managedObjectContext) as? Entry else {
-            print("Error in creating entry from NSEntityDescription")
-            fatalError()
+            print("ERROR: You errored Moron. The entry didn't work.")
+            return
         }
 
-        entry.date = cellState.date as NSDate
+        entry.date = cellState.date
         entry.hours = Double(hourly)!
         entry.tips = Double(tips)!
         
+        print("Date: \(String(describing: entry.date)), Hours: \(entry.hours), Tips: \(entry.tips). Here We GO!!")
         
-        
+        managedObjectContext.saveChanges()
         dismiss(animated: true, completion: nil)
     }
 }
