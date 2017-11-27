@@ -54,7 +54,18 @@ class DataSource: NSObject, JTAppleCalendarViewDataSource {
     }
     
     
-    
+    func fetchEntries() -> [Entry]? {
+        let fetch = NSFetchRequest<Entry>(entityName: "Entry")
+        
+        do {
+            let fetchedEntries = try context.fetch(fetch as! NSFetchRequest<NSFetchRequestResult>) as! [Entry]
+            
+            return fetchedEntries
+            
+        } catch {
+            return nil
+        }
+    }
 
     
 

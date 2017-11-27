@@ -25,28 +25,5 @@ public class Entry: NSManagedObject {
     }
 }
 
-//import Foundation
-//import CoreData
-//
-//
-//extension Entry {
-//
-//   Entry+CoreDataProperties
-//
-//    @nonobjc public class func fetchRequest() -> NSFetchRequest<Entry> {
-//
-//
-//        return NSFetchRequest<Entry>(entityName: "Entry")
-//
-//    }
-//
-//
-//
-//    //
-//    //    @NSManaged public var hours: Double
-//    //    @NSManaged public var tips: Double
-//    //    @NSManaged public var date: NSDate?
-//
-//}
 
 

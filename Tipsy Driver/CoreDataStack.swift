@@ -28,6 +28,8 @@ class CoreDataStack {
         let container = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
         return container
     }()
+    
+
 }
 
 
