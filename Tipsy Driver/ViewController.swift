@@ -19,12 +19,15 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
     @IBOutlet weak var tipsLabel: UILabel!
     @IBOutlet weak var hoursLabel: UILabel!
     @IBOutlet weak var hourlyLabel: UILabel!
+    @IBOutlet weak var deleteButton: UIButton!
     
     
     //Variables
     let managedObjectContext = CoreDataStack().managedObjectContext
-    var selectedCellState: CellState?
+    var selectedCellState: [CellState] = []
+    var selectedCell: [JTAppleCell] = []
     let formatter = DateFormatter()
+    
     
     lazy var dataSource: DataSource = {
         return DataSource(context: self.managedObjectContext, formatter: self.formatter, calendar: self.calendarView)
@@ -37,48 +40,74 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
         
         calendarView.calendarDataSource = dataSource
         setupCalendarView()
-            tipsLabel.text = ""
-            hoursLabel.text = ""
-            hourlyLabel.text = ""
+        updateLabels()
         
-        todayView(animated: false)
-        let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.todayView))
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.scrollToToday))
         monthLabel.isUserInteractionEnabled = true
         monthLabel.addGestureRecognizer(tap)
+        loadTodayView()
     }
-
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "detailSegue" {
             
-            let newView = segue.destination as? detailViewController
+            guard let newView = segue.destination as? detailViewController else {
+                //#ERROR
+                return
+            }
             formatter.dateStyle = .long
             formatter.timeStyle = .none
-            let formattedString = formatter.string(from: (selectedCellState?.date)!)
-            newView?.managedObjectContext = managedObjectContext
-            if selectedCellState != nil {
-                newView?.cellState = selectedCellState!
-                newView?.dateString = formattedString
-            } else {
-                print("Cell State is nil... I don't know why")
-                fatalError()
-            }
+            let formattedString = formatter.string(from: (selectedCellState.last?.date)!)
+            newView.managedObjectContext = managedObjectContext
+            newView.cellState = selectedCellState.last
+            newView.dateString = formattedString
+            newView.calendarView = calendarView
+            newView.viewController = self
         } else {
+            //#ERROR
             print("Error preparing segue")
         }
     }
     
+    @IBAction func clearButton(_ sender: Any) {
+        if selectedCell != [] {
+            print("selected Cell != nil")
+                resetCalendar()
+        }
+
+    }
+    @IBAction func deleteEntry(_ sender: Any) {
+        guard let entries = dataSource.fetchEntries() else {
+            //#ERROR
+            print("Entries not fetched")
+            return
+        }
+        
+        for entry in entries {
+            if entry.date == selectedCellState.last?.date {
+                managedObjectContext.delete(entry)
+                managedObjectContext.saveChanges()
+                calendarView.reloadData()
+            }
+        }
+        updateLabels()
+    }
     
     //Calendar Setup
     
     ///Brings view to current day
-    @objc func todayView(animated: Bool = true) {
+    func loadTodayView() {
         
-        calendarView.scrollToDate(Date(), animateScroll: animated)
+        calendarView.scrollToDate(Date(), animateScroll: false)
         
         // This code auto selects the current day
         //let currentDate: [Date] = [Date()]
         //calendarView.selectDates(currentDate)
+    }
+    @objc func scrollToToday() {
+        calendarView.scrollToDate(Date(), animateScroll: true)
     }
     
     
@@ -104,7 +133,7 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
         monthLabel.text = self.formatter.string(from: date)
         monthLabel.textColor = CalendarColors.white
     }
-
+    
     //App Delegate Code
     
     func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
@@ -116,56 +145,62 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "CalendarCell", for: indexPath) as! CalendarCell
         
         cell.dateLabel.text = cellState.text
-
-       //-> handleCellSelected(view: cell, cellState: cellState)
+        
         colorFor(cell, with: cellState)
-
+        
         return cell
     }
     
+    //****************** FIX ME *********************
     //Runs when cell is selected
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        selectedCellState = cellState
         
-        if let entry = dateHasData(cellState: cellState) {
-            hoursLabel.text = "\(Calculate.hours(entries: entry))"
-            tipsLabel.text = "\(Calculate.tips(entries: entry))"
-            hourlyLabel.text = Calculate.hourly(entries: entry)
+        if dateHasData(cellState: cellState) == nil {
+            selectedCellState = [cellState]
+            performSegue(withIdentifier: "detailSegue", sender: nil)
+            
+        } else if dateHasData(cellState: cellState) != nil {
+            displaySelectedCell(cell: cell!)
+            selectedCellState.append(cellState)
+            selectedCell.append(cell!)
+            if let entries = dateHasData(cellState: selectedCellState) {
+                     updateLabels(tips: String("\(Calculate.tips(entries: entries))"), hours: String("\(Calculate.hours(entries: entries))"), hourly: Calculate.hourly(entries: entries))
+            }
+            //#ERROR
+            
         } else {
-          performSegue(withIdentifier: "detailSegue", sender: nil)
+            //#ERROR
         }
-        
-        
-        
-        
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-
     }
     
     
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
         setupCalendarView()
     }
+
     
     
     
-//Calendar Helper functions
+    
+    //Calendar Helper functions
     
     func colorFor(_ cell :JTAppleCell, with cellState: CellState) {
         guard let calCell = appleCellToCalendarCell(cell: cell) else{
+            //#ERROR
             fatalError("Couldn't Cast Cell...")
         }
-
+        
         switch cellState.dateBelongsTo {
         case .thisMonth:
-            if dateHasData(cellState: cellState) != nil {
+            if dateHasData(cellState: [cellState]) != nil {
                 calCell.dateLabel.textColor = CalendarColors.green
             } else {
                 calCell.dateLabel.textColor = CalendarColors.black
             }
-
+            
         default:
             calCell.dateLabel.textColor = CalendarColors.darkGrey
         }
@@ -174,35 +209,83 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
     //helper method that casts Apple cell to Cal Cell
     func appleCellToCalendarCell(cell: JTAppleCell) -> CalendarCell? {
         guard let calCell = cell as? CalendarCell else {
-        print("Sorry Charlie, didn't work")
-        return nil
+            //#ERROR
+            print("Sorry Charlie, didn't work")
+            return nil
         }
-    
-    return calCell
+        
+        return calCell
     }
     
-    
-    func dateHasData(cellState: CellState) -> [Entry]? {
+    func dateHasData(cellState: [CellState]) -> [Entry]? {
         guard let entries = dataSource.fetchEntries() else {
+            //#ERROR
             print("Error Getting entries out....")
             return nil
         }
         var array: [Entry] = []
-        for entry in entries {
-            if entry.date == cellState.date {
-                
-                array.append(entry)
-            }
-        
-        }
 
+        for entry in entries {
+            for cells in cellState {
+                if entry.date == cells.date {
+
+                    array.append(entry)
+                }
+            }
+        }
         if array == [] {
             return  nil
         } else {
             return array
         }
+    }
+    func dateHasData(cellState: CellState) -> [Entry]? {
+        guard let entries = dataSource.fetchEntries() else {
+            //#ERROR
+            print("Error Getting entries out....")
+            return nil
+        }
+        var array: [Entry] = []
         
-        
+        for entry in entries {
+            if entry.date == cellState.date {
+                
+                array.append(entry)
+            }
+        }
+        if array == [] {
+            return  nil
+        } else {
+            return array
+        }
+    }
+    
+    func displaySelectedCell(cell: JTAppleCell) {
+        let calCell = appleCellToCalendarCell(cell: cell)!
+        if cell.isSelected {
+            calCell.selectedView.isHidden = false
+        } else {
+            calCell.selectedView.isHidden = true
+        }
+
+    }
+    
+    func updateLabels(tips: String = "0.00", hours: String = "0", hourly: String = "0.00") {
+        let dollarSign = "$"
+        hourlyLabel.text = dollarSign + hourly
+        tipsLabel.text = dollarSign + tips
+        hoursLabel.text = hours
+    }
+    
+    
+    func resetCalendar() {
+        for cell in selectedCell {
+            cell.isSelected = false
+            displaySelectedCell(cell: cell)
+        }
+        updateLabels()
+        selectedCellState = []
+        selectedCell = []
     }
     
 }
@@ -218,13 +301,32 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
 
 
 
+/*
 
+ For 1.0:
 
-
-
-
-
-
-
-
-
+ **Redesign:**
+ 1. App Icon
+ 2. New Color Scheme
+ 3. Fix /redesign buttons and clean up UI
+ 
+ **Bugs/ Maintenance:**
+ √ fix select multiple days / random selcections on clear press
+ √ make tips text field first responder when detailVC launches
+ error handling...
+ fix upDate labels so it's always displaying what's actually in selected cells. and create double to text function
+ √ Add $ signs to labels
+ 
+ **New Functionality:**
+ editing / deleting / adding to same day
+Reports page?
+settings?
+ 
+ **Future Features:**
+ Color themes
+ slide to select days?
+ select all days in button
+ add item text field in the same VC so no need to detailVC
+ 
+*/
+	

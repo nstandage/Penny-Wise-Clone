@@ -40,6 +40,7 @@ extension NSManagedObjectContext {
             do {
                 try save()
             } catch {
+                //#ERROR
                 fatalError("Saving changes is the worst....")
             }
         }

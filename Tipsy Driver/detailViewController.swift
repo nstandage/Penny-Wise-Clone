@@ -22,12 +22,14 @@ class detailViewController: UIViewController {
     var calendarView: JTAppleCalendarView!
     var cellState: CellState!
     var dateString: String!
+    var viewController: ViewController!
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = dateString
+        tipsTextField.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,16 +37,18 @@ class detailViewController: UIViewController {
     }
 
     @IBAction func cancel(_ sender: Any) {
-        
+        viewController.resetCalendar()
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func save(_ sender: Any) {
         guard let hourly = hoursTextField.text, let tips = tipsTextField.text else {
+            //#ERROR
             return
         }
         
         guard let entry = NSEntityDescription.insertNewObject(forEntityName: "Entry", into: managedObjectContext) as? Entry else {
+            //#ERROR
             return
         }
 
@@ -53,6 +57,7 @@ class detailViewController: UIViewController {
         entry.tips = Double(tips)!
         
         managedObjectContext.saveChanges()
+        viewController.resetCalendar()
         dismiss(animated: true, completion: nil)
     }
 }

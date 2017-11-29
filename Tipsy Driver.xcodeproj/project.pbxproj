@@ -13,6 +13,7 @@
 		D8371D6D1FC655A500ADA7E1 /* Entry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8371D6B1FC655A500ADA7E1 /* Entry+CoreDataClass.swift */; };
 		D8371D701FC657A600ADA7E1 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8371D6F1FC657A600ADA7E1 /* CoreDataStack.swift */; };
 		D85CF2871FCC80E2006AE617 /* Calculate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85CF2861FCC80E2006AE617 /* Calculate.swift */; };
+		D8649F661FCDF93700E7CFCE /* Error Handling.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8649F651FCDF93700E7CFCE /* Error Handling.swift */; };
 		D881C7191FC52BB600018BD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D881C7181FC52BB600018BD1 /* AppDelegate.swift */; };
 		D881C71B1FC52BB600018BD1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D881C71A1FC52BB600018BD1 /* ViewController.swift */; };
 		D881C71E1FC52BB600018BD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D881C71C1FC52BB600018BD1 /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 		D8371D6B1FC655A500ADA7E1 /* Entry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entry+CoreDataClass.swift"; sourceTree = "<group>"; };
 		D8371D6F1FC657A600ADA7E1 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		D85CF2861FCC80E2006AE617 /* Calculate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculate.swift; sourceTree = "<group>"; };
+		D8649F651FCDF93700E7CFCE /* Error Handling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error Handling.swift"; sourceTree = "<group>"; };
 		D881C7151FC52BB600018BD1 /* Tipsy Driver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tipsy Driver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D881C7181FC52BB600018BD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D881C71A1FC52BB600018BD1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				D881C71F1FC52BB600018BD1 /* Tipsy_Driver.xcdatamodeld */,
 				D8D14F481FC8AE85005E486D /* CalendarFetchedResultsController.swift */,
 				D85CF2861FCC80E2006AE617 /* Calculate.swift */,
+				D8649F651FCDF93700E7CFCE /* Error Handling.swift */,
 			);
 			path = "Tipsy Driver";
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 			files = (
 				D85CF2871FCC80E2006AE617 /* Calculate.swift in Sources */,
 				D881C7211FC52BB600018BD1 /* Tipsy_Driver.xcdatamodeld in Sources */,
+				D8649F661FCDF93700E7CFCE /* Error Handling.swift in Sources */,
 				D881C71B1FC52BB600018BD1 /* ViewController.swift in Sources */,
 				D8371D6D1FC655A500ADA7E1 /* Entry+CoreDataClass.swift in Sources */,
 				D8371D701FC657A600ADA7E1 /* CoreDataStack.swift in Sources */,
