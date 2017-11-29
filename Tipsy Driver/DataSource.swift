@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 import JTAppleCalendar
-
+import Foundation
 
 class DataSource: NSObject, JTAppleCalendarViewDataSource {
     
@@ -34,9 +34,7 @@ class DataSource: NSObject, JTAppleCalendarViewDataSource {
         formatter.locale = Calendar.current.locale
         
         guard let startDate = formatter.date(from: "2016 01 01"), let endDate = formatter.date(from: "2019 12 31") else {
-            //#ERROR
-            print("Formatter couldn't create dates")
-            fatalError()
+            fatalError("Couldn't create dates")
         }
         
         let parameters = ConfigurationParameters.init(startDate: startDate, endDate: endDate)
@@ -64,7 +62,7 @@ class DataSource: NSObject, JTAppleCalendarViewDataSource {
             return fetchedEntries
             
         } catch {
-            //#ERROR
+            print(error.localizedDescription)
             return nil
         }
     }

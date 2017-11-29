@@ -28,11 +28,9 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
     var selectedCell: [JTAppleCell] = []
     let formatter = DateFormatter()
     
-    
     lazy var dataSource: DataSource = {
         return DataSource(context: self.managedObjectContext, formatter: self.formatter, calendar: self.calendarView)
     }()
-    
     
     //ViewController Functions
     override func viewDidLoad() {
@@ -42,19 +40,20 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
         setupCalendarView()
         updateLabels()
         
-        
         let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.scrollToToday))
         monthLabel.isUserInteractionEnabled = true
         monthLabel.addGestureRecognizer(tap)
         loadTodayView()
     }
+
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "detailSegue" {
-            
+
             guard let newView = segue.destination as? detailViewController else {
-                //#ERROR
+                let alert = CalendarError.presentErrorWith(title: "Couldn't perform segue", message: "newView casting failed.")
+                self.present(alert, animated: true, completion: nil)
                 return
             }
             formatter.dateStyle = .long
@@ -65,23 +64,25 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
             newView.dateString = formattedString
             newView.calendarView = calendarView
             newView.viewController = self
+        } else if segue.identifier == "moreSegue" {
+            
         } else {
-            //#ERROR
+            let alert = CalendarError.presentErrorWith(title: "Segue Doesn't Exist", message: "detailSegue couldn't be found.")
+            self.present(alert, animated: true, completion: nil)
             print("Error preparing segue")
         }
     }
-    
+
     @IBAction func clearButton(_ sender: Any) {
         if selectedCell != [] {
-            print("selected Cell != nil")
                 resetCalendar()
         }
 
     }
     @IBAction func deleteEntry(_ sender: Any) {
         guard let entries = dataSource.fetchEntries() else {
-            //#ERROR
-            print("Entries not fetched")
+            let alert = CalendarError.presentErrorWith(title: "Fetching Error", message: "Delete Button couldn't find fetch errors")
+            self.present(alert, animated: true, completion: nil)
             return
         }
         
@@ -89,10 +90,9 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
             if entry.date == selectedCellState.last?.date {
                 managedObjectContext.delete(entry)
                 managedObjectContext.saveChanges()
-                calendarView.reloadData()
             }
         }
-        updateLabels()
+        resetCalendar()
     }
     
     //Calendar Setup
@@ -137,7 +137,7 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
     //App Delegate Code
     
     func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
-        
+    
     }
     
     //Loads all cells
@@ -151,10 +151,21 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
         return cell
     }
     
-    //****************** FIX ME *********************
+    
     //Runs when cell is selected
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         
+        if matchingDataWith(array: selectedCellState, state: cellState) == true {
+//            if let index = indexForCellAndState(cellState) {
+//                selectedCell.remove(at: index)
+//                selectedCellState.remove(at: index)
+//                cell?.isSelected = false
+//                displaySelectedCell(cell: cell!)
+//                calendarView.reloadData()
+//                return
+//            }
+            return
+        }
         if dateHasData(cellState: cellState) == nil {
             selectedCellState = [cellState]
             performSegue(withIdentifier: "detailSegue", sender: nil)
@@ -165,15 +176,21 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
             selectedCell.append(cell!)
             if let entries = dateHasData(cellState: selectedCellState) {
                      updateLabels(tips: String("\(Calculate.tips(entries: entries))"), hours: String("\(Calculate.hours(entries: entries))"), hourly: Calculate.hourly(entries: entries))
+            } else {
+                let alert = CalendarError.presentErrorWith(title: "Fetching Error", message: "didSelectDate couldn't find fetch entries")
+                self.present(alert, animated: true, completion: nil)
+                
             }
-            //#ERROR
-            
+
         } else {
-            //#ERROR
+            let alert = CalendarError.presentErrorWith(title: "Fetching Error", message: "dateHasData isn't nil and isn't entries")
+            self.present(alert, animated: true, completion: nil)
+            
         }
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+
     }
     
     
@@ -189,8 +206,9 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
     
     func colorFor(_ cell :JTAppleCell, with cellState: CellState) {
         guard let calCell = appleCellToCalendarCell(cell: cell) else{
-            //#ERROR
-            fatalError("Couldn't Cast Cell...")
+            let alert = CalendarError.presentErrorWith(title: "Casting Error", message: "colorFor couldn't cast JTAppleCell to CalendarCell")
+            self.present(alert, animated: true, completion: nil)
+            return
         }
         
         switch cellState.dateBelongsTo {
@@ -209,8 +227,8 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
     //helper method that casts Apple cell to Cal Cell
     func appleCellToCalendarCell(cell: JTAppleCell) -> CalendarCell? {
         guard let calCell = cell as? CalendarCell else {
-            //#ERROR
-            print("Sorry Charlie, didn't work")
+            let alert = CalendarError.presentErrorWith(title: "Casting Error", message: "AppleCellToCalendarCell couldn't cast JTAppleCell to CalendarCell")
+            self.present(alert, animated: true, completion: nil)
             return nil
         }
         
@@ -219,8 +237,8 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
     
     func dateHasData(cellState: [CellState]) -> [Entry]? {
         guard let entries = dataSource.fetchEntries() else {
-            //#ERROR
-            print("Error Getting entries out....")
+            let alert = CalendarError.presentErrorWith(title: "Fetching Error", message: "datehasData[] failed to fetch entries")
+            self.present(alert, animated: true, completion: nil)
             return nil
         }
         var array: [Entry] = []
@@ -241,8 +259,8 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
     }
     func dateHasData(cellState: CellState) -> [Entry]? {
         guard let entries = dataSource.fetchEntries() else {
-            //#ERROR
-            print("Error Getting entries out....")
+            let alert = CalendarError.presentErrorWith(title: "Fetching Error", message: "datehasData failed to fetch entries")
+            self.present(alert, animated: true, completion: nil)
             return nil
         }
         var array: [Entry] = []
@@ -258,6 +276,30 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
         } else {
             return array
         }
+    }
+    
+    
+    func matchingDataWith(array states: [CellState], state: CellState) -> Bool {
+        
+        for cell in states {
+            if cell.date == state.date {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func indexForCellAndState(_ state: CellState) -> Int? {
+        var index = 0
+        for cell in selectedCellState {
+            
+            if cell.date == state.date {
+                return index
+            }
+            
+            index += 1
+        }
+        return nil
     }
     
     func displaySelectedCell(cell: JTAppleCell) {
@@ -277,6 +319,9 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
         hoursLabel.text = hours
     }
     
+    func stringFromNumber(_ number: Double) -> String {
+        return String("\(number)")
+    }
     
     func resetCalendar() {
         for cell in selectedCell {
@@ -286,6 +331,7 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
         updateLabels()
         selectedCellState = []
         selectedCell = []
+        calendarView.reloadData()
     }
     
 }
@@ -305,6 +351,12 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
 
  For 1.0:
 
+ TODAY:
+ enter data
+ delete single item
+ add multiple items per day
+ edit
+ 
  **Redesign:**
  1. App Icon
  2. New Color Scheme
@@ -313,14 +365,23 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
  **Bugs/ Maintenance:**
  √ fix select multiple days / random selcections on clear press
  √ make tips text field first responder when detailVC launches
- error handling...
- fix upDate labels so it's always displaying what's actually in selected cells. and create double to text function
+ √ error handling...
  √ Add $ signs to labels
+ √ highlight green when new entry is entered
  
  **New Functionality:**
- editing / deleting / adding to same day
-Reports page?
+ editing
+ deleting to same day
+ adding to same day
 settings?
+
+ 
+ Update:::
+ fix upDate labels so it's always displaying what's actually in selected cells. and create double to text function
+ fix toggle on and off selected cell
+ batch delete
+ Reports page?
+ 
  
  **Future Features:**
  Color themes
@@ -328,5 +389,5 @@ settings?
  select all days in button
  add item text field in the same VC so no need to detailVC
  
-*/
-	
+ 
+ */

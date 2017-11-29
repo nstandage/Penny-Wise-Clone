@@ -43,12 +43,20 @@ class detailViewController: UIViewController {
     
     @IBAction func save(_ sender: Any) {
         guard let hourly = hoursTextField.text, let tips = tipsTextField.text else {
-            //#ERROR
+            let alert = CalendarError.presentErrorWith(title: "Saving Error", message: "Couldn't get text from text fields.")
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        if CalendarError.isValid(text: hourly) == false || CalendarError.isValid(text: tips) == false {
+            let alert = CalendarError.presentErrorWith(title: "Invalid Text", message: "Please Entry Valid Text in Fields")
+            self.present(alert, animated: true, completion: nil)
             return
         }
         
         guard let entry = NSEntityDescription.insertNewObject(forEntityName: "Entry", into: managedObjectContext) as? Entry else {
-            //#ERROR
+            let alert = CalendarError.presentErrorWith(title: "Saving Error", message: "entry couldn't be saved in Context")
+            self.present(alert, animated: true, completion: nil)
             return
         }
 
@@ -61,6 +69,11 @@ class detailViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 }
+
+
+
+
+
 
 
 
