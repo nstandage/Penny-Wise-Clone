@@ -17,19 +17,26 @@ class detailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     
     
-    
+    //FIXME: - TOO LONG, Can I get rid of some of these variables?
     var managedObjectContext = CoreDataStack().managedObjectContext
     var calendarView: JTAppleCalendarView!
     var cellState: CellState!
     var dateString: String!
     var viewController: ViewController!
-    
-    
+    var tableView: moreTableViewController?
+//    var editMode: Bool! = false
+//    var editCell: Entry! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = dateString
-        tipsTextField.becomeFirstResponder()
+//        if editMode == true {
+//            tipsTextField.text = String("\(editCell.tips)")
+//            hoursTextField.text = String("\(editCell.hours)")
+//        } else {
+           tipsTextField.becomeFirstResponder()
+//        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,36 +44,60 @@ class detailViewController: UIViewController {
     }
 
     @IBAction func cancel(_ sender: Any) {
+        self.view.endEditing(true)
         viewController.resetCalendar()
         dismiss(animated: true, completion: nil)
     }
     
+    //FIXME: - TOO LONG
     @IBAction func save(_ sender: Any) {
         guard let hourly = hoursTextField.text, let tips = tipsTextField.text else {
-            let alert = CalendarError.presentErrorWith(title: "Saving Error", message: "Couldn't get text from text fields.")
-            self.present(alert, animated: true, completion: nil)
+            CalendarError.presentErrorWith(title: ErrorTitle.savingError, message: ErrorMessage.saving, view: self)
             return
         }
         
         if CalendarError.isValid(text: hourly) == false || CalendarError.isValid(text: tips) == false {
-            let alert = CalendarError.presentErrorWith(title: "Invalid Text", message: "Please Entry Valid Text in Fields")
-            self.present(alert, animated: true, completion: nil)
+            CalendarError.presentErrorWith(title: ErrorTitle.invalidText, message: ErrorMessage.invalidText, view: self)
             return
         }
         
-        guard let entry = NSEntityDescription.insertNewObject(forEntityName: "Entry", into: managedObjectContext) as? Entry else {
-            let alert = CalendarError.presentErrorWith(title: "Saving Error", message: "entry couldn't be saved in Context")
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
-
-        entry.date = cellState.date
-        entry.hours = Double(hourly)!
-        entry.tips = Double(tips)!
         
-        managedObjectContext.saveChanges()
-        viewController.resetCalendar()
+            guard let entry = NSEntityDescription.insertNewObject(forEntityName: "Entry", into: managedObjectContext) as? Entry else {
+                CalendarError.presentErrorWith(title: ErrorTitle.savingError, message: ErrorMessage.saving, view: self)
+                return
+            }
+        
+            self.view.endEditing(true)
+            entry.date = cellState.date
+            entry.hours = Double(hourly)!
+            entry.tips = Double(tips)!
+            
+            managedObjectContext.saveChanges()
+            if tableView != nil {
+                tableView?.entries.append(entry)
+                print("Party")
+                tableView?.refreshTable()
+            } else {
+                viewController.resetCalendar()
+            }
+        
+//        if editMode == true {
+//            managedObjectContext.delete(editCell)
+//            managedObjectContext.saveChanges()
+//        }
+        setToNil()
         dismiss(animated: true, completion: nil)
+    }
+    
+    func setToNil() {
+        calendarView = nil
+        cellState = nil
+        dateString = nil
+        viewController = nil
+        tableView = nil
+//        editMode =  nil
+//        editCell = nil
+        
     }
 }
 

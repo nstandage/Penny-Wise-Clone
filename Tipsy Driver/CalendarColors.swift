@@ -11,12 +11,14 @@ import UIKit
 
 class CalendarColors {
 
+    static let darkGrey = UIColor(displayP3Red: 93/255, green: 93/255, blue: 93/255, alpha: 1.0)
+    static let lightGrey = UIColor(displayP3Red: 220/255, green: 220/255, blue: 220/255, alpha: 1.0)
+    static let black = UIColor(displayP3Red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+    static let white = UIColor(displayP3Red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+    static let green = UIColor(displayP3Red: 0, green: 197/255, blue: 116/255, alpha: 1)
+    static let darkBlue = UIColor(displayP3Red: 1/255, green: 0/255, blue: 129/255, alpha: 1)
+    static let teal = UIColor(displayP3Red: 0, green: 208/255, blue: 208/255, alpha: 1)
     
-    static let darkGrey = UIColor(red: 93/255, green: 93/255, blue: 93/255, alpha: 1.0)
-    static let lightGrey = UIColor(red: 187/255, green: 187/255, blue: 187/255, alpha: 1.0)
-    static let black = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
-    static let white = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-    static let green = UIColor(red: 0, green: 1, blue: 0, alpha: 1)
     
-    
+
 }

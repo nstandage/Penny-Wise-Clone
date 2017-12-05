@@ -10,7 +10,6 @@ import UIKit
 import CoreData
 import JTAppleCalendar
 
-
 class CalendarFetchedResultsController: NSFetchedResultsController<Entry>, NSFetchedResultsControllerDelegate {
     
     private let calendar: JTAppleCalendarView

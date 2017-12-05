@@ -8,19 +8,13 @@
 
 import UIKit
 
-enum errorHandling: Error {
-    
-}
-
-
 class CalendarError {
     
-    static func presentErrorWith(title: String, message: String, buttonTitle: String = "Ok") -> UIAlertController {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    static func presentErrorWith(title: ErrorTitle, message: ErrorMessage, buttonTitle: String = "Ok", view: UIViewController) {
+        let alertController = UIAlertController(title: title.rawValue, message: message.rawValue, preferredStyle: .alert)
         let alerAction = UIAlertAction(title: buttonTitle, style: .default, handler: nil)
         alertController.addAction(alerAction)
-        return alertController
-        
+        view.present(alertController, animated: true, completion: nil)
     }
     
     static func isValid(text: String) -> Bool {
@@ -43,11 +37,24 @@ class CalendarError {
             return false
         }
     }
-    
-    
-    
 }
 
+
+enum ErrorTitle: String {
+    case fetchingError = "Fetching Error"
+    case segueError = "Segue Error"
+    case castingError = "Casting Error"
+    case savingError = "Saving Error"
+    case invalidText = "Invalid Text"
+}
+
+enum ErrorMessage: String {
+    case fetching = "Sorry, we're couldn't fetch your data."
+    case segue = "Sorry, We couldn't perform segue."
+    case casting = "Sorry, we had trouble casting."
+    case saving = "Sorry, we had an error saving your data."
+    case invalidText = "Sorry, Invalid Text. Please check text and try again."
+}
 
 
 

@@ -12,27 +12,18 @@ import UIKit
 
 class CoreDataStack {
 
-
-
-    // this is all the code needed to create the core data stack
-
     lazy var managedObjectContext: NSManagedObjectContext = {
         let container = self.persistentContainer
         return container.viewContext
 
     }()
 
-
     private lazy var persistentContainer: NSPersistentContainer = {
 
         let container = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
         return container
     }()
-    
-
 }
-
-
 
 extension NSManagedObjectContext {
     func saveChanges() {
@@ -45,4 +36,26 @@ extension NSManagedObjectContext {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -15,7 +15,6 @@ class Calculate {
         let hours = self.hours(entries: entries)
         let tips = self.tips(entries: entries)
 
-    
         return String(format: "%.2f", tips/hours)
     }
     

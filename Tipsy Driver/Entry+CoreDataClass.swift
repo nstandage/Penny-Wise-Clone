@@ -10,14 +10,12 @@
 import Foundation
 import CoreData
 
-
 public class Entry: NSManagedObject {
     @ nonobjc public func fetchRequest() -> NSFetchRequest<Entry> {
         
         return NSFetchRequest<Entry>(entityName: "Entry")
         
     }
-    
     
     func entryFetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
         

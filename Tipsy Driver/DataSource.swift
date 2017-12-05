@@ -13,7 +13,6 @@ import Foundation
 
 class DataSource: NSObject, JTAppleCalendarViewDataSource {
     
-    
     private let formatter: DateFormatter
     private let context: NSManagedObjectContext
     private let calendar: JTAppleCalendarView
@@ -23,9 +22,6 @@ class DataSource: NSObject, JTAppleCalendarViewDataSource {
         self.formatter = formatter
         self.calendar = calendar
     }
-    
-
-    
     
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         
@@ -41,17 +37,14 @@ class DataSource: NSObject, JTAppleCalendarViewDataSource {
         return parameters
     }
     
-    
     // Fetched Stuff
     lazy var fetchedResultsController: CalendarFetchedResultsController = {
         return CalendarFetchedResultsController(managedObjectContext: self.context, calendar: self.calendar)
     }()
     
-    
     func object(at indexPath: IndexPath) -> Entry {
         return fetchedResultsController.object(at: indexPath)
     }
-    
     
     func fetchEntries() -> [Entry]? {
         let fetch = NSFetchRequest<Entry>(entityName: "Entry")
@@ -66,10 +59,28 @@ class DataSource: NSObject, JTAppleCalendarViewDataSource {
             return nil
         }
     }
-
-    
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
