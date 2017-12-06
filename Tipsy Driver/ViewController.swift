@@ -303,12 +303,10 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
     func displaySelectedCell(cell: JTAppleCell) {
         let calCell = appleCellToCalendarCell(cell: cell)!
         if cell.isSelected {
-            //calCell.selectedView.isHidden = false
             calCell.circleImage.isHidden = false
             calCell.dateLabel.textColor = CalendarColors.white
-            print("selected")
+            
         } else {
-           // calCell.selectedView.isHidden = true
             calCell.circleImage.isHidden = true
             calCell.dateLabel.textColor = CalendarColors.black
         }
