@@ -13,6 +13,7 @@ class customCell: UITableViewCell {
     @IBOutlet weak var tipsLabel: UILabel!
     @IBOutlet weak var hoursLabel: UILabel!
     @IBOutlet weak var hourlyLabel: UILabel!
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()

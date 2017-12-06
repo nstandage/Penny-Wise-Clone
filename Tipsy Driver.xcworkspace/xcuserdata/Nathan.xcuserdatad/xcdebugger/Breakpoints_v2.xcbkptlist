@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tipsy Driver/ViewController.swift"
-            timestampString = "534207796.687622"
+            timestampString = "534211143.947942"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "66"
@@ -58,13 +58,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Tipsy Driver/ViewController.swift"
-            timestampString = "534207796.687686"
+            timestampString = "534211143.947996"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "301"
             endingLineNumber = "301"
-            landmarkName = "ViewController"
-            landmarkType = "3">
+            landmarkName = "indexForCellAndState(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

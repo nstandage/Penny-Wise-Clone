@@ -188,12 +188,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="124" height="111"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CAR-Ax-GrC">
-                                                    <rect key="frame" x="10" y="54" width="104" height="47"/>
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Oval" translatesAutoresizingMaskIntoConstraints="NO" id="FE3-ew-ZAj">
+                                                    <rect key="frame" x="12" y="56" width="100" height="43"/>
+                                                </imageView>
+                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qnZ-t0-1S6">
+                                                    <rect key="frame" x="47" y="41" width="30" height="30"/>
                                                     <color key="backgroundColor" red="0.0" green="0.7725490196" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="8Iq-NC-t6e"/>
+                                                        <constraint firstAttribute="width" constant="30" id="OJj-oJ-L3A"/>
+                                                    </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="20"/>
+                                                            <integer key="value" value="15"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -206,16 +213,19 @@
                                             </subviews>
                                         </view>
                                         <constraints>
+                                            <constraint firstAttribute="bottomMargin" secondItem="FE3-ew-ZAj" secondAttribute="bottom" constant="4" id="8Hy-rP-Xv7"/>
                                             <constraint firstItem="QOY-0f-tm4" firstAttribute="centerX" secondItem="1mO-IH-DeW" secondAttribute="centerX" id="8yp-i9-b8e"/>
-                                            <constraint firstItem="CAR-Ax-GrC" firstAttribute="leading" secondItem="1mO-IH-DeW" secondAttribute="leadingMargin" constant="2" id="GD8-rk-TCJ"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="CAR-Ax-GrC" secondAttribute="trailing" constant="2" id="VHL-gX-5Ca"/>
-                                            <constraint firstItem="CAR-Ax-GrC" firstAttribute="top" secondItem="1mO-IH-DeW" secondAttribute="topMargin" constant="2" id="cQS-vp-Mh2"/>
+                                            <constraint firstItem="FE3-ew-ZAj" firstAttribute="top" secondItem="1mO-IH-DeW" secondAttribute="topMargin" constant="4" id="LM3-L7-s6V"/>
+                                            <constraint firstItem="qnZ-t0-1S6" firstAttribute="centerX" secondItem="1mO-IH-DeW" secondAttribute="centerX" id="OJ5-qv-db1"/>
+                                            <constraint firstItem="qnZ-t0-1S6" firstAttribute="centerY" secondItem="1mO-IH-DeW" secondAttribute="centerY" id="X8l-pD-gin"/>
                                             <constraint firstItem="QOY-0f-tm4" firstAttribute="centerY" secondItem="1mO-IH-DeW" secondAttribute="centerY" id="etm-ye-4uo"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="CAR-Ax-GrC" secondAttribute="bottom" constant="2" id="z7H-Uk-OSy"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="FE3-ew-ZAj" secondAttribute="trailing" constant="4" id="hki-HQ-Ldl"/>
+                                            <constraint firstItem="FE3-ew-ZAj" firstAttribute="leading" secondItem="1mO-IH-DeW" secondAttribute="leadingMargin" constant="4" id="tGL-4n-LAo"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="circleImage" destination="FE3-ew-ZAj" id="8h0-di-snY"/>
                                             <outlet property="dateLabel" destination="QOY-0f-tm4" id="YTo-Tl-cFJ"/>
-                                            <outlet property="selectedView" destination="CAR-Ax-GrC" id="kri-XT-pCt"/>
+                                            <outlet property="selectedView" destination="qnZ-t0-1S6" id="7aO-zF-cbK"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -429,6 +439,9 @@
             <point key="canvasLocation" x="-258" y="1030"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Oval" width="200" height="200"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ZRN-vg-xDH"/>
     </inferredMetricsTieBreakers>

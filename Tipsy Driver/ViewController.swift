@@ -22,6 +22,7 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var moreButton: UIButton!
     
+    
     //Variables
     let managedObjectContext = CoreDataStack().managedObjectContext
     var selectedCellState: [CellState] = []
@@ -302,10 +303,13 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
     func displaySelectedCell(cell: JTAppleCell) {
         let calCell = appleCellToCalendarCell(cell: cell)!
         if cell.isSelected {
-            calCell.selectedView.isHidden = false
+            //calCell.selectedView.isHidden = false
+            calCell.circleImage.isHidden = false
             calCell.dateLabel.textColor = CalendarColors.white
+            print("selected")
         } else {
-            calCell.selectedView.isHidden = true
+           // calCell.selectedView.isHidden = true
+            calCell.circleImage.isHidden = true
             calCell.dateLabel.textColor = CalendarColors.black
         }
     }
