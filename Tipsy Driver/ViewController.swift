@@ -48,11 +48,9 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
         loadTodayView()
     }
     
-    
-    //FIXME: - TOO LONG
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "detailSegue" {
-            
+        if segue.identifier == SegueIdentifier.detailSegue.rawValue {
+
             guard let newView = segue.destination as? detailViewController else {
                 CalendarError.presentErrorWith(title: ErrorTitle.segueError, message: ErrorMessage.segue, view: self)
                 return
@@ -65,11 +63,9 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
             newView.dateString = formattedString
             newView.calendarView = calendarView
             newView.viewController = self
-        } else if segue.identifier == "moreButtonSegue" {
+        } else if segue.identifier == SegueIdentifier.moreButtonSegue.rawValue {
             
             let destinationNavigationController = segue.destination as! UINavigationController
-//            let targetController = destinationNavigationController.topViewController
-            
             guard let newView = destinationNavigationController.topViewController as? moreTableViewController else {
                 print("ERROR")
                 return
@@ -93,38 +89,40 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
     
     @IBAction func clearButton(_ sender: Any) {
         if selectedCell != [] {
-            
             resetCalendar()
         }
     }
     
-    //FIXME: - TOO LONG
     @IBAction func deleteEntry(_ sender: Any) {
         guard let entries = dataSource.fetchEntries() else {
             CalendarError.presentErrorWith(title: ErrorTitle.fetchingError, message: ErrorMessage.fetching, view: self)
             return
         }
-        
-        for entry in entries {
-            if entry.date == selectedCellState.last?.date {
-                managedObjectContext.delete(entry)
-                managedObjectContext.saveChanges()
+
+        let alertController = UIAlertController(title: ErrorTitle.delete.rawValue, message: ErrorTitle.delete.rawValue, preferredStyle: .actionSheet)
+        let actionOne = UIAlertAction(title: "Delete", style: .default, handler: { _ in
+            for entry in entries {
+                if entry.date == self.selectedCellState.last?.date {
+                    self.managedObjectContext.delete(entry)
+                    self.managedObjectContext.saveChanges()
+                    self.resetCalendar()
+                }
             }
-        }
-        resetCalendar()
+        })
+        let actionTwo = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+        alertController.addAction(actionOne)
+        alertController.addAction(actionTwo)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     //Calendar Setup
     
     ///Brings view to current day
     func loadTodayView() {
-        
         calendarView.scrollToDate(Date(), animateScroll: false)
-        
-        // This code auto selects the current day
-        //let currentDate: [Date] = [Date()]
-        //calendarView.selectDates(currentDate)
     }
+    
     @objc func scrollToToday() {
         calendarView.scrollToDate(Date(), animateScroll: true)
     }
@@ -139,8 +137,6 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
         }
     }
     
-    //FIXME: - TOO LONG
-    ///Sets the month and year labels
     func setupViewsOfCalendar(from visibleDates: DateSegmentInfo) {
         let date = visibleDates.monthDates.first!.date
         
@@ -169,12 +165,10 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
         return cell
     }
     
-    //FIXME: - TOO LONG
-    //Runs when cell is selected
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         
+        // to see if the cell has already been selected
         if matchingDataWith(array: selectedCellState, state: cellState) == true {
-            
             return
         }
         if dateHasData(cellState: cellState) == nil {
@@ -205,7 +199,6 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
     }
     
     //Calendar Helper functions
-    //FIXME: - TOO LONG
     func colorFor(_ cell :JTAppleCell, with cellState: CellState) {
         guard let calCell = appleCellToCalendarCell(cell: cell) else{
             CalendarError.presentErrorWith(title: ErrorTitle.castingError, message: ErrorMessage.casting, view: self)
@@ -229,7 +222,7 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
         
     }
     
-    //helper method that casts Apple cell to Cal Cell
+    //casts Apple cell to Cal Cell
     func appleCellToCalendarCell(cell: JTAppleCell) -> CalendarCell? {
         guard let calCell = cell as? CalendarCell else {
             CalendarError.presentErrorWith(title: ErrorTitle.castingError, message: ErrorMessage.casting, view: self)
@@ -237,7 +230,7 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
         }
         return calCell
     }
-    //FIXME: - TOO LONG
+    
     func dateHasData(cellState: [CellState]) -> [Entry]? {
         guard let entries = dataSource.fetchEntries() else {
             CalendarError.presentErrorWith(title: ErrorTitle.fetchingError, message: ErrorMessage.fetching, view: self)
@@ -259,7 +252,7 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
             return array
         }
     }
-    //FIXME: - TOO LONG
+
     func dateHasData(cellState: CellState) -> [Entry]? {
         guard let entries = dataSource.fetchEntries() else {
             CalendarError.presentErrorWith(title: ErrorTitle.fetchingError, message: ErrorMessage.fetching, view: self)
@@ -269,7 +262,6 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
         
         for entry in entries {
             if entry.date == cellState.date {
-                
                 array.append(entry)
             }
         }

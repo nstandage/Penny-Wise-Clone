@@ -15,13 +15,8 @@ import UIKit
 class Segue {
     
     static func prepareWith(segue: Segue, view: UIViewController) {
-        
+        // code...
     }
-    
-    
-    
-    
-    
 }
 
 enum SegueIdentifier: String {

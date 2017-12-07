@@ -17,16 +17,6 @@ class CalendarError {
         view.present(alertController, animated: true, completion: nil)
     }
     
-    static func deleteErrorWith(title: ErrorTitle, message: ErrorMessage, buttonTitleOne: String = "Ok", buttonTitleTwo: String = "Cancel", view: UIViewController) {
-        let alerController = UIAlertController(title: title.rawValue, message: message.rawValue, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: buttonTitleOne, style: .default, handler: nil)
-        let alertActionTwo = UIAlertAction(title: buttonTitleTwo, style: .cancel, handler: nil)
-        alerController.addAction(alertAction)
-        alerController.addAction(alertActionTwo)
-        view.present(alerController, animated: true, completion: nil)
-        
-    }
-    
     static func isValid(text: String) -> Bool {
         if text == "" {return false}
         
@@ -56,6 +46,7 @@ enum ErrorTitle: String {
     case castingError = "Casting Error"
     case savingError = "Saving Error"
     case invalidText = "Invalid Text"
+    case delete = "Delete"
 }
 
 enum ErrorMessage: String {
@@ -64,6 +55,7 @@ enum ErrorMessage: String {
     case casting = "Sorry, we had trouble casting."
     case saving = "Sorry, we had an error saving your data."
     case invalidText = "Sorry, Invalid Text. Please check text and try again."
+    case delete = "Are you sure you want to delete this entry?"
 }
 
 

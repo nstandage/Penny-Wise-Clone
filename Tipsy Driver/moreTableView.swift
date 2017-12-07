@@ -20,14 +20,10 @@ class moreTableViewController: UITableViewController {
     var cellState: CellState! = nil
     var calendarView: JTAppleCalendarView! = nil
     var managedObjectContext: NSManagedObjectContext! = nil
-//    var editMode: Bool! = false
-//    var editCell: Entry! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
-    
     
     func refreshTable() {
         tableView.reloadData()
@@ -58,29 +54,7 @@ class moreTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }
-    
-    //FIXME: - TOO LONG
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "addItem" {
-//            guard let newView = segue.destination as? detailViewController else {
-//                fatalError("Segue Issues")
-//            }
-//
-//            newView.managedObjectContext = managedObjectContext
-//            newView.calendarView = calendarView
-//            newView.cellState = cellState
-//            newView.viewController = previousView
-//            newView.dateString = dateString
-//            newView.tableView = self
-////
-////            if editMode == true {
-////            newView.editMode = true
-////            newView.editCell = editCell
-////            }
-//        }
-//    }
-    
-    //FIXME: - TOO LONG
+
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let entry = entries[indexPath.row]
@@ -90,22 +64,11 @@ class moreTableViewController: UITableViewController {
             
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
+            
         }
     }
     
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-////        editMode = true
-////        editCell = entries[indexPath.row]
-//
-//        performSegue(withIdentifier: "addItem", sender: nil)
-////
-////        editMode = false
-////        editCell = nil
-//    }
 }
 
 

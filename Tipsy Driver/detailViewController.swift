@@ -24,18 +24,13 @@ class detailViewController: UIViewController {
     var dateString: String!
     var viewController: ViewController!
     var tableView: moreTableViewController?
-//    var editMode: Bool! = false
-//    var editCell: Entry! = nil
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = dateString
-//        if editMode == true {
-//            tipsTextField.text = String("\(editCell.tips)")
-//            hoursTextField.text = String("\(editCell.hours)")
-//        } else {
-           tipsTextField.becomeFirstResponder()
-//        }
+        tipsTextField.becomeFirstResponder()
+
         
     }
 
@@ -80,25 +75,10 @@ class detailViewController: UIViewController {
             } else {
                 viewController.resetCalendar()
             }
-        
-//        if editMode == true {
-//            managedObjectContext.delete(editCell)
-//            managedObjectContext.saveChanges()
-//        }
-        setToNil()
+
         dismiss(animated: true, completion: nil)
     }
-    
-    func setToNil() {
-        calendarView = nil
-        cellState = nil
-        dateString = nil
-        viewController = nil
-        tableView = nil
-//        editMode =  nil
-//        editCell = nil
-        
-    }
+
 }
 
 

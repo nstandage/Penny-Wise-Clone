@@ -287,7 +287,6 @@
         <!--Detail View Controller-->
         <scene sceneID="4fj-Rm-Knp">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3Ia-IC-54J" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="ntX-ua-UdA" customClass="detailViewController" customModule="Tipsy_Driver" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="POE-6n-9w5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
@@ -364,6 +363,7 @@
                         <outlet property="titleLabel" destination="H5d-fV-Yce" id="p2L-0u-Hpw"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Ia-IC-54J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="935.625" y="132.5"/>
         </scene>
