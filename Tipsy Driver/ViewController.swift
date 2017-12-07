@@ -161,6 +161,7 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
         
         cell.dateLabel.text = cellState.text
         colorFor(cell, with: cellState)
+        isToday(cellState: cellState, cell: cell)
         
         return cell
     }
@@ -210,10 +211,10 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
             if dateHasData(cellState: [cellState]) != nil {
 
                 calCell.dateLabel.textColor = CalendarColors.green
-                //isToday(cellState: cellState, cell: cell)
+               // isToday(cellState: cellState, cell: cell)
                 
             } else  {
-                calCell.dateLabel.textColor = CalendarColors.black
+                calCell.dateLabel.textColor = CalendarColors.darkGrey
             }
             
         default:
@@ -329,17 +330,19 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
         moreButton.isEnabled = false
     }
     
-//    func isToday(cellState: CellState, cell: JTAppleCell) {
-//
-//        formatter.dateFormat = "d"
-//        let day = self.formatter.string(from: Date())
-//
-//        if cellState.text == day {
-//            if let calCell = cell as? CalendarCell {
-//                calCell.dateLabel.textColor = CalendarColors.red
-//            }
-//        }
-//    }
+    func isToday(cellState: CellState, cell: JTAppleCell) {
+
+        formatter.dateFormat = "d"
+        let day = self.formatter.string(from: Date())
+
+        if cellState.text == day && cellState.dateBelongsTo == .thisMonth {
+            if let calCell = cell as? CalendarCell {
+                calCell.circleImage.image = #imageLiteral(resourceName: "Today Circle")
+                calCell.circleImage.isHidden = false
+                calCell.dateLabel.textColor = CalendarColors.white
+            }
+        }
+    }
     
     
 }
