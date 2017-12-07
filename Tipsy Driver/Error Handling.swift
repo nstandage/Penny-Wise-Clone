@@ -17,6 +17,16 @@ class CalendarError {
         view.present(alertController, animated: true, completion: nil)
     }
     
+    static func deleteErrorWith(title: ErrorTitle, message: ErrorMessage, buttonTitleOne: String = "Ok", buttonTitleTwo: String = "Cancel", view: UIViewController) {
+        let alerController = UIAlertController(title: title.rawValue, message: message.rawValue, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: buttonTitleOne, style: .default, handler: nil)
+        let alertActionTwo = UIAlertAction(title: buttonTitleTwo, style: .cancel, handler: nil)
+        alerController.addAction(alertAction)
+        alerController.addAction(alertActionTwo)
+        view.present(alerController, animated: true, completion: nil)
+        
+    }
+    
     static func isValid(text: String) -> Bool {
         if text == "" {return false}
         

@@ -18,6 +18,7 @@ class CalendarColors {
     static let green = UIColor(displayP3Red: 0, green: 197/255, blue: 116/255, alpha: 1)
     static let darkBlue = UIColor(displayP3Red: 1/255, green: 0/255, blue: 129/255, alpha: 1)
     static let teal = UIColor(displayP3Red: 0, green: 208/255, blue: 208/255, alpha: 1)
+    static let red = UIColor(displayP3Red: 1, green: 80/255, blue: 80/255, alpha: 1)
     
     
 

@@ -215,8 +215,9 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
         switch cellState.dateBelongsTo {
         case .thisMonth:
             if dateHasData(cellState: [cellState]) != nil {
-                
+
                 calCell.dateLabel.textColor = CalendarColors.green
+                //isToday(cellState: cellState, cell: cell)
                 
             } else  {
                 calCell.dateLabel.textColor = CalendarColors.black
@@ -225,6 +226,7 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
         default:
             calCell.dateLabel.textColor = CalendarColors.lightGrey
         }
+        
     }
     
     //helper method that casts Apple cell to Cal Cell
@@ -333,7 +335,21 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
         selectedCell = []
         calendarView.reloadData()
         moreButton.isEnabled = false
-    }    
+    }
+    
+//    func isToday(cellState: CellState, cell: JTAppleCell) {
+//
+//        formatter.dateFormat = "d"
+//        let day = self.formatter.string(from: Date())
+//
+//        if cellState.text == day {
+//            if let calCell = cell as? CalendarCell {
+//                calCell.dateLabel.textColor = CalendarColors.red
+//            }
+//        }
+//    }
+    
+    
 }
 
 
@@ -347,47 +363,17 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
 
 
 
-/*
- 
- For 1.0:
- 
- TODAY:
- enter data
- √ delete single item
- √ add multiple items per day
- edit
- 
- **Redesign:**
- 1. App Icon
- 2. New Color Scheme
- 3. Fix /redesign buttons and clean up UI
- 
- **Bugs/ Maintenance:**
- √ fix select multiple days / random selcections on clear press
- √ make tips text field first responder when detailVC launches
- √ error handling...
- √ Add $ signs to labels
- √ highlight green when new entry is entered
- letters in text fields
- 
- **New Functionality:**
- editing
- deleting to same day
- adding to same day
- settings
- 
- Update:::
- fix upDate labels so it's always displaying what's actually in selected cells. and create double to text function
- fix toggle on and off selected cell
- batch delete
- Reports page?
- 
- 
- **Future Features:**
- Color themes
- slide to select days?
- select all days in button
- add item text field in the same VC so no need to detailVC
- 
- 
- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+

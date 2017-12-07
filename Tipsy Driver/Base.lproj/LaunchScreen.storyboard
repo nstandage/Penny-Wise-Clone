@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Penny Wise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ErU-me-FVr">
-                                <rect key="frame" x="20" y="200" width="335" height="30"/>
+                                <rect key="frame" x="20" y="201.5" width="335" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -37,9 +37,9 @@
                             <constraint firstItem="RnL-TT-e0t" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-10" id="2Ge-gK-hj2"/>
                             <constraint firstItem="RnL-TT-e0t" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Kbs-Gn-bpN"/>
                             <constraint firstItem="ErU-me-FVr" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="OSq-EZ-4De"/>
-                            <constraint firstItem="ErU-me-FVr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="180" id="XLD-ti-UMC"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ErU-me-FVr" secondAttribute="trailing" constant="20" id="ih8-kB-fsZ"/>
                             <constraint firstItem="ErU-me-FVr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="pYg-mS-sev"/>
+                            <constraint firstItem="RnL-TT-e0t" firstAttribute="top" secondItem="ErU-me-FVr" secondAttribute="bottom" constant="32" id="tfl-Gk-QYl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
