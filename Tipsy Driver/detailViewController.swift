@@ -33,6 +33,12 @@ class detailViewController: UIViewController {
 
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if tableView != nil {
+            self.navigationController?.isNavigationBarHidden = true
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -40,8 +46,19 @@ class detailViewController: UIViewController {
 
     @IBAction func cancel(_ sender: Any) {
         self.view.endEditing(true)
-        viewController.resetCalendar()
-        dismiss(animated: true, completion: nil)
+        if viewController != nil {
+            viewController.resetCalendar()
+        }
+        
+        if tableView != nil {
+            navigationController?.popViewController(animated: true)
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
+        
+
+
+        
     }
     
     //FIXME: - TOO LONG
@@ -63,6 +80,7 @@ class detailViewController: UIViewController {
             }
         
             self.view.endEditing(true)
+
             entry.date = cellState.date
             entry.hours = Double(hourly)!
             entry.tips = Double(tips)!
@@ -76,7 +94,11 @@ class detailViewController: UIViewController {
                 viewController.resetCalendar()
             }
 
-        dismiss(animated: true, completion: nil)
+        if tableView != nil {
+            navigationController?.popViewController(animated: true)
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
     }
 
 }

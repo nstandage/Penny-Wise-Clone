@@ -33,7 +33,8 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
         return DataSource(context: self.managedObjectContext, formatter: self.formatter, calendar: self.calendarView)
     }()
     
-    //ViewController Functions
+    //MARK: - View Controller
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -116,7 +117,7 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
         self.present(alertController, animated: true, completion: nil)
     }
     
-    //Calendar Setup
+    //MARK: - Calendar
     
     ///Brings view to current day
     func loadTodayView() {
@@ -149,10 +150,26 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
         monthLabel.textColor = CalendarColors.white
     }
     
-    //App Delegate Code
+    func updateLabels(tips: String = "", hours: String = "", hourly: String = "") {
+        hourlyLabel.text = hourly
+        tipsLabel.text = tips
+        hoursLabel.text = hours
+    }
+    
+    func resetCalendar() {
+        for cell in selectedCell {
+            cell.isSelected = false
+            displaySelectedCell(cell: cell)
+        }
+        updateLabels()
+        selectedCellState = []
+        selectedCell = []
+        calendarView.reloadData()
+    }
+    
+    //MARK: - App Delegate
     
     func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
-        
     }
     
     //Loads all cells
@@ -182,7 +199,7 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
             selectedCell.append(cell!)
             moreButton.isEnabled = true
             if let entries = dateHasData(cellState: selectedCellState) {
-                updateLabels(tips: String("\(Calculate.tips(entries: entries))"), hours: String("\(Calculate.hours(entries: entries))"), hourly: Calculate.hourly(entries: entries))
+                updateLabels(tips: Calculate.tips(entries: entries), hours: Calculate.hours(entries: entries), hourly: Calculate.hourly(entries: entries))
             } else {
                 CalendarError.presentErrorWith(title: ErrorTitle.fetchingError, message: ErrorMessage.fetching, view: self)
             }
@@ -199,7 +216,8 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
         setupCalendarView()
     }
     
-    //Calendar Helper functions
+    //**************************************************************************************************
+    //MARK: - Helper Methods
     func colorFor(_ cell :JTAppleCell, with cellState: CellState) {
         guard let calCell = appleCellToCalendarCell(cell: cell) else{
             CalendarError.presentErrorWith(title: ErrorTitle.castingError, message: ErrorMessage.casting, view: self)
@@ -295,6 +313,7 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
         return nil
     }
     
+    //**************************************************************************************************
     func displaySelectedCell(cell: JTAppleCell) {
         let calCell = appleCellToCalendarCell(cell: cell)!
         if cell.isSelected {
@@ -306,45 +325,29 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
             calCell.dateLabel.textColor = CalendarColors.black
         }
     }
-    
-    func updateLabels(tips: String = "0.00", hours: String = "0", hourly: String = "0.00") {
-        let dollarSign = "$"
-        hourlyLabel.text = dollarSign + hourly
-        tipsLabel.text = dollarSign + tips
-        hoursLabel.text = hours
-    }
+
     
     func stringFromNumber(_ number: Double) -> String {
         return String("\(number)")
     }
-    
-    func resetCalendar() {
-        for cell in selectedCell {
-            cell.isSelected = false
-            displaySelectedCell(cell: cell)
-        }
-        updateLabels()
-        selectedCellState = []
-        selectedCell = []
-        calendarView.reloadData()
-        moreButton.isEnabled = false
-    }
+
     
     func isToday(cellState: CellState, cell: JTAppleCell) {
+        
+        self.formatter.dateFormat = "dd MM yyyy"
+        let dateTwo = self.formatter.string(from: Date())
+        let dateOne = self.formatter.string(from: cellState.date)
 
-        formatter.dateFormat = "d"
-        let day = self.formatter.string(from: Date())
-
-        if cellState.text == day && cellState.dateBelongsTo == .thisMonth {
-            if let calCell = cell as? CalendarCell {
-                calCell.circleImage.image = #imageLiteral(resourceName: "Today Circle")
-                calCell.circleImage.isHidden = false
-                calCell.dateLabel.textColor = CalendarColors.white
+        if dateOne == dateTwo {
+            guard let calCell = cell as? CalendarCell else {
+                CalendarError.presentErrorWith(title: .castingError , message: .casting, view: self)
+                return
             }
+            calCell.circleImage.image = #imageLiteral(resourceName: "Today Circle")
+            calCell.circleImage.isHidden = false
+            calCell.dateLabel.textColor = CalendarColors.white
         }
     }
-    
-    
 }
 
 

@@ -25,6 +25,10 @@ class moreTableViewController: UITableViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
+    }
+    
     func refreshTable() {
         tableView.reloadData()
     }
@@ -36,8 +40,8 @@ class moreTableViewController: UITableViewController {
         let currentEntry = entries[indexPath.row]
         
         cell.hourlyLabel.text = Calculate.hourly(entries: [currentEntry])
-        cell.hoursLabel.text = String("\(Calculate.hours(entries: [currentEntry]))")
-        cell.tipsLabel.text = String("\(Calculate.tips(entries: [currentEntry]))")
+        cell.hoursLabel.text = String(Calculate.hours(entries: [currentEntry]))
+        cell.tipsLabel.text = String(Calculate.tips(entries: [currentEntry]))
         
         return cell
     }
@@ -68,7 +72,43 @@ class moreTableViewController: UITableViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == SegueIdentifier.addItem.rawValue {
+
+            guard let newView = segue.destination as? detailViewController else {
+                  CalendarError.presentErrorWith(title: .segueError, message: .segue, view: self)
+                return
+            }
+            
+            
+            newView.calendarView = self.calendarView
+            newView.managedObjectContext = self.managedObjectContext
+            newView.cellState = self.cellState
+            newView.dateString = self.dateString
+            newView.tableView = self
+            
+        }
+    }
     
+    /*
+     
+     let destinationNavigationController = segue.destination as! UINavigationController
+     guard let newView = destinationNavigationController.topViewController as? moreTableViewController else {
+     print("ERROR")
+     return
+     }
+     
+    var managedObjectContext = CoreDataStack().managedObjectContext
+    var calendarView: JTAppleCalendarView!
+    var cellState: CellState!
+    var dateString: String!
+    var viewController: ViewController!
+    var tableView: moreTableViewController?
+    
+     
+     
+     
+    */
 }
 
 
