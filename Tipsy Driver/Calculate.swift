@@ -26,7 +26,8 @@ class Calculate {
             totalHours += entry.hours
         }
         
-        return self.format(number: totalHours)
+        return String(format: "%.2f", totalHours)
+        
     }
     
     static func tips(entries: [Entry]) -> String {
