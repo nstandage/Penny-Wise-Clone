@@ -24,7 +24,8 @@ class detailViewController: UIViewController {
     var dateString: String!
     var viewController: ViewController!
     var tableView: moreTableViewController?
-
+    var object: NSManagedObject?
+    var entry: Entry?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,10 @@ class detailViewController: UIViewController {
         if tableView != nil {
             self.navigationController?.isNavigationBarHidden = true
         }
+        if object != nil {
+            setUpDisplayForEditingCell()
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,14 +56,13 @@ class detailViewController: UIViewController {
         }
         
         if tableView != nil {
+            if object != nil {
+                cancelChanges()
+            }
             navigationController?.popViewController(animated: true)
         } else {
             dismiss(animated: true, completion: nil)
         }
-        
-
-
-        
     }
     
     //FIXME: - TOO LONG
@@ -72,8 +76,9 @@ class detailViewController: UIViewController {
             CalendarError.presentErrorWith(title: ErrorTitle.invalidText, message: ErrorMessage.invalidText, view: self)
             return
         }
-        
-        
+        if object != nil {
+            saveChanges()
+        } else {
             guard let entry = NSEntityDescription.insertNewObject(forEntityName: "Entry", into: managedObjectContext) as? Entry else {
                 CalendarError.presentErrorWith(title: ErrorTitle.savingError, message: ErrorMessage.saving, view: self)
                 return
@@ -93,12 +98,34 @@ class detailViewController: UIViewController {
             } else {
                 viewController.resetCalendar()
             }
-
+        }
         if tableView != nil {
             navigationController?.popViewController(animated: true)
         } else {
             dismiss(animated: true, completion: nil)
         }
+    }
+    
+    func setUpDisplayForEditingCell() {
+        hoursTextField.text = String("\(entry!.hours)")
+        tipsTextField.text = String("\(entry!.tips)")
+
+    }
+    
+    func cancelChanges() {
+        object = nil
+        entry = nil
+    }
+    
+    func saveChanges() {
+        object?.setValue(convertStringToNSNumber(numberAsString: tipsTextField.text!), forKey: "tips")
+        object?.setValue(convertStringToNSNumber(numberAsString: hoursTextField.text!), forKey: "hours")
+        managedObjectContext.saveChanges()
+    }
+    
+    func convertStringToNSNumber(numberAsString: String) -> NSNumber {
+        let numberAsDouble = NSString(string: numberAsString).doubleValue
+        return NSNumber.init(value: numberAsDouble)
     }
 
 }

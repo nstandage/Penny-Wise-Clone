@@ -26,7 +26,6 @@ class CalendarError {
         
         for item in textArray {
             if item == fourtySix {
-                print("Match")
                 newArray.append(item)
             }
         }

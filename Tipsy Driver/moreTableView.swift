@@ -20,6 +20,8 @@ class moreTableViewController: UITableViewController {
     var cellState: CellState! = nil
     var calendarView: JTAppleCalendarView! = nil
     var managedObjectContext: NSManagedObjectContext! = nil
+    var object: NSManagedObject?
+    var entry: Entry?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +29,9 @@ class moreTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
+        tableView.reloadData()
     }
+    
     
     func refreshTable() {
         tableView.reloadData()
@@ -72,43 +76,34 @@ class moreTableViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        object = entries[indexPath.row] as NSManagedObject
+        entry = entries[indexPath.row]
+        performSegue(withIdentifier: SegueIdentifier.addItem.rawValue, sender: nil)
+        
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueIdentifier.addItem.rawValue {
 
             guard let newView = segue.destination as? detailViewController else {
-                  CalendarError.presentErrorWith(title: .segueError, message: .segue, view: self)
+                CalendarError.presentErrorWith(title: .segueError, message: .segue, view: self)
                 return
             }
-            
-            
+          
             newView.calendarView = self.calendarView
             newView.managedObjectContext = self.managedObjectContext
             newView.cellState = self.cellState
             newView.dateString = self.dateString
             newView.tableView = self
-            
+
+            if object != nil {
+                newView.object = self.object
+                newView.entry = self.entry
+            }
         }
     }
-    
-    /*
-     
-     let destinationNavigationController = segue.destination as! UINavigationController
-     guard let newView = destinationNavigationController.topViewController as? moreTableViewController else {
-     print("ERROR")
-     return
-     }
-     
-    var managedObjectContext = CoreDataStack().managedObjectContext
-    var calendarView: JTAppleCalendarView!
-    var cellState: CellState!
-    var dateString: String!
-    var viewController: ViewController!
-    var tableView: moreTableViewController?
-    
-     
-     
-     
-    */
 }
 
 

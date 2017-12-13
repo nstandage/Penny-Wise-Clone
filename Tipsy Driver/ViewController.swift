@@ -1,4 +1,4 @@
-//
+// font: 16pt
 //  ViewController.swift
 //  Tipsy Driver
 //
@@ -34,7 +34,7 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
     }()
     
     //MARK: - View Controller
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -344,6 +344,7 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
         let dateOne = self.formatter.string(from: cellState.date)
         
         if dateOne == dateTwo {
+            print(cellState.date)
             return true
         } else {
             return false
