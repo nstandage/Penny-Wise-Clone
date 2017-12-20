@@ -12,29 +12,17 @@ import JTAppleCalendar
 import Foundation
 
 class DataSource: NSObject, JTAppleCalendarViewDataSource {
-    
-    private let formatter: DateFormatter
+
     private let context: NSManagedObjectContext
     private let calendar: JTAppleCalendarView
     
-    init(context: NSManagedObjectContext, formatter: DateFormatter, calendar: JTAppleCalendarView) {
+    init(context: NSManagedObjectContext, calendar: JTAppleCalendarView) {
         self.context = context
-        self.formatter = formatter
         self.calendar = calendar
     }
     
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
-        
-        formatter.dateFormat = "yyy MM dd"
-        formatter.timeZone = Calendar.current.timeZone
-        formatter.locale = Calendar.current.locale
-        
-        guard let startDate = formatter.date(from: "2016 01 01"), let endDate = formatter.date(from: "2019 12 31") else {
-            fatalError("Couldn't create dates")
-        }
-        
-        let parameters = ConfigurationParameters.init(startDate: startDate, endDate: endDate)
-        return parameters
+        return ConfigurationParameters.init(startDate: CalendarFormatter.startDate(), endDate: CalendarFormatter.endDate())
     }
     
     // Fetched Stuff
@@ -58,6 +46,10 @@ class DataSource: NSObject, JTAppleCalendarViewDataSource {
             print(error.localizedDescription)
             return nil
         }
+    }
+    
+    func shoveIt() -> String {
+        return "shoveIt"
     }
 }
 

@@ -17,6 +17,9 @@
 		D83DD6541FD77CD4006FC066 /* JTAppleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83DD6551FD77CD4006FC066 /* JTAppleCalendar.framework */; };
 		D85CF2871FCC80E2006AE617 /* Calculate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85CF2861FCC80E2006AE617 /* Calculate.swift */; };
 		D8649F661FCDF93700E7CFCE /* Error Handling.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8649F651FCDF93700E7CFCE /* Error Handling.swift */; };
+		D87021261FE20EE5004C1501 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87021251FE20EE5004C1501 /* Helper.swift */; };
+		D87021281FE213C1004C1501 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87021271FE213C1004C1501 /* Calendar.swift */; };
+		D870212A1FE21766004C1501 /* CalendarFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87021291FE21766004C1501 /* CalendarFormatter.swift */; };
 		D881C7191FC52BB600018BD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D881C7181FC52BB600018BD1 /* AppDelegate.swift */; };
 		D881C71B1FC52BB600018BD1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D881C71A1FC52BB600018BD1 /* ViewController.swift */; };
 		D881C71E1FC52BB600018BD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D881C71C1FC52BB600018BD1 /* Main.storyboard */; };
@@ -43,6 +46,9 @@
 		D83DD6551FD77CD4006FC066 /* JTAppleCalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JTAppleCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D85CF2861FCC80E2006AE617 /* Calculate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculate.swift; sourceTree = "<group>"; };
 		D8649F651FCDF93700E7CFCE /* Error Handling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error Handling.swift"; sourceTree = "<group>"; };
+		D87021251FE20EE5004C1501 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		D87021271FE213C1004C1501 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
+		D87021291FE21766004C1501 /* CalendarFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarFormatter.swift; sourceTree = "<group>"; };
 		D881C7151FC52BB600018BD1 /* Tipsy Driver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tipsy Driver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D881C7181FC52BB600018BD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D881C71A1FC52BB600018BD1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +127,9 @@
 				D85CF2861FCC80E2006AE617 /* Calculate.swift */,
 				D8649F651FCDF93700E7CFCE /* Error Handling.swift */,
 				D8353F8A1FD0D16600C25FA1 /* Segue.swift */,
+				D87021251FE20EE5004C1501 /* Helper.swift */,
+				D87021271FE213C1004C1501 /* Calendar.swift */,
+				D87021291FE21766004C1501 /* CalendarFormatter.swift */,
 			);
 			path = "Tipsy Driver";
 			sourceTree = "<group>";
@@ -267,13 +276,16 @@
 				D85CF2871FCC80E2006AE617 /* Calculate.swift in Sources */,
 				D881C7211FC52BB600018BD1 /* Tipsy_Driver.xcdatamodeld in Sources */,
 				D8E7373F1FCF39FD00F16001 /* customCell.swift in Sources */,
+				D87021281FE213C1004C1501 /* Calendar.swift in Sources */,
 				D8649F661FCDF93700E7CFCE /* Error Handling.swift in Sources */,
 				D881C71B1FC52BB600018BD1 /* ViewController.swift in Sources */,
 				D8371D6D1FC655A500ADA7E1 /* Entry+CoreDataClass.swift in Sources */,
 				D8E737421FCF529D00F16001 /* moreTableView.swift in Sources */,
+				D87021261FE20EE5004C1501 /* Helper.swift in Sources */,
 				D8371D701FC657A600ADA7E1 /* CoreDataStack.swift in Sources */,
 				D881C7191FC52BB600018BD1 /* AppDelegate.swift in Sources */,
 				D8D14F471FC77829005E486D /* DataSource.swift in Sources */,
+				D870212A1FE21766004C1501 /* CalendarFormatter.swift in Sources */,
 				D881C7321FC5372000018BD1 /* CalendarCell.swift in Sources */,
 				D8D14F491FC8AE85005E486D /* CalendarFetchedResultsController.swift in Sources */,
 				D8371D5C1FC615AC00ADA7E1 /* CalendarColors.swift in Sources */,

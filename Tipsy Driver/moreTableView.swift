@@ -32,11 +32,9 @@ class moreTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    
     func refreshTable() {
         tableView.reloadData()
     }
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         

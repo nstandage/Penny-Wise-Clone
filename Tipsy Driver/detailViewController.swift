@@ -44,11 +44,7 @@ class detailViewController: UIViewController {
         }
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
+    
     @IBAction func cancel(_ sender: Any) {
         self.view.endEditing(true)
         if viewController != nil {
@@ -65,7 +61,6 @@ class detailViewController: UIViewController {
         }
     }
     
-    //FIXME: - TOO LONG
     @IBAction func save(_ sender: Any) {
         guard let hourly = hoursTextField.text, let tips = tipsTextField.text else {
             CalendarError.presentErrorWith(title: ErrorTitle.savingError, message: ErrorMessage.saving, view: self)
