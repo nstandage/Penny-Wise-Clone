@@ -29,8 +29,7 @@ class CalendarFetchedResultsController: NSFetchedResultsController<Entry>, NSFet
         do {
             try performFetch()
         } catch {
-            
-            print("Unresolved error: Fetch Failed ma brotha)")
+            // Fix this
         }
     }
 

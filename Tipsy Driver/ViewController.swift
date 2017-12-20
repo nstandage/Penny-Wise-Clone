@@ -68,7 +68,6 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
             
             let destinationNavigationController = segue.destination as! UINavigationController
             guard let newView = destinationNavigationController.topViewController as? moreTableViewController else {
-                print("ERROR")
                 return
             }
             let entries = dateHasData(cellState: selectedCellState.last!)
@@ -84,7 +83,6 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
             newView.managedObjectContext = managedObjectContext
         } else {
             CalendarError.presentErrorWith(title: ErrorTitle.segueError, message: ErrorMessage.segue, view: self)
-            print(ErrorMessage.segue.rawValue)
         }
     }
     
@@ -344,7 +342,6 @@ class ViewController: UIViewController, JTAppleCalendarViewDelegate {
         let dateOne = self.formatter.string(from: cellState.date)
         
         if dateOne == dateTwo {
-            print(cellState.date)
             return true
         } else {
             return false

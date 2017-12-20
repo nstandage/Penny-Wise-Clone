@@ -93,7 +93,6 @@ class detailViewController: UIViewController {
             managedObjectContext.saveChanges()
             if tableView != nil {
                 tableView?.entries.append(entry)
-                print("Party")
                 tableView?.refreshTable()
             } else {
                 viewController.resetCalendar()
