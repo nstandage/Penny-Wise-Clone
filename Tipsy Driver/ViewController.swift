@@ -26,69 +26,32 @@ class ViewController: UIViewController {
     let managedObjectContext = CoreDataStack().managedObjectContext
     var selectedCellState: [CellState] = []
     var selectedCell: [JTAppleCell] = []
-    let formatter = DateFormatter()
     lazy var dataSource: DataSource = {
         return DataSource(context: self.managedObjectContext, calendar: self.calendar)
     }()
     
     //MARK: - View Controller
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         calendar.calendarDataSource = dataSource
+        calendar.calendarDelegate = calendar
+        calendar.view = self
         updateLabels()
         moreButton.isEnabled = false
-        calendar.SetupCellSpacing()
+        //calendar.SetupCellSpacing()
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.scrollToToday))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.tapToToday))
         monthLabel.isUserInteractionEnabled = true
         monthLabel.addGestureRecognizer(tap)
-        loadTodayView()
+        scrollToToday()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == SegueIdentifier.detailSegue.rawValue {
-            
-            guard let newView = segue.destination as? detailViewController else {
-                CalendarError.presentErrorWith(title: ErrorTitle.segueError, message: ErrorMessage.segue, view: self)
-                return
-            }
-            formatter.dateStyle = .long
-            formatter.timeStyle = .none
-            let formattedString = formatter.string(from: (selectedCellState.last?.date)!)
-            newView.managedObjectContext = managedObjectContext
-            newView.cellState = selectedCellState.last
-            newView.dateString = formattedString
-            newView.calendarView = calendar
-            newView.viewController = self
-        } else if segue.identifier == SegueIdentifier.moreButtonSegue.rawValue {
-            
-            let destinationNavigationController = segue.destination as! UINavigationController
-            guard let newView = destinationNavigationController.topViewController as? moreTableViewController else {
-                print("ERROR")
-                return
-            }
-            let entries = dateHasData(cellState: selectedCellState.last!)
-            newView.entries = entries
-            formatter.dateStyle = .long
-            formatter.timeStyle = .none
-            let formattedString = formatter.string(from: (selectedCellState.last?.date)!)
-            newView.dateString = formattedString
-            newView.dataSource = self.dataSource
-            newView.previousView = self
-            newView.cellState = selectedCellState.last
-            newView.calendarView = calendar
-            newView.managedObjectContext = managedObjectContext
-        } else {
-            CalendarError.presentErrorWith(title: ErrorTitle.segueError, message: ErrorMessage.segue, view: self)
-            print(ErrorMessage.segue.rawValue)
-        }
-    }
-    
+    //MARK: - UIButtons
     @IBAction func clearButton(_ sender: Any) {
         if selectedCell != [] {
-            resetCalendar()
+            calendar.reloadData()
         }
     }
     
@@ -104,7 +67,7 @@ class ViewController: UIViewController {
                 if entry.date == self.selectedCellState.last?.date {
                     self.managedObjectContext.delete(entry)
                     self.managedObjectContext.saveChanges()
-                    self.resetCalendar()
+                    self.calendar.reloadData()
                 }
             }
         })
@@ -115,14 +78,56 @@ class ViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == SegueIdentifier.detailSegue.rawValue {
+
+            guard let newView = segue.destination as? detailViewController else {
+                CalendarError.presentErrorWith(title: ErrorTitle.segueError, message: ErrorMessage.segue, view: self)
+                return
+            }
+//            formatter.dateStyle = .long
+//            formatter.timeStyle = .none
+//            let formattedString = formatter.string(from: (selectedCellState.last?.date)!)
+            let formattedString = "Hello"
+            newView.managedObjectContext = managedObjectContext
+            newView.cellState = selectedCellState.last
+            newView.dateString = formattedString
+            newView.calendarView = calendar
+            newView.viewController = self
+        } else if segue.identifier == SegueIdentifier.moreButtonSegue.rawValue {
+
+            let destinationNavigationController = segue.destination as! UINavigationController
+            guard let newView = destinationNavigationController.topViewController as? moreTableViewController else {
+                print("ERROR")
+                return
+            }
+            let entries = dateHasData(cellState: selectedCellState.last!)
+            newView.entries = entries
+//            formatter.dateStyle = .long
+//            formatter.timeStyle = .none
+//            let formattedString = formatter.string(from: (selectedCellState.last?.date)!)
+            let formattedString = "Hello"
+            newView.dateString = formattedString
+            newView.dataSource = self.dataSource
+            newView.previousView = self
+            newView.cellState = selectedCellState.last
+            newView.calendarView = calendar
+            newView.managedObjectContext = managedObjectContext
+        } else {
+            CalendarError.presentErrorWith(title: ErrorTitle.segueError, message: ErrorMessage.segue, view: self)
+            print(ErrorMessage.segue.rawValue)
+        }
+    }
+
+    
     //MARK: - Calendar
     
     ///Brings view to current day
-    func loadTodayView() {
+    func scrollToToday() {
         calendar.scrollToDate(Date(), animateScroll: false)
     }
     
-    @objc func scrollToToday() {
+    @objc func tapToToday() {
         calendar.scrollToDate(Date(), animateScroll: true)
     }
 
@@ -130,18 +135,6 @@ class ViewController: UIViewController {
         hourlyLabel.text = hourly
         tipsLabel.text = tips
         hoursLabel.text = hours
-    }
-    
-    func resetCalendar() {
-        for cell in selectedCell {
-            cell.isSelected = false
-        }
-        updateLabels()
-        selectedCellState = []
-        selectedCell = []
-        calendar.deselectAllDates()
-        calendar.reloadData()
-        
     }
     
     //MARK: - App Delegate
@@ -222,11 +215,11 @@ class ViewController: UIViewController {
         }
         return false
     }
-    
+
     func indexForCellAndState(_ state: CellState) -> Int? {
         var index = 0
         for cell in selectedCellState {
-            
+
             if cell.date == state.date {
                 return index
             }

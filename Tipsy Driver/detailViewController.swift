@@ -19,7 +19,7 @@ class detailViewController: UIViewController {
     
     //FIXME: - TOO LONG, Can I get rid of some of these variables?
     var managedObjectContext = CoreDataStack().managedObjectContext
-    var calendarView: JTAppleCalendarView!
+    var calendarView: MyCalendar!
     var cellState: CellState!
     var dateString: String!
     var viewController: ViewController!
@@ -48,7 +48,7 @@ class detailViewController: UIViewController {
     @IBAction func cancel(_ sender: Any) {
         self.view.endEditing(true)
         if viewController != nil {
-            viewController.resetCalendar()
+            calendarView.resetCalendar()
         }
         
         if tableView != nil {
@@ -91,7 +91,7 @@ class detailViewController: UIViewController {
                 print("Party")
                 tableView?.refreshTable()
             } else {
-                viewController.resetCalendar()
+                calendarView.resetCalendar()
             }
         }
         if tableView != nil {

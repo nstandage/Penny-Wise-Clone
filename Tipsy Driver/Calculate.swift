@@ -60,7 +60,6 @@ class Calculate {
         return formattedNumber
     }
     
-    
     private static func hoursForHourlyCalc(_ entries: [Entry]) -> Double {
         var totalHours = 0.0
         

@@ -47,10 +47,24 @@ class DataSource: NSObject, JTAppleCalendarViewDataSource {
             return nil
         }
     }
-    
-    func shoveIt() -> String {
-        return "shoveIt"
+
+    func doesCellHaveData(cellState: CellState) -> Bool {
+        guard let entries = self.fetchEntries() else {
+            print("Couldn't fetch entries")
+            fatalError()
+        }
+        
+        for entry in entries {
+            if entry.date == cellState.date {
+                return true
+            }
+        }
+        
+        return false
+        
     }
+    
+    
 }
 
 

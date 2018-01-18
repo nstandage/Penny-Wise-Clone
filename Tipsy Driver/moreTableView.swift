@@ -18,7 +18,7 @@ class moreTableViewController: UITableViewController {
     var dataSource: DataSource! = nil
     var previousView: ViewController! = nil
     var cellState: CellState! = nil
-    var calendarView: JTAppleCalendarView! = nil
+    var calendarView: MyCalendar! = nil
     var managedObjectContext: NSManagedObjectContext! = nil
     var object: NSManagedObject?
     var entry: Entry?
@@ -49,7 +49,7 @@ class moreTableViewController: UITableViewController {
     }
     
     @IBAction func cancelButton(_ sender: Any) {
-        previousView.resetCalendar()
+        calendarView.resetCalendar()
         self.dismiss(animated: true, completion: nil)
     }
     

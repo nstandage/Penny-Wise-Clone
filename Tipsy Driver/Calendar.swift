@@ -4,7 +4,6 @@
 //
 //  Created by Nathan Standage on 12/13/17.
 //  Copyright © 2017 Nathan Standage. All rights reserved.
-//
 
 import Foundation
 import JTAppleCalendar
@@ -15,31 +14,18 @@ class MyCalendar: JTAppleCalendarView, JTAppleCalendarViewDelegate {
     
     var selectedCellStates: [CellState] = []
     var selectedCells: [JTAppleCell] = []
+    var view: ViewController!
     
-    //App Delegate
-    func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
-        let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "CalendarCell", for: indexPath) as! CalendarCell
-        displayForCell(cell, cellState: cellState)
-        
-        return cell
-    }
-    
-    func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
-    }
-    
-    func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        
-    }
-    
-    
-    func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        
-    }
-    
-    func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
-        
-    }
-    
+//    init(view: ViewController) {
+//        self.view = view
+//        super.init()
+//    }
+//
+//    required init?(coder aDecoder: NSCoder) {
+//
+//        super.init(coder: aDecoder)
+//    }
+
     enum CellStyle {
         case data
         case selected
@@ -66,106 +52,63 @@ class MyCalendar: JTAppleCalendarView, JTAppleCalendarViewDelegate {
         }
     }
 
-
-    // DISPLAY CALENDAR
+    //App Delegate
     
-    func setTextForCell(_ cell: CalendarCell, cellState: CellState ) {
-        cell.dateLabel.text = CalendarFormatter.formatWith(date: cellState.date, style: .day)
+    func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
+        let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "CalendarCell", for: indexPath) as! CalendarCell
+        displayFor(cell, cellState: cellState)
+        
+        return cell
     }
     
-    ///Sets up calindar spacing
-    func SetupCellSpacing() {
-        minimumLineSpacing = 0
-        minimumInteritemSpacing = 0
+    func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
+        
     }
     
-    func displayForCells(_ cells: [JTAppleCell], cellStates: [CellState]) {
-        for (cell, state) in zip(cells, cellStates) {
-            displayForCell(cell, cellState: state)
-        }
-    }
-    
-    func displayForCell(_ cell: JTAppleCell, cellState: CellState) {
-        let calCell = castAppleCellToCalendarCell(cell: cell)
-        textColorForCell(cell, cellState: cellState)
-        circleForCell(cell, cellState: cellState)
-        setTextForCell(calCell, cellState: cellState)
-    }
-    
-    //TEXT COLOR METHODS
-    func textColorForCell(_ cell: JTAppleCell, cellState: CellState) {
-        if cellState.dateBelongsTo == .thisMonth {
-            textColorForThisMonth(cell: cell, cellState: cellState)
+    func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+        if let unwrappedCell = cell {
+            displayFor(unwrappedCell, cellState: cellState)
         } else {
-            textColorForOutMonth(cell: cell)
+            print("Cell isn't a cell in didDelectDate")
         }
+        
     }
     
-    func textColorForOutMonth(cell: JTAppleCell) {
-        let calCell = castAppleCellToCalendarCell(cell: cell)
-        setTextColor(cell: calCell, style: .outMonth)
-    }
-
-    
-    func textColorForThisMonth(cell: JTAppleCell, cellState: CellState) {
-        let calCell = castAppleCellToCalendarCell(cell: cell)
-        if cellIsToday(cellState: cellState) == true {
-            setTextColor(cell: calCell, style: .today)
-        } else if cellHasData(cellState: cellState) == true {
-            setTextColor(cell: calCell, style: .data)
+    func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+        print("deselect")
+        if let unwrappedCell = cell {
+            displayFor(unwrappedCell, cellState: cellState)
         } else {
-            setTextColor(cell: calCell, style: .inMonth)
+            print("Cell isn't a cell in didDeselectDate")
         }
+        
     }
     
-    func setTextColor(cell: CalendarCell, style: CellStyle) {
-        cell.dateLabel.textColor = style.textColor
-    }
-    
-    
-    //CIRCLE FUNTIONS
-    func circleForCell(_ cell: JTAppleCell, cellState: CellState) {
-        let calCell = castAppleCellToCalendarCell(cell: cell)
-        if cellIsToday(cellState: cellState) == true {
-            setCircleForCell(cell: calCell, style: .today)
-        } else if cellHasData(cellState: cellState) == true {
-            setCircleForCell(cell: calCell, style: .selected)
-        } else {
-            setCircleForCell(cell: calCell, style: .inMonth)
-        }
+    func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
+        
     }
     
     
-    func setCircleForCell(cell: CalendarCell, style: CellStyle) {
-        cell.circleImage.image = style.image
+    func displayFor(_ cell: JTAppleCell, cellState: CellState) {
+        let data = doesCellHaveData(cellState: cellState)
+        CalendarDisplay.displayForCell(cell, cellState: cellState, data: data)
     }
-    
-    
-    
     //Other Methods
-    
-    //FIXME: - Finish Method
-    func cellHasData(cellState: CellState) -> Bool {
-        return false
-    }
-    
-    func cellIsToday(cellState: CellState) -> Bool {
-        let dateOne = CalendarFormatter.formatWith(date: Date(), style: .fullYear)
-        let dateTwo = CalendarFormatter.formatWith(date: cellState.date, style: .fullYear)
-        if dateOne == dateTwo {
-            return true
-        } else {
+
+    func doesCellHaveData(cellState: CellState) -> Bool {
+        guard let dataSource = calendarDataSource as? DataSource else {
             return false
         }
+        let bool = dataSource.doesCellHaveData(cellState: cellState)
+        return bool
+        
     }
     
-    func castAppleCellToCalendarCell(cell: JTAppleCell) -> CalendarCell {
-        guard let calCell = cell as? CalendarCell else {
-            //ERROR HANDLING
-            print("Casting apple cell to calendar cell failed")
-            fatalError()
-        }
-        return calCell
+    func resetCalendar() {
+        selectedCells = []
+        selectedCellStates = []
+        deselectAllDates()
+        reloadData()
     }
 }
 
