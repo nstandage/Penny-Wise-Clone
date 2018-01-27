@@ -63,7 +63,48 @@ class DataSource: NSObject, JTAppleCalendarViewDataSource {
         return false
         
     }
+
+    func entriesWith(date: Date) -> [Entry]? {
+        var entriesWithMatchingDate: [Entry] = []
+        if let entries = fetchEntries() {
+            
+            for entry in entries {
+                if entry.date == date {
+                    entriesWithMatchingDate.append(entry)
+                }
+            }
+        }
     
+        if entriesWithMatchingDate.count == 0 {
+            return nil
+        } else {
+            return entriesWithMatchingDate
+        }
+    }
+    
+    func doesCellStateMatchArray(cellState: CellState, arrayOfStates array:[CellState]) -> Bool {
+        
+        for state in array {
+            if cellState.date == state.date {
+                return true
+            }
+        }
+
+        return false
+    }
+    
+    func getEntriesMatching(cellStates: [CellState]) -> [Entry] {
+        var matchingEntries: [Entry] = []
+        let entries = fetchEntries()
+        for state in cellStates {
+            for entry in entries! {
+                if state.date == entry.date {
+                    matchingEntries.append(entry)
+                }
+            }
+        }
+        return matchingEntries
+    }
     
 }
 

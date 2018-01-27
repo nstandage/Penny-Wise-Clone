@@ -12,30 +12,28 @@ import CoreData
 
 class moreTableViewController: UITableViewController {
 
-
-    var dateString: String! = nil
     var entries: [Entry]! = nil
     var dataSource: DataSource! = nil
-    var previousView: ViewController! = nil
-    var cellState: CellState! = nil
-    var calendarView: MyCalendar! = nil
     var managedObjectContext: NSManagedObjectContext! = nil
-    var object: NSManagedObject?
-    var entry: Entry?
+    var entrySelected: Entry?
+    var cellState: CellState!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        populateEntries()
         navigationController?.isNavigationBarHidden = false
         tableView.reloadData()
     }
     
-    func refreshTable() {
-        tableView.reloadData()
+    @IBAction func cancelButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
+    //MARK: - TableView Methods
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = Bundle.main.loadNibNamed("customCell", owner: self, options: nil)?.first as! customCell
@@ -46,11 +44,6 @@ class moreTableViewController: UITableViewController {
         cell.tipsLabel.text = String(Calculate.tips(entries: [currentEntry]))
         
         return cell
-    }
-    
-    @IBAction func cancelButton(_ sender: Any) {
-        calendarView.resetCalendar()
-        self.dismiss(animated: true, completion: nil)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -67,17 +60,12 @@ class moreTableViewController: UITableViewController {
             entries.remove(at: indexPath.row)
             managedObjectContext.delete(entry)
             managedObjectContext.saveChanges()
-            
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        object = entries[indexPath.row] as NSManagedObject
-        entry = entries[indexPath.row]
+        entrySelected = entries[indexPath.row]
         performSegue(withIdentifier: SegueIdentifier.addItem.rawValue, sender: nil)
         
     }
@@ -89,18 +77,15 @@ class moreTableViewController: UITableViewController {
                 CalendarError.presentErrorWith(title: .segueError, message: .segue, view: self)
                 return
             }
-          
-            newView.calendarView = self.calendarView
             newView.managedObjectContext = self.managedObjectContext
             newView.cellState = self.cellState
-            newView.dateString = self.dateString
-            newView.tableView = self
-
-            if object != nil {
-                newView.object = self.object
-                newView.entry = self.entry
-            }
+            newView.entryBeingEdited = entrySelected
         }
+    }
+    
+    //MARK: - Helper Methods
+    func populateEntries() {
+        entries = dataSource.entriesWith(date: cellState.date)
     }
 }
 

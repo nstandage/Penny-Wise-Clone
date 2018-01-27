@@ -45,7 +45,7 @@ enum ErrorTitle: String {
     case castingError = "Casting Error"
     case savingError = "Saving Error"
     case invalidText = "Invalid Text"
-    case delete = "Delete"
+    case delete = "Delete Entry?"
 }
 
 enum ErrorMessage: String {

@@ -38,9 +38,14 @@ enum CellStyle {
     }
 }
 
-class CalendarDisplay {
 
-    static func displayForCell(_ cell: JTAppleCell, cellState: CellState, data: Bool) {
+class CalendarDisplay {
+    
+    static func displayForSelected(_ cell: JTAppleCell) {
+        setDisplayForCell(cell: cell, style: .selected)
+    }
+
+    static func displayForCell(_ cell: JTAppleCell, cellState: CellState, data: Bool = false) {
         if cellState.dateBelongsTo != .thisMonth {
             setDisplayForCell(cell: cell, style: .outMonth)
         } else {
@@ -70,6 +75,7 @@ class CalendarDisplay {
     }
     
     private static func setDisplayForCell(cell: JTAppleCell, style: CellStyle) {
+        
        let calCell = castAppleCellToCalendarCell(cell: cell)
         switch style {
         case .outMonth:
@@ -103,5 +109,6 @@ class CalendarDisplay {
         }
         return calCell
     }
+
     
 }
