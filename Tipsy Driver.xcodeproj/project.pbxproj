@@ -17,12 +17,16 @@
 		D83DD6541FD77CD4006FC066 /* JTAppleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83DD6551FD77CD4006FC066 /* JTAppleCalendar.framework */; };
 		D85CF2871FCC80E2006AE617 /* Calculate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85CF2861FCC80E2006AE617 /* Calculate.swift */; };
 		D8649F661FCDF93700E7CFCE /* Error Handling.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8649F651FCDF93700E7CFCE /* Error Handling.swift */; };
+		D87021261FE20EE5004C1501 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87021251FE20EE5004C1501 /* Helper.swift */; };
+		D87021281FE213C1004C1501 /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87021271FE213C1004C1501 /* Calendar.swift */; };
+		D870212A1FE21766004C1501 /* CalendarFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87021291FE21766004C1501 /* CalendarFormatter.swift */; };
 		D881C7191FC52BB600018BD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D881C7181FC52BB600018BD1 /* AppDelegate.swift */; };
 		D881C71B1FC52BB600018BD1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D881C71A1FC52BB600018BD1 /* ViewController.swift */; };
 		D881C71E1FC52BB600018BD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D881C71C1FC52BB600018BD1 /* Main.storyboard */; };
 		D881C7211FC52BB600018BD1 /* Tipsy_Driver.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D881C71F1FC52BB600018BD1 /* Tipsy_Driver.xcdatamodeld */; };
 		D881C7261FC52BB600018BD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D881C7241FC52BB600018BD1 /* LaunchScreen.storyboard */; };
 		D881C7321FC5372000018BD1 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D881C7311FC5372000018BD1 /* CalendarCell.swift */; };
+		D8933F3B200FA34F00557930 /* CalendarDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8933F3A200FA34F00557930 /* CalendarDisplay.swift */; };
 		D8D14F471FC77829005E486D /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D14F461FC77829005E486D /* DataSource.swift */; };
 		D8D14F491FC8AE85005E486D /* CalendarFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D14F481FC8AE85005E486D /* CalendarFetchedResultsController.swift */; };
 		D8E7373F1FCF39FD00F16001 /* customCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E7373D1FCF39FD00F16001 /* customCell.swift */; };
@@ -43,6 +47,9 @@
 		D83DD6551FD77CD4006FC066 /* JTAppleCalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JTAppleCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D85CF2861FCC80E2006AE617 /* Calculate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculate.swift; sourceTree = "<group>"; };
 		D8649F651FCDF93700E7CFCE /* Error Handling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error Handling.swift"; sourceTree = "<group>"; };
+		D87021251FE20EE5004C1501 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		D87021271FE213C1004C1501 /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
+		D87021291FE21766004C1501 /* CalendarFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarFormatter.swift; sourceTree = "<group>"; };
 		D881C7151FC52BB600018BD1 /* Tipsy Driver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tipsy Driver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D881C7181FC52BB600018BD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D881C71A1FC52BB600018BD1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +58,7 @@
 		D881C7251FC52BB600018BD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D881C7271FC52BB600018BD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D881C7311FC5372000018BD1 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		D8933F3A200FA34F00557930 /* CalendarDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDisplay.swift; sourceTree = "<group>"; };
 		D8D14F461FC77829005E486D /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		D8D14F481FC8AE85005E486D /* CalendarFetchedResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarFetchedResultsController.swift; sourceTree = "<group>"; };
 		D8E7373D1FCF39FD00F16001 /* customCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customCell.swift; sourceTree = "<group>"; };
@@ -101,28 +109,72 @@
 		D881C7171FC52BB600018BD1 /* Tipsy Driver */ = {
 			isa = PBXGroup;
 			children = (
-				D881C7181FC52BB600018BD1 /* AppDelegate.swift */,
-				D881C71A1FC52BB600018BD1 /* ViewController.swift */,
-				D8371D5D1FC64F3800ADA7E1 /* detailViewController.swift */,
-				D881C71C1FC52BB600018BD1 /* Main.storyboard */,
-				D8E737411FCF529D00F16001 /* moreTableView.swift */,
-				D8E7373D1FCF39FD00F16001 /* customCell.swift */,
-				D8E7373E1FCF39FD00F16001 /* customCell.xib */,
-				D83DD6521FD77C03006FC066 /* Assests.xcassets */,
-				D881C7241FC52BB600018BD1 /* LaunchScreen.storyboard */,
+				D8A86CCB2011826200A89579 /* Views */,
+				D8A86CCA2011825700A89579 /* Data Source */,
+				D8A86CC920117FCD00A89579 /* Calendar */,
+				D8A86CCC2011827200A89579 /* Helper */,
+				D8A86CCD201182B300A89579 /* Other */,
 				D881C7271FC52BB600018BD1 /* Info.plist */,
+			);
+			path = "Tipsy Driver";
+			sourceTree = "<group>";
+		};
+		D8A86CC920117FCD00A89579 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				D87021271FE213C1004C1501 /* Calendar.swift */,
+				D8933F3A200FA34F00557930 /* CalendarDisplay.swift */,
 				D881C7311FC5372000018BD1 /* CalendarCell.swift */,
+				D87021291FE21766004C1501 /* CalendarFormatter.swift */,
 				D8371D5B1FC615AC00ADA7E1 /* CalendarColors.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		D8A86CCA2011825700A89579 /* Data Source */ = {
+			isa = PBXGroup;
+			children = (
 				D8371D6F1FC657A600ADA7E1 /* CoreDataStack.swift */,
 				D8D14F461FC77829005E486D /* DataSource.swift */,
+				D8D14F481FC8AE85005E486D /* CalendarFetchedResultsController.swift */,
 				D8371D6B1FC655A500ADA7E1 /* Entry+CoreDataClass.swift */,
 				D881C71F1FC52BB600018BD1 /* Tipsy_Driver.xcdatamodeld */,
-				D8D14F481FC8AE85005E486D /* CalendarFetchedResultsController.swift */,
+			);
+			path = "Data Source";
+			sourceTree = "<group>";
+		};
+		D8A86CCB2011826200A89579 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D881C71A1FC52BB600018BD1 /* ViewController.swift */,
+				D8371D5D1FC64F3800ADA7E1 /* detailViewController.swift */,
+				D8E737411FCF529D00F16001 /* moreTableView.swift */,
+				D881C7241FC52BB600018BD1 /* LaunchScreen.storyboard */,
+				D881C71C1FC52BB600018BD1 /* Main.storyboard */,
+				D8E7373D1FCF39FD00F16001 /* customCell.swift */,
+				D8E7373E1FCF39FD00F16001 /* customCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D8A86CCC2011827200A89579 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
 				D85CF2861FCC80E2006AE617 /* Calculate.swift */,
 				D8649F651FCDF93700E7CFCE /* Error Handling.swift */,
 				D8353F8A1FD0D16600C25FA1 /* Segue.swift */,
+				D87021251FE20EE5004C1501 /* Helper.swift */,
 			);
-			path = "Tipsy Driver";
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		D8A86CCD201182B300A89579 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				D881C7181FC52BB600018BD1 /* AppDelegate.swift */,
+				D83DD6521FD77C03006FC066 /* Assests.xcassets */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 		E9AED1597BCCA9AD1BD47248 /* Pods */ = {
@@ -267,15 +319,19 @@
 				D85CF2871FCC80E2006AE617 /* Calculate.swift in Sources */,
 				D881C7211FC52BB600018BD1 /* Tipsy_Driver.xcdatamodeld in Sources */,
 				D8E7373F1FCF39FD00F16001 /* customCell.swift in Sources */,
+				D87021281FE213C1004C1501 /* Calendar.swift in Sources */,
 				D8649F661FCDF93700E7CFCE /* Error Handling.swift in Sources */,
 				D881C71B1FC52BB600018BD1 /* ViewController.swift in Sources */,
 				D8371D6D1FC655A500ADA7E1 /* Entry+CoreDataClass.swift in Sources */,
 				D8E737421FCF529D00F16001 /* moreTableView.swift in Sources */,
+				D87021261FE20EE5004C1501 /* Helper.swift in Sources */,
 				D8371D701FC657A600ADA7E1 /* CoreDataStack.swift in Sources */,
 				D881C7191FC52BB600018BD1 /* AppDelegate.swift in Sources */,
 				D8D14F471FC77829005E486D /* DataSource.swift in Sources */,
+				D870212A1FE21766004C1501 /* CalendarFormatter.swift in Sources */,
 				D881C7321FC5372000018BD1 /* CalendarCell.swift in Sources */,
 				D8D14F491FC8AE85005E486D /* CalendarFetchedResultsController.swift in Sources */,
+				D8933F3B200FA34F00557930 /* CalendarDisplay.swift in Sources */,
 				D8371D5C1FC615AC00ADA7E1 /* CalendarColors.swift in Sources */,
 				D8353F8B1FD0D16600C25FA1 /* Segue.swift in Sources */,
 				D8371D5E1FC64F3800ADA7E1 /* detailViewController.swift in Sources */,
