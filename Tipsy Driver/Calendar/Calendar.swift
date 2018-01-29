@@ -61,6 +61,17 @@ class MyCalendar: JTAppleCalendarView, JTAppleCalendarViewDelegate {
         CalendarDisplay.displayForSelected(cell)
     }
     
+    func calendarDidScroll(_ calendar: JTAppleCalendarView) {
+        if let date = visibleDates().monthDates.first?.date {
+        view.setUpCalendarLabels(date: date)
+        } else {
+            //FIXME: - Error Handling
+            fatalError()
+        }
+        
+        
+    }
+    
     //Other Methods
     func resetCalendar() {
         view.updateLabels()

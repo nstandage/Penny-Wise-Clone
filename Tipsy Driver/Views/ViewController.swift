@@ -133,7 +133,7 @@ class ViewController: UIViewController {
         hoursLabel.text = hours
     }
     
-    private func setUpCalendarLabels(date: Date) {
+    func setUpCalendarLabels(date: Date) {
         monthLabel.text = CalendarFormatter.formatWith(date: date, style: .month)
         yearLabel.text = CalendarFormatter.formatWith(date: date, style: .year)
     }
