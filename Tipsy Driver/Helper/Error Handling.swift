@@ -54,7 +54,7 @@ enum ErrorMessage: String {
     case casting = "Sorry, we had trouble casting."
     case saving = "Sorry, we had an error saving your data."
     case invalidText = "Sorry, Invalid Text. Please check text and try again."
-    case delete = "Are you sure you want to delete this entry?"
+    case delete = "Delete all entries for selected date?"
 }
 
 

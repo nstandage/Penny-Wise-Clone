@@ -8,13 +8,12 @@
 
 import Foundation
 
-
 class Calculate {
     
     static func hourly(entries: [Entry]) -> String {
         let hours = self.hoursForHourlyCalc(entries)
         let tips = self.tipsForHourlyCalc(entries)
-        let total = tips/hours
+        let total = (tips/hours) + userDefault()
         
         return self.format(number: total)
     }
@@ -79,22 +78,24 @@ class Calculate {
         
         return totalTips
     }
+    private static func userDefault() -> Double {
+        if let wage = UserDefaults.standard.object(forKey: CalendarDefaults.wageDefault.rawValue) {
+            let wageString = "\(wage)"
+            if let wageNumber = Double(wageString) {
+                return wageNumber
+            } else {
+                return 0.0
+            }
+        } else {
+            return 0.0
+        }
+    }
     
-    
+    private static func castAnyToNumber(any: Any) -> Double {
+        
+        return 9.9
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

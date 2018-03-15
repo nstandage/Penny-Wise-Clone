@@ -20,7 +20,16 @@ class Segue {
 }
 
 enum SegueIdentifier: String {
+    
     case moreButtonSegue
     case detailSegue
     case addItem
+    case settings
+    case settingsTheme
+    case settingsIcon
+    case settingsHourlyWage
+    case settingsTutorial
+    case settingsTipDeveloper
+    case settingsSendFeedback
+    case settingsAbout
 }

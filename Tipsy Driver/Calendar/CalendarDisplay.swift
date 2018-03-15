@@ -21,19 +21,19 @@ enum CellStyle {
     
     var image: UIImage? {
         switch self {
-        case .today, .todaySelected: return #imageLiteral(resourceName: "Today Circle")
-        case .selected: return #imageLiteral(resourceName: "Circle")
+        case .today: return #imageLiteral(resourceName: "today_circle")
+        case .selected, .todaySelected: return #imageLiteral(resourceName: "selected_circle")
         case .data, .inMonth, .outMonth: return nil
         }
         
     }
     var textColor: UIColor {
         switch self {
-        case .data: return CalendarColors.data
-        case .inMonth: return CalendarColors.inMonth
+        case .inMonth, .today: return CalendarColors.inMonth
         case .outMonth: return CalendarColors.outMonth
-        case .today, .todaySelected: return CalendarColors.today
+        case .todaySelected: return CalendarColors.today
         case .selected: return CalendarColors.selected
+        case .data: return CalendarColors.data
         }
     }
 }
@@ -67,6 +67,7 @@ class CalendarDisplay {
     private static func isCellToday(cell: JTAppleCell, cellState: CellState) {
         let dateOne = CalendarFormatter.formatWith(date: Date(), style: .fullYear)
         let dateTwo = CalendarFormatter.formatWith(date: cellState.date, style: .fullYear)
+        
         if dateOne == dateTwo {
             setDisplayForCell(cell: cell, style: .today)
         } else {

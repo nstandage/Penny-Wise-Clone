@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeueLights.ttc">
+            <string>HelveticaNeue-Light</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
@@ -19,27 +24,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Penny Wise" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ErU-me-FVr">
-                                <rect key="frame" x="20" y="201.5" width="335" height="30"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="25"/>
+                                <rect key="frame" x="20" y="202" width="335" height="29.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="25"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pig icon" translatesAutoresizingMaskIntoConstraints="NO" id="RnL-TT-e0t">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pig_icon" translatesAutoresizingMaskIntoConstraints="NO" id="YKY-zj-ykK">
                                 <rect key="frame" x="127" y="263.5" width="120" height="120"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="5WL-8e-A5A"/>
-                                    <constraint firstAttribute="height" constant="120" id="wjy-2t-Heh"/>
+                                    <constraint firstAttribute="height" constant="120" id="s2g-l7-wTl"/>
+                                    <constraint firstAttribute="width" constant="120" id="x13-1q-0gR"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.7725490196" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.53725490200000003" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="RnL-TT-e0t" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-10" id="2Ge-gK-hj2"/>
-                            <constraint firstItem="RnL-TT-e0t" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Kbs-Gn-bpN"/>
+                            <constraint firstItem="YKY-zj-ykK" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-10" id="40q-Ab-QA3"/>
+                            <constraint firstItem="YKY-zj-ykK" firstAttribute="top" secondItem="ErU-me-FVr" secondAttribute="bottom" constant="32" id="9l9-hz-IrU"/>
                             <constraint firstItem="ErU-me-FVr" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="OSq-EZ-4De"/>
+                            <constraint firstItem="YKY-zj-ykK" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="XKa-x9-U9f"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ErU-me-FVr" secondAttribute="trailing" constant="20" id="ih8-kB-fsZ"/>
                             <constraint firstItem="ErU-me-FVr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="pYg-mS-sev"/>
-                            <constraint firstItem="RnL-TT-e0t" firstAttribute="top" secondItem="ErU-me-FVr" secondAttribute="bottom" constant="32" id="tfl-Gk-QYl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -50,6 +55,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="pig icon" width="367" height="347"/>
+        <image name="pig_icon" width="708" height="666"/>
     </resources>
 </document>

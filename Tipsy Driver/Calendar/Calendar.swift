@@ -36,6 +36,7 @@ class MyCalendar: JTAppleCalendarView, JTAppleCalendarViewDelegate {
             selectedCellStates.append(cellState)
             CalendarDisplay.displayForSelected(cell!)
             labelSetup()
+            view.isSelectedCellDataHidden(false)
             view.moreButton.isEnabled = true
         } else {
             selectedCellStates.append(cellState)
@@ -51,6 +52,7 @@ class MyCalendar: JTAppleCalendarView, JTAppleCalendarViewDelegate {
         
     }
     
+    // Checks to see if cell has data and then calls display for cell
     func displayFor(_ cell: JTAppleCell, cellState: CellState) {
         let source = castDataSource()
         let data = source.doesCellHaveData(cellState: cellState)
@@ -75,6 +77,7 @@ class MyCalendar: JTAppleCalendarView, JTAppleCalendarViewDelegate {
     //Other Methods
     func resetCalendar() {
         view.updateLabels()
+        view.isSelectedCellDataHidden(true)
         selectedCellStates = []
         deselectAllDates()
         reloadData()

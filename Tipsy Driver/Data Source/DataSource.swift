@@ -39,9 +39,7 @@ class DataSource: NSObject, JTAppleCalendarViewDataSource {
         
         do {
             let fetchedEntries = try context.fetch(fetch as! NSFetchRequest<NSFetchRequestResult>) as! [Entry]
-            
             return fetchedEntries
-            
         } catch {
             print(error.localizedDescription)
             return nil
@@ -55,13 +53,11 @@ class DataSource: NSObject, JTAppleCalendarViewDataSource {
         }
         
         for entry in entries {
-            if entry.date == cellState.date {
+            if Helper.removeTimeStamp(fromDate: entry.date!) == Helper.removeTimeStamp(fromDate: cellState.date) {
                 return true
             }
         }
-        
         return false
-        
     }
 
     func entriesWith(date: Date) -> [Entry]? {
@@ -98,7 +94,8 @@ class DataSource: NSObject, JTAppleCalendarViewDataSource {
         let entries = fetchEntries()
         for state in cellStates {
             for entry in entries! {
-                if state.date == entry.date {
+                if Helper.removeTimeStamp(fromDate: state.date) == Helper.removeTimeStamp(fromDate: entry.date!) {
+                //if state.date == entry.date {
                     matchingEntries.append(entry)
                 }
             }
