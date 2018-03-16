@@ -18,10 +18,11 @@ enum CellStyle {
     case inMonth
     case outMonth
     case todaySelected
+    case todayData
     
     var image: UIImage? {
         switch self {
-        case .today: return #imageLiteral(resourceName: "today_circle")
+        case .today, .todayData: return #imageLiteral(resourceName: "today_circle")
         case .selected, .todaySelected: return #imageLiteral(resourceName: "selected_circle")
         case .data, .inMonth, .outMonth: return nil
         }
@@ -33,7 +34,7 @@ enum CellStyle {
         case .outMonth: return CalendarColors.outMonth
         case .todaySelected: return CalendarColors.today
         case .selected: return CalendarColors.selected
-        case .data: return CalendarColors.data
+        case .data, .todayData: return CalendarColors.data
         }
     }
 }
@@ -50,7 +51,7 @@ class CalendarDisplay {
             setDisplayForCell(cell: cell, style: .outMonth)
         } else {
             doesCellHaveData(cell: cell, cellState: cellState, data: data)
-            isCellToday(cell: cell, cellState: cellState)
+            isCellToday(cell: cell, cellState: cellState, data: data)
         }
     }
 
@@ -64,12 +65,16 @@ class CalendarDisplay {
         
     }
     
-    private static func isCellToday(cell: JTAppleCell, cellState: CellState) {
+    private static func isCellToday(cell: JTAppleCell, cellState: CellState, data: Bool) {
         let dateOne = CalendarFormatter.formatWith(date: Date(), style: .fullYear)
         let dateTwo = CalendarFormatter.formatWith(date: cellState.date, style: .fullYear)
         
         if dateOne == dateTwo {
+            if data == true {
+             setDisplayForCell(cell: cell, style: .todayData)
+            } else {
             setDisplayForCell(cell: cell, style: .today)
+            }
         } else {
             return
         }
@@ -97,6 +102,9 @@ class CalendarDisplay {
         case .todaySelected:
             calCell.circleImage.image = CellStyle.todaySelected.image
             calCell.dateLabel.textColor = CellStyle.todaySelected.textColor
+        case .todayData:
+            calCell.circleImage.image = CellStyle.todayData.image
+            calCell.dateLabel.textColor = CellStyle.todayData.textColor
         }
     }
     

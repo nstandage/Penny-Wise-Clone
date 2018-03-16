@@ -35,4 +35,22 @@ class Helper {
     }
     
     
+    static func isSmallDevice() -> CalendarDeviceClass {
+        let screenBounds = UIScreen.main.bounds
+        let height = screenBounds.height
+        
+        switch height {
+        case 480: return .iPad
+        case 568: return .smallPhone
+        default: return .normalPhone
+        }
+    }
+    
+    
+    
+    enum CalendarDeviceClass: String {
+        case iPad
+        case smallPhone
+        case normalPhone
+    }
 }

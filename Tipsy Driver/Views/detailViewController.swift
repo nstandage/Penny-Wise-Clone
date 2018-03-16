@@ -24,6 +24,9 @@ class detailViewController: UIViewController {
         super.viewDidLoad()
         titleLabel.text = CalendarFormatter.formatWith(date: cellState.date, style: .display)
         hoursTextField.becomeFirstResponder()
+        if Helper.isSmallDevice() != .normalPhone {
+            titleLabel.font = titleLabel.font.withSize(24)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

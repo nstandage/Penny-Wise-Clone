@@ -18,6 +18,7 @@ class MyCalendar: JTAppleCalendarView, JTAppleCalendarViewDelegate {
     //App Delegate
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "CalendarCell", for: indexPath) as! CalendarCell
+        dynamicCalendarCellText(cell: cell)
         cell.dateLabel.text = cellState.text
         let dataSource = castDataSource()
         if dataSource.doesCellStateMatchArray(cellState: cellState, arrayOfStates: selectedCellStates) == true {
@@ -92,6 +93,55 @@ class MyCalendar: JTAppleCalendarView, JTAppleCalendarViewDelegate {
         let entries = dataSource.getEntriesMatching(cellStates: selectedCellStates)
         view.updateLabels(tips: Calculate.tips(entries: entries), hours: Calculate.hours(entries: entries), hourly: Calculate.hourly(entries: entries))
     }
+    
+    
+    
+    func dynamicText() {
+        
+        if Helper.isSmallDevice() == .iPad {
+            view.monthLabel.font = view.monthLabel.font.withSize(22)
+            view.yearLabel.font = view.yearLabel.font.withSize(16)
+            
+            view.hoursTextLabel.font = view.hoursTextLabel.font.withSize(14)
+            view.tipsTextLabel.font = view.tipsTextLabel.font.withSize(14)
+            view.hourlyTextLabel.font = view.hourlyTextLabel.font.withSize(14)
+            
+            view.hoursLabel.font = view.hoursLabel.font.withSize(12)
+            view.tipsLabel.font = view.tipsLabel.font.withSize(12)
+            view.hourlyLabel.font = view.hourlyLabel.font.withSize(12)
+            
+            view.sun.font = view.sun.font.withSize(12)
+            view.mon.font = view.mon.font.withSize(12)
+            view.tue.font = view.tue.font.withSize(12)
+            view.wed.font = view.wed.font.withSize(12)
+            view.thu.font = view.thu.font.withSize(12)
+            view.fri.font = view.fri.font.withSize(12)
+            view.sat.font = view.sat.font.withSize(12)
+            
+            view.deleteButton.titleLabel?.font = view.deleteButton.titleLabel?.font.withSize(12)
+            view.editButton.titleLabel?.font = view.editButton.titleLabel?.font.withSize(12)
+            view.clearButton.titleLabel?.font = view.clearButton.titleLabel?.font.withSize(12)
+        } else if Helper.isSmallDevice() == .smallPhone {
+            
+            view.sun.font = view.sun.font.withSize(14)
+            view.mon.font = view.mon.font.withSize(14)
+            view.tue.font = view.tue.font.withSize(14)
+            view.wed.font = view.wed.font.withSize(14)
+            view.thu.font = view.thu.font.withSize(14)
+            view.fri.font = view.fri.font.withSize(14)
+            view.sat.font = view.sat.font.withSize(14)
+        }
+    }
+    
+    func dynamicCalendarCellText(cell: CalendarCell) {
+        if Helper.isSmallDevice() == .iPad {
+            cell.dateLabel.font = cell.dateLabel.font.withSize(12)
+        } else if Helper.isSmallDevice() == .smallPhone {
+            cell.dateLabel.font = cell.dateLabel.font.withSize(14)
+        }
+    }
+
+
 }
 
 

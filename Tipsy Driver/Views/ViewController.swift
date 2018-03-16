@@ -28,6 +28,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var editButton: UIButton!
     
+    @IBOutlet weak var sun: UILabel!
+    @IBOutlet weak var mon: UILabel!
+    @IBOutlet weak var tue: UILabel!
+    @IBOutlet weak var wed: UILabel!
+    @IBOutlet weak var thu: UILabel!
+    @IBOutlet weak var fri: UILabel!
+    @IBOutlet weak var sat: UILabel!
+
+    @IBOutlet weak var blueDataView: UIView!
+    
+    
+    
     //Variables
     let managedObjectContext = CoreDataStack().managedObjectContext
     lazy var dataSource: DataSource = {
@@ -43,11 +55,11 @@ class ViewController: UIViewController {
         updateLabels()
         setUpCalendarLabels(date: Date())
         moreButton.isEnabled = false
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         calendar.calendarDataSource = dataSource
         calendar.calendarDelegate = calendar
@@ -56,6 +68,7 @@ class ViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.tapToToday))
         monthLabel.isUserInteractionEnabled = true
         monthLabel.addGestureRecognizer(tap)
+        calendar.dynamicText()
         scrollToToday()
     }
     
@@ -163,8 +176,6 @@ class ViewController: UIViewController {
     
     private func formatDeleteDate() -> String {
             let date = CalendarFormatter.formatWith(date: calendar.selectedCellStates.last!.date, style: .display)
-        
-        
         return date
     }
 
