@@ -15,6 +15,7 @@ class detailViewController: UIViewController {
     @IBOutlet weak var tipsTextField: UITextField!
     @IBOutlet weak var hoursTextField: UITextField!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var blueTopView: UIView!
     
     var managedObjectContext = CoreDataStack().managedObjectContext
     var entryBeingEdited: Entry?
@@ -24,12 +25,13 @@ class detailViewController: UIViewController {
         super.viewDidLoad()
         titleLabel.text = CalendarFormatter.formatWith(date: cellState.date, style: .display)
         hoursTextField.becomeFirstResponder()
-        if Helper.isSmallDevice() != .normalPhone {
+        if Helper.deviceSize() != .normalPhone {
             titleLabel.font = titleLabel.font.withSize(24)
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        Helper.ChangeTheme(topView: blueTopView)
         if entryBeingEdited != nil {
             setUpDisplayForEditingCell()
         }

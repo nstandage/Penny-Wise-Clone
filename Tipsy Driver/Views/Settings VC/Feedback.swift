@@ -22,20 +22,22 @@ class Feedback: UIViewController {
     }
     
     @IBAction func twitterButton() {
+        
         if let twitterUrl = URL(string: "https://twitter.com/nstandage") {
-            UIApplication.shared.open(twitterUrl, completionHandler: nil)
+            UIApplication.shared.open(twitterUrl)
+        } else {
+            //ERROR HANDLING
         }
         
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func emailButton() {
+        if let emailURL = URL(string: "mailto:developer@nathanstandage.com") {
+            UIApplication.shared.open(emailURL)
+        } else {
+            //ERROR HANDLING
+        }
     }
-    */
+
 
 }

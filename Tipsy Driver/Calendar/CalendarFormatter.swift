@@ -14,7 +14,7 @@ enum formatStyle: String {
     case year = "yyyy"
     case fullYear = "dd MM yyyy"
     case day = "dd"
-    case display = " MMMM dd, yyyy"
+    case display = "MMMM dd, yyyy"
 }
 
 class CalendarFormatter: DateFormatter {
@@ -41,9 +41,24 @@ class CalendarFormatter: DateFormatter {
     static func endDate() -> Date {
         let formatter = formatterForDate()
         return formatter.date(from: "2021 12 31")!
-
     }
-    
-    
-    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

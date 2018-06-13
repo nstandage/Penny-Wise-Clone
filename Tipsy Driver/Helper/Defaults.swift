@@ -13,4 +13,6 @@ import Foundation
 enum CalendarDefaults: String {
     case wageDefault
     case userHasDonated
+    case theme
+    case icon
 }

@@ -9,27 +9,52 @@
 import UIKit
 
 class Theme: UIViewController {
+    
+    
+    @IBOutlet weak var blue: UIButton!
+    @IBOutlet weak var green: UIButton!
+    @IBOutlet weak var red: UIButton!
+    @IBOutlet weak var black: UIButton!
+    @IBOutlet weak var purpleRed: UIButton!
+    @IBOutlet weak var blueGrey: UIButton!
+    
+    
+    
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Theme"
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func blueTheme() {
+        UserDefaults.standard.set("blue", forKey: CalendarDefaults.theme.rawValue)
+        self.dismiss(animated: true, completion: nil)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func greenTheme() {
+        UserDefaults.standard.set("green", forKey: CalendarDefaults.theme.rawValue)
+        self.dismiss(animated: true, completion: nil)
     }
-    */
-
+    
+    @IBAction func redTheme() {
+        UserDefaults.standard.set("red", forKey: CalendarDefaults.theme.rawValue)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func blackTheme() {
+        UserDefaults.standard.set("black", forKey: CalendarDefaults.theme.rawValue)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func purpleRedTheme() {
+        UserDefaults.standard.set("purpleRed", forKey: CalendarDefaults.theme.rawValue)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func blueGreyTheme() {
+        UserDefaults.standard.set("blueGrey", forKey: CalendarDefaults.theme.rawValue)
+        self.dismiss(animated: true, completion: nil)
+    }
 }

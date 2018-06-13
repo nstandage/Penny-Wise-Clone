@@ -11,7 +11,10 @@ import JTAppleCalendar
 
 class CalendarCell: JTAppleCell {
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var circleImage: UIImageView!
+    @IBOutlet weak var selectedCircleView: UIView!
+    @IBOutlet weak var todayIndicator: UIImageView!
+    
+    
     
     
 }

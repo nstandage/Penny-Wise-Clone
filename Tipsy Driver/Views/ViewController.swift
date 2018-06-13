@@ -24,6 +24,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipsTextLabel: UILabel!
     @IBOutlet weak var hoursTextLabel: UILabel!
     @IBOutlet weak var hourlyTextLabel: UILabel!
+    @IBOutlet weak var reportsButton: UIButton!
+    @IBOutlet weak var coloredPlusView: UIView!
+    @IBOutlet weak var selectedCircleView: UIView!
+    @IBOutlet weak var leftGearConstraint: NSLayoutConstraint!
+    @IBOutlet weak var rightReportsConstraint: NSLayoutConstraint!
+    
     
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var editButton: UIButton!
@@ -37,6 +43,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var sat: UILabel!
 
     @IBOutlet weak var blueDataView: UIView!
+    @IBOutlet weak var blueTopView: UIView!
+    
+    @IBOutlet weak var addButtonIcon: UIButton!
     
     
     
@@ -48,6 +57,7 @@ class ViewController: UIViewController {
     
     //MARK: - View Controller
     override func viewWillAppear(_ animated: Bool) {
+        Helper.ChangeTheme(topView: blueTopView, otherView: blueDataView, buttonView: coloredPlusView)
         isSelectedCellDataHidden(true)
         if calendar != nil {
             calendar.resetCalendar()
@@ -55,7 +65,8 @@ class ViewController: UIViewController {
         updateLabels()
         setUpCalendarLabels(date: Date())
         moreButton.isEnabled = false
-        
+        calendar.minimumLineSpacing = 0
+        calendar.minimumInteritemSpacing = 0
     }
     
     override func viewDidLoad() {
@@ -79,7 +90,13 @@ class ViewController: UIViewController {
         }
         moreButton.isEnabled = false
     }
-
+    
+    @IBAction func plusButton() {
+        calendar.selectDates([Helper.removeTimeStamp(fromDate: Date())])
+        //should automatically call SelectedCellState method.
+        performSegue(withIdentifier: SegueIdentifier.detailSegue.rawValue , sender: nil)
+    }
+    
     @IBAction func moreButton(_ sender: Any) {
         if calendar.selectedCellStates.count > 0 {
             performSegue(withIdentifier: SegueIdentifier.moreButtonSegue.rawValue, sender: nil)
@@ -94,10 +111,13 @@ class ViewController: UIViewController {
         let alertController = UIAlertController(title: formatDeleteDate(), message: ErrorMessage.delete.rawValue, preferredStyle: .actionSheet)
         let actionOne = UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
             for entry in entries {
-                if entry.date == self.calendar.selectedCellStates.last?.date {
+                let dateOne = entry.date!
+                let dateTwo = self.calendar.selectedCellStates.last?.date
+                if Helper.removeTimeStamp(fromDate: dateOne) == Helper.removeTimeStamp(fromDate: dateTwo!)  {
                     self.managedObjectContext.delete(entry)
                     self.managedObjectContext.saveChanges()
                     self.calendar.resetCalendar()
+                    break
                 }
             }
         })
@@ -173,10 +193,14 @@ class ViewController: UIViewController {
         deleteButton.isHidden = bool
     }
     
-    
     private func formatDeleteDate() -> String {
             let date = CalendarFormatter.formatWith(date: calendar.selectedCellStates.last!.date, style: .display)
         return date
+    }
+    
+    func setButtonPlacement() {
+        
+        
     }
 
 }
