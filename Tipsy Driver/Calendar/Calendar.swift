@@ -125,13 +125,27 @@ class MyCalendar: JTAppleCalendarView, JTAppleCalendarViewDelegate {
             
         } else if Helper.deviceSize() == .smallPhone {
             
-            view.sun.font = view.sun.font.withSize(14)
-            view.mon.font = view.mon.font.withSize(14)
-            view.tue.font = view.tue.font.withSize(14)
-            view.wed.font = view.wed.font.withSize(14)
-            view.thu.font = view.thu.font.withSize(14)
-            view.fri.font = view.fri.font.withSize(14)
-            view.sat.font = view.sat.font.withSize(14)
+            view.monthLabel.font = view.monthLabel.font.withSize(28)
+            view.yearLabel.font = view.yearLabel.font.withSize(20)
+            
+            view.sun.font = view.sun.font.withSize(15)
+            view.mon.font = view.mon.font.withSize(15)
+            view.tue.font = view.tue.font.withSize(15)
+            view.wed.font = view.wed.font.withSize(15)
+            view.thu.font = view.thu.font.withSize(15)
+            view.fri.font = view.fri.font.withSize(15)
+            view.sat.font = view.sat.font.withSize(15)
+            
+            view.calendarHeightConstraint.priority = UILayoutPriority(rawValue: 1000)
+            view.calendarHeightConstraint.constant = 280
+            
+            view.hoursTextLabel.font = view.hoursTextLabel.font.withSize(20)
+            view.tipsTextLabel.font = view.tipsTextLabel.font.withSize(20)
+            view.hourlyTextLabel.font = view.hourlyTextLabel.font.withSize(20)
+
+            view.hoursLabel.font = view.hoursLabel.font.withSize(18)
+            view.tipsLabel.font = view.tipsLabel.font.withSize(18)
+            view.hourlyLabel.font = view.hourlyLabel.font.withSize(18)
             
             view.leftGearConstraint.constant = 30
             view.rightReportsConstraint.constant = 30

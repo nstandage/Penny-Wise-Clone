@@ -93,28 +93,33 @@ class CalendarDisplay {
         switch style {
         case .outMonth:
             calCell.dateLabel.textColor = CellStyle.outMonth.textColor
+            calCell.dateLabel.font = UIFont.systemFont(ofSize: 17)
             calCell.todayIndicator.image = CellStyle.outMonth.image
         case .inMonth:
             calCell.dateLabel.textColor = CellStyle.inMonth.textColor
+            calCell.dateLabel.font = UIFont.systemFont(ofSize: 17)
             calCell.todayIndicator.image = CellStyle.inMonth.image
         case .data:
             calCell.dateLabel.textColor = Helper.setTextColor()
-            calCell.dateLabel.font = UIFont.boldSystemFont(ofSize: 17)
+            calCell.dateLabel.font = UIFont.boldSystemFont(ofSize: 19)
             calCell.todayIndicator.image = CellStyle.data.image
         case .today:
             calCell.dateLabel.textColor = CellStyle.today.textColor
+            calCell.dateLabel.font = UIFont.systemFont(ofSize: 17)
             calCell.todayIndicator.image = CellStyle.today.image
         case .selected:
             calCell.dateLabel.textColor = CellStyle.selected.textColor
+            calCell.dateLabel.font = UIFont.systemFont(ofSize: 17)
             calCell.todayIndicator.image = CellStyle.selected.image
             isSelected = true
         case .todaySelected:
             calCell.dateLabel.textColor = CellStyle.todaySelected.textColor
+            calCell.dateLabel.font = UIFont.systemFont(ofSize: 17)
             calCell.todayIndicator.image = CellStyle.todaySelected.image
             isSelected = true
         case .todayData:
             calCell.dateLabel.textColor = Helper.setTextColor()
-            calCell.dateLabel.font = UIFont.boldSystemFont(ofSize: 17)
+            calCell.dateLabel.font = UIFont.boldSystemFont(ofSize: 19)
             calCell.todayIndicator.image = CellStyle.todayData.image
         }
         

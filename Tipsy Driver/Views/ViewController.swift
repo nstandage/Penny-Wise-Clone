@@ -29,6 +29,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var selectedCircleView: UIView!
     @IBOutlet weak var leftGearConstraint: NSLayoutConstraint!
     @IBOutlet weak var rightReportsConstraint: NSLayoutConstraint!
+    @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
     
     
     @IBOutlet weak var clearButton: UIButton!

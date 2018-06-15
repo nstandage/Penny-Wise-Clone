@@ -95,7 +95,7 @@ class Helper {
         case "blue": color = CalendarThemeColors.blue.color
         case "green": color = CalendarThemeColors.green.color
         case "red": color = CalendarThemeColors.red.color
-        case "black": color = CalendarThemeColors.blue.color
+        case "black": color = CalendarThemeColors.black.color
         case "purpleRed": color = CalendarThemeColors.purpleRed.color
         case "blueGrey": color = CalendarThemeColors.blueGrey.color
         default: color = CalendarThemeColors.blue.color
