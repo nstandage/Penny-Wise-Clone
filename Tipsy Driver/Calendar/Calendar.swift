@@ -31,14 +31,33 @@ class MyCalendar: JTAppleCalendarView, JTAppleCalendarViewDelegate {
 
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         let dataSource = castDataSource()
+        //Case 1: Cell's already selected:
         if dataSource.doesCellStateMatchArray(cellState: cellState, arrayOfStates: selectedCellStates) == true {
-            return
+            if let entry = dataSource.entriesWith(date: cellState.date) {
+                var i = 0
+                for state in selectedCellStates {
+                    if Helper.removeTimeStamp(fromDate: state.date) == Helper.removeTimeStamp(fromDate: (entry.last?.date)!) {
+                        selectedCellStates.remove(at: i)
+                    }
+                    i += 1
+                }
+                CalendarDisplay.displayForCell(cell!, cellState: cellState, data: true, selected: false)
+                if selectedCellStates.count == 0 {
+                    resetCalendar()
+                } else {
+                    labelSetup()
+                }
+            } else {
+                return
+            }
+            // Case 2: Cell isn't selected, but has data
         } else if dataSource.doesCellHaveData(cellState: cellState) == true {
             selectedCellStates.append(cellState)
             CalendarDisplay.displayForSelected(cell!, state: cellState)
             labelSetup()
             view.isSelectedCellDataHidden(false)
             view.moreButton.isEnabled = true
+            //Case 3: cell isn't selected, nor does it have data
         } else {
             selectedCellStates.append(cellState)
             view.performSegue(withIdentifier: SegueIdentifier.detailSegue.rawValue , sender: nil)

@@ -69,11 +69,8 @@ class Helper {
     
     static func setSelectedCircleView(_ view: UIView) {
         view.layer.cornerRadius = (view.frame.size.height) / 2
-        guard let themeString = UserDefaults.standard.object(forKey: "theme") as? String else {
-            view.backgroundColor = CalendarThemeColors.blue.color
-            return
-        }
-            view.isHidden = false
+        
+        if let themeString = UserDefaults.standard.object(forKey: "theme") as? String {
             switch themeString {
             case "blue": view.backgroundColor = CalendarThemeColors.blue.color
             case "green": view.backgroundColor = CalendarThemeColors.green.color
@@ -83,6 +80,11 @@ class Helper {
             case "blueGrey": view.backgroundColor = CalendarThemeColors.blueGrey.color
             default: view.backgroundColor = CalendarThemeColors.blue.color
             }
+        } else {
+            view.backgroundColor = CalendarThemeColors.blue.color
+        }
+
+        view.isHidden = false
     }
 
     static func setTextColor() -> UIColor {

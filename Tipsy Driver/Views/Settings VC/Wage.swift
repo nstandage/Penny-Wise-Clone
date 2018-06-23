@@ -19,7 +19,7 @@ class Wage: UIViewController {
     
     @IBAction func saveButton() {
         if let wage = wageTextField.text {
-            if CalendarError.isValid(text: wage) == true {
+            if CalendarError.isValid(text: wage, emptyAccepted: true) == true {
                 let wageNumber = Double(wage)!
                 UserDefaults.standard.set(wageNumber, forKey: CalendarDefaults.wageDefault.rawValue)
                 view.endEditing(true)
@@ -35,11 +35,10 @@ class Wage: UIViewController {
     }
 
     func setDefault() {
-        if let wage = UserDefaults.standard.object(forKey: CalendarDefaults.wageDefault.rawValue) as? String {
-            wageTextField.text = wage
+        if let wage = UserDefaults.standard.object(forKey: CalendarDefaults.wageDefault.rawValue) as? Double {
+            wageTextField.placeholder = "Current: \(Calculate.format(number: wage))"
+        } else {
+            wageTextField.placeholder = "Enter Hourly Wage"
         }
     }
-
-
-
 }

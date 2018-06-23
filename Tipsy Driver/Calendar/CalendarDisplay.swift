@@ -140,24 +140,5 @@ class CalendarDisplay {
         return calCell
     }
 
-    
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

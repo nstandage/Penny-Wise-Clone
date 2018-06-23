@@ -425,7 +425,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YtW-lJ-doe">
-                                <rect key="frame" x="100" y="359.66666666666669" width="175" height="33"/>
+                                <rect key="frame" x="50" y="359.66666666666669" width="275" height="33"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="24"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
@@ -441,14 +441,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fjy-nX-MQI" firstAttribute="trailing" secondItem="YtW-lJ-doe" secondAttribute="trailing" constant="100" id="37u-v5-HKk"/>
+                            <constraint firstItem="fjy-nX-MQI" firstAttribute="trailing" secondItem="YtW-lJ-doe" secondAttribute="trailing" constant="50" id="37u-v5-HKk"/>
                             <constraint firstItem="YtW-lJ-doe" firstAttribute="centerX" secondItem="LUq-Yy-SPV" secondAttribute="centerX" id="9CJ-jE-b4H"/>
                             <constraint firstItem="vkr-EA-Cyj" firstAttribute="leading" secondItem="fjy-nX-MQI" secondAttribute="leading" constant="16" id="AIK-wG-WAh"/>
                             <constraint firstItem="fjy-nX-MQI" firstAttribute="trailing" secondItem="vkr-EA-Cyj" secondAttribute="trailing" constant="16" id="JlO-J1-S7A"/>
                             <constraint firstItem="EEt-By-PCY" firstAttribute="centerX" secondItem="LUq-Yy-SPV" secondAttribute="centerX" id="Oll-pQ-4la"/>
                             <constraint firstItem="YtW-lJ-doe" firstAttribute="top" secondItem="vkr-EA-Cyj" secondAttribute="bottom" constant="60" id="ahm-D9-ilI"/>
                             <constraint firstItem="EEt-By-PCY" firstAttribute="top" secondItem="YtW-lJ-doe" secondAttribute="bottom" constant="32" id="fSB-vN-xiY"/>
-                            <constraint firstItem="YtW-lJ-doe" firstAttribute="leading" secondItem="fjy-nX-MQI" secondAttribute="leading" constant="100" id="fgg-Ge-o8n"/>
+                            <constraint firstItem="YtW-lJ-doe" firstAttribute="leading" secondItem="fjy-nX-MQI" secondAttribute="leading" constant="50" id="fgg-Ge-o8n"/>
                             <constraint firstItem="YtW-lJ-doe" firstAttribute="centerY" secondItem="LUq-Yy-SPV" secondAttribute="centerY" constant="-30" id="qRK-Gl-LjS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fjy-nX-MQI"/>
@@ -689,7 +689,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUK-nx-79K">
-                                <rect key="frame" x="47" y="763" width="32" height="32"/>
+                                <rect key="frame" x="47" y="729" width="32" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="hf7-0r-snJ"/>
                                     <constraint firstAttribute="height" constant="32" id="iyB-Qa-9x2"/>
@@ -709,7 +709,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LDR-a6-HpP">
-                                <rect key="frame" x="304" y="763" width="24" height="32"/>
+                                <rect key="frame" x="304" y="729" width="24" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="9hj-Du-0H0"/>
                                     <constraint firstAttribute="height" constant="32" id="g8P-SK-aDG"/>
@@ -717,7 +717,7 @@
                                 <state key="normal" title="Reports" image="reports_icon"/>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o94-ap-5jP">
-                                <rect key="frame" x="159.66666666666666" y="742" width="58" height="58"/>
+                                <rect key="frame" x="159.66666666666666" y="708" width="58" height="58"/>
                                 <color key="backgroundColor" red="0.0" green="0.53725490200000003" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="58" id="Y2S-Fa-Jx6"/>
@@ -730,7 +730,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S8Q-Bj-e3c">
-                                <rect key="frame" x="159.66666666666666" y="742" width="58" height="58"/>
+                                <rect key="frame" x="159.66666666666666" y="708" width="58" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="58" id="TOL-yg-dZa"/>
                                     <constraint firstAttribute="height" constant="58" id="W5g-pM-vli"/>
@@ -1191,6 +1191,6 @@
         <image name="today_circle" width="200" height="200"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ZRN-vg-xDH"/>
+        <segue reference="bR0-x9-fbo"/>
     </inferredMetricsTieBreakers>
 </document>

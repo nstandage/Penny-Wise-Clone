@@ -49,7 +49,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var addButtonIcon: UIButton!
     
     
-    
     //Variables
     let managedObjectContext = CoreDataStack().managedObjectContext
     lazy var dataSource: DataSource = {
@@ -93,8 +92,12 @@ class ViewController: UIViewController {
     }
     
     @IBAction func plusButton() {
+        
+        if calendar.selectedCellStates.last?.date == Helper.removeTimeStamp(fromDate: Date()) {
+            performSegue(withIdentifier: SegueIdentifier.detailSegue.rawValue , sender: nil)
+            return
+        }
         calendar.selectDates([Helper.removeTimeStamp(fromDate: Date())])
-        //should automatically call SelectedCellState method.
         performSegue(withIdentifier: SegueIdentifier.detailSegue.rawValue , sender: nil)
     }
     
@@ -117,10 +120,11 @@ class ViewController: UIViewController {
                 if Helper.removeTimeStamp(fromDate: dateOne) == Helper.removeTimeStamp(fromDate: dateTwo!)  {
                     self.managedObjectContext.delete(entry)
                     self.managedObjectContext.saveChanges()
-                    self.calendar.resetCalendar()
-                    break
+                    //self.calendar.resetCalendar()
+                    
                 }
             }
+            self.calendar.resetCalendar()
         })
         let actionTwo = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(actionOne)
@@ -203,6 +207,8 @@ class ViewController: UIViewController {
         
         
     }
+    
+    
 
 }
 

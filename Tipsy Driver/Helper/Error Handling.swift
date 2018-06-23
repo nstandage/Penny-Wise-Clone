@@ -17,8 +17,14 @@ class CalendarError {
         view.present(alertController, animated: true, completion: nil)
     }
     
-    static func isValid(text: String) -> Bool {
-        if text == "" {return false}
+    static func isValid(text: String, emptyAccepted: Bool = false) -> Bool {
+        if text == "" {
+            if emptyAccepted == false {
+                return false
+            } else if emptyAccepted == true {
+                return true
+            }
+        }
         
         let textArray = Array(text.utf8)
         let fourtySix: String.UTF8View.Element = 46

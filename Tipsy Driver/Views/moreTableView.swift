@@ -33,6 +33,8 @@ class moreTableViewController: UITableViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    
+    
     //MARK: - TableView Methods
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -80,6 +82,7 @@ class moreTableViewController: UITableViewController {
             newView.managedObjectContext = self.managedObjectContext
             newView.cellState = self.cellState
             newView.entryBeingEdited = entrySelected
+            entrySelected = nil
         }
     }
     

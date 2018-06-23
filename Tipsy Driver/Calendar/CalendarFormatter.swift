@@ -40,7 +40,13 @@ class CalendarFormatter: DateFormatter {
     
     static func endDate() -> Date {
         let formatter = formatterForDate()
-        return formatter.date(from: "2021 12 31")!
+        let yearToAdd = 13
+        
+        guard let endDate = Calendar.current.date(byAdding: .month, value: yearToAdd, to: Date()) else {
+            return formatter.date(from: "2021 12 31")!
+        }
+        
+        return endDate
     }
 }
 
