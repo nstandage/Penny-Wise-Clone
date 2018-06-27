@@ -38,54 +38,78 @@ enum CellStyle {
 }
 
 class CalendarDisplay {
-    
-    static func displayForSelected(_ cell: JTAppleCell, state: CellState? = nil) {
-        if let cellState = state {
-            if Helper.removeTimeStamp(fromDate: cellState.date) == Helper.removeTimeStamp(fromDate: Date()) {
-                setDisplayForCell(cell: cell, style: .todaySelected)
-            } else {
-                setDisplayForCell(cell: cell, style: .selected)
-            }
-        }
-        
-    }
 
-    static func displayForCell(_ cell: JTAppleCell, cellState: CellState, data: Bool = false, selected: Bool) {
-        if cellState.dateBelongsTo != .thisMonth {
-            setDisplayForCell(cell: cell, style: .outMonth)
-        } else {
-            doesCellHaveData(cell: cell, cellState: cellState, data: data)
-            isCellToday(cell: cell, cellState: cellState, data: data, selected: selected)
-        }
-    }
-    
-    private static func doesCellHaveData(cell: JTAppleCell, cellState: CellState, data: Bool) {
-        if data == false {
-            setDisplayForCell(cell: cell, style: .inMonth)
-        } else {
-            setDisplayForCell(cell: cell, style: .data)
-        }
-    }
-    
-    private static func isCellToday(cell: JTAppleCell, cellState: CellState, data: Bool, selected: Bool = false) {
-        let dateOne = CalendarFormatter.formatWith(date: Date(), style: .fullYear)
-        let dateTwo = CalendarFormatter.formatWith(date: cellState.date, style: .fullYear)
+    static func setDisplayFor(cell: JTAppleCell, cellState: CellState, dataSource: DataSource, selectedCellStates: [CellState]) {
+        // out month?
+        let isThisMonth = doesDateBelongToCurrentMonth(cellState: cellState)
+        //Data?
+        let doesHaveData = dataSource.doesCellHaveData(cellState: cellState)
+        //Today?
+        let isDateToday = Helper.isCellToday(cellState: cellState)
         
-        if dateOne == dateTwo {
-            if data == true && selected != true {
-             setDisplayForCell(cell: cell, style: .todayData)
-            } else if selected == true {
-            
-            setDisplayForCell(cell: cell, style: .todaySelected)
-           
-            } else {
-             setDisplayForCell(cell: cell, style: .today)
-            }
-        } else {
+        // Selected?
+        let isSelected = Helper.isDateSelected(selectedStates: selectedCellStates, stateInQuestion: cellState)
+        
+        setCellStyleFor(cell: cell, data: doesHaveData, today: isDateToday, selected: isSelected, inMonth: isThisMonth)
+    }
+    private static func setCellStyleFor(cell: JTAppleCell, data: Bool, today: Bool, selected: Bool, inMonth: Bool) {
+        
+        //outMonth
+        if inMonth == false {
+            setDisplayForGivenCell(cell: cell, style: .outMonth)
             return
         }
+        
+        //inMonth
+        if data == false && today == false && selected == false {
+            setDisplayForGivenCell(cell: cell, style: .inMonth)
+            return
+        }
+        
+        //data
+        if data == true && today == false && selected == false {
+            setDisplayForGivenCell(cell: cell, style: .data)
+            return
+        }
+        
+        // selected
+        if today == false && selected == true {
+            setDisplayForGivenCell(cell: cell, style: .selected)
+            return
+        }
+        
+        //Today
+        if data == false && today == true && selected == false {
+            setDisplayForGivenCell(cell: cell, style: .today)
+            return
+        }
+        //Today Selected
+        if today == true && selected == true {
+            setDisplayForGivenCell(cell: cell, style: .todaySelected)
+            return
+            
+        }
+        //Today Data
+        if data == true && today == true {
+            setDisplayForGivenCell(cell: cell, style: .todayData)
+            return
+        }
+        
+        print("YOU'RE MISSING SOMETHING!!! THE DISPLAY CELL ISN'T FUNTIONING PROPERLY!!!!")
+        
     }
-    private static func setDisplayForCell(cell: JTAppleCell, style: CellStyle) {
+    
+    private static func doesDateBelongToCurrentMonth(cellState: CellState) -> Bool {
+        if cellState.dateBelongsTo == .thisMonth {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    
+    
+    private static func setDisplayForGivenCell(cell: JTAppleCell, style: CellStyle) {
         
         let calCell = castAppleCellToCalendarCell(cell: cell)
         var isSelected = false
@@ -109,12 +133,12 @@ class CalendarDisplay {
             calCell.todayIndicator.image = CellStyle.today.image
         case .selected:
             calCell.dateLabel.textColor = CellStyle.selected.textColor
-            calCell.dateLabel.font = UIFont.systemFont(ofSize: 17)
+            calCell.dateLabel.font = UIFont.boldSystemFont(ofSize: 19)
             calCell.todayIndicator.image = CellStyle.selected.image
             isSelected = true
         case .todaySelected:
             calCell.dateLabel.textColor = CellStyle.todaySelected.textColor
-            calCell.dateLabel.font = UIFont.systemFont(ofSize: 17)
+            calCell.dateLabel.font = UIFont.boldSystemFont(ofSize: 19)
             calCell.todayIndicator.image = CellStyle.todaySelected.image
             isSelected = true
         case .todayData:
