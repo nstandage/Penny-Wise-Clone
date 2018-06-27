@@ -122,6 +122,18 @@ class Helper {
         }
         return false
     }
+    
+    
+    static func isCellToday(cellState: CellState) -> Bool {
+        let dateOne = CalendarFormatter.formatWith(date: Date(), style: .fullYear)
+        let dateTwo = CalendarFormatter.formatWith(date: cellState.date, style: .fullYear)
+        
+        if dateOne == dateTwo {
+            return true
+        } else {
+            return false
+        }
+    }
 }
 
 

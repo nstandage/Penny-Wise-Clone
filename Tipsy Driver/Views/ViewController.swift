@@ -57,13 +57,14 @@ class ViewController: UIViewController {
     
     //MARK: - View Controller
     override func viewWillAppear(_ animated: Bool) {
+        reportsButton.isHidden = true
         Helper.ChangeTheme(topView: blueTopView, otherView: blueDataView, buttonView: coloredPlusView)
         isSelectedCellDataHidden(true)
         if calendar != nil {
             calendar.resetCalendar()
         }
         updateLabels()
-        setUpCalendarLabels(date: Date())
+        setUpCalendarLabels(date: calendar.visibleDates().monthDates.first?.date)
         moreButton.isEnabled = false
         calendar.minimumLineSpacing = 0
         calendar.minimumInteritemSpacing = 0
@@ -181,9 +182,12 @@ class ViewController: UIViewController {
         hoursLabel.text = hours
     }
     
-    func setUpCalendarLabels(date: Date) {
-        monthLabel.text = CalendarFormatter.formatWith(date: date, style: .month)
-        yearLabel.text = CalendarFormatter.formatWith(date: date, style: .year)
+    func setUpCalendarLabels(date: Date?) {
+        guard let unwrappedDate = date else {
+            return
+        }
+        monthLabel.text = CalendarFormatter.formatWith(date: unwrappedDate, style: .month)
+        yearLabel.text = CalendarFormatter.formatWith(date: unwrappedDate, style: .year)
     }
     
     func isSelectedCellDataHidden (_ bool: Bool) {

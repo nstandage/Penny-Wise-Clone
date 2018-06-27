@@ -689,7 +689,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUK-nx-79K">
-                                <rect key="frame" x="47" y="729" width="32" height="32"/>
+                                <rect key="frame" x="47" y="763" width="32" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="hf7-0r-snJ"/>
                                     <constraint firstAttribute="height" constant="32" id="iyB-Qa-9x2"/>
@@ -709,7 +709,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LDR-a6-HpP">
-                                <rect key="frame" x="304" y="729" width="24" height="32"/>
+                                <rect key="frame" x="304" y="763" width="24" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="9hj-Du-0H0"/>
                                     <constraint firstAttribute="height" constant="32" id="g8P-SK-aDG"/>
@@ -717,7 +717,7 @@
                                 <state key="normal" title="Reports" image="reports_icon"/>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o94-ap-5jP">
-                                <rect key="frame" x="159.66666666666666" y="708" width="58" height="58"/>
+                                <rect key="frame" x="159.66666666666666" y="742" width="58" height="58"/>
                                 <color key="backgroundColor" red="0.0" green="0.53725490200000003" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="58" id="Y2S-Fa-Jx6"/>
@@ -730,7 +730,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S8Q-Bj-e3c">
-                                <rect key="frame" x="159.66666666666666" y="708" width="58" height="58"/>
+                                <rect key="frame" x="159.66666666666666" y="742" width="58" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="58" id="TOL-yg-dZa"/>
                                     <constraint firstAttribute="height" constant="58" id="W5g-pM-vli"/>
@@ -1191,6 +1191,6 @@
         <image name="today_circle" width="200" height="200"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bR0-x9-fbo"/>
+        <segue reference="ZRN-vg-xDH"/>
     </inferredMetricsTieBreakers>
 </document>

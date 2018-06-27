@@ -21,11 +21,7 @@ class MyCalendar: JTAppleCalendarView, JTAppleCalendarViewDelegate {
         dynamicCalendarCellText(cell: cell)
         cell.dateLabel.text = cellState.text
         let dataSource = castDataSource()
-        if dataSource.doesCellStateMatchArray(cellState: cellState, arrayOfStates: selectedCellStates) == true {
-            displayForSelected(cell)
-        } else {
-            displayFor(cell, cellState: cellState)
-        }
+        CalendarDisplay.setDisplayFor(cell: cell, cellState: cellState, dataSource: dataSource, selectedCellStates: selectedCellStates)
         return cell
     }
 
@@ -41,7 +37,7 @@ class MyCalendar: JTAppleCalendarView, JTAppleCalendarViewDelegate {
                     }
                     i += 1
                 }
-                CalendarDisplay.displayForCell(cell!, cellState: cellState, data: true, selected: false)
+                CalendarDisplay.setDisplayFor(cell: cell!, cellState: cellState, dataSource: dataSource, selectedCellStates: selectedCellStates)
                 if selectedCellStates.count == 0 {
                     resetCalendar()
                 } else {
@@ -53,7 +49,7 @@ class MyCalendar: JTAppleCalendarView, JTAppleCalendarViewDelegate {
             // Case 2: Cell isn't selected, but has data
         } else if dataSource.doesCellHaveData(cellState: cellState) == true {
             selectedCellStates.append(cellState)
-            CalendarDisplay.displayForSelected(cell!, state: cellState)
+            CalendarDisplay.setDisplayFor(cell: cell!, cellState: cellState, dataSource: dataSource, selectedCellStates: selectedCellStates)
             labelSetup()
             view.isSelectedCellDataHidden(false)
             view.moreButton.isEnabled = true
@@ -70,18 +66,6 @@ class MyCalendar: JTAppleCalendarView, JTAppleCalendarViewDelegate {
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         
-    }
-    
-    // Checks to see if cell has data and then calls display for cell
-    func displayFor(_ cell: JTAppleCell, cellState: CellState) {
-        let source = castDataSource()
-        let data = source.doesCellHaveData(cellState: cellState)
-        
-        CalendarDisplay.displayForCell(cell, cellState: cellState, data: data, selected: Helper.isDateSelected(selectedStates: selectedCellStates, stateInQuestion: cellState))
-    }
-    
-    func displayForSelected(_ cell: JTAppleCell) {
-        CalendarDisplay.displayForSelected(cell)
     }
     
     func calendarDidScroll(_ calendar: JTAppleCalendarView) {
