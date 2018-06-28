@@ -17,8 +17,14 @@ class CalendarError {
         view.present(alertController, animated: true, completion: nil)
     }
     
-    static func isValid(text: String) -> Bool {
-        if text == "" {return false}
+    static func isValid(text: String, emptyAccepted: Bool = false) -> Bool {
+        if text == "" {
+            if emptyAccepted == false {
+                return false
+            } else if emptyAccepted == true {
+                return true
+            }
+        }
         
         let textArray = Array(text.utf8)
         let fourtySix: String.UTF8View.Element = 46
@@ -54,7 +60,7 @@ enum ErrorMessage: String {
     case casting = "Sorry, we had trouble casting."
     case saving = "Sorry, we had an error saving your data."
     case invalidText = "Sorry, Invalid Text. Please check text and try again."
-    case delete = "Are you sure you want to delete this entry?"
+    case delete = "Delete all entries for selected date?"
 }
 
 

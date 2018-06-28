@@ -15,6 +15,7 @@ class detailViewController: UIViewController {
     @IBOutlet weak var tipsTextField: UITextField!
     @IBOutlet weak var hoursTextField: UITextField!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var blueTopView: UIView!
     
     var managedObjectContext = CoreDataStack().managedObjectContext
     var entryBeingEdited: Entry?
@@ -22,26 +23,32 @@ class detailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        
         titleLabel.text = CalendarFormatter.formatWith(date: cellState.date, style: .display)
         hoursTextField.becomeFirstResponder()
+        if Helper.deviceSize() != .normalPhone {
+            titleLabel.font = titleLabel.font.withSize(24)
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
+        Helper.ChangeTheme(topView: blueTopView)
         if entryBeingEdited != nil {
             setUpDisplayForEditingCell()
         }
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        entryBeingEdited = nil
-    }
-    
+
     @IBAction func cancel(_ sender: Any) {
         self.view.endEditing(true)
         if entryBeingEdited == nil {
             self.dismiss(animated: true, completion: nil)
+            entryBeingEdited = nil
         } else {
             navigationController?.popViewController(animated: true)
+            entryBeingEdited = nil
         }
         
     }
@@ -57,6 +64,7 @@ class detailViewController: UIViewController {
         }
         if entryBeingEdited != nil {
             saveEditedEntryChanges()
+            entryBeingEdited = nil
             navigationController?.popViewController(animated: true)
         } else {
             guard let entry = NSEntityDescription.insertNewObject(forEntityName: "Entry", into: managedObjectContext) as? Entry else {
@@ -71,12 +79,12 @@ class detailViewController: UIViewController {
             entry.tips = Double(tips)!
             
             managedObjectContext.saveChanges()
+            entryBeingEdited = nil
             self.dismiss(animated: true, completion: nil)
         }
     }
     
     func setUpDisplayForEditingCell() {
-        self.navigationController?.isNavigationBarHidden = true
         hoursTextField.text = String("\(entryBeingEdited!.hours)")
         tipsTextField.text = String("\(entryBeingEdited!.tips)")
     }

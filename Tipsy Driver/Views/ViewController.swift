@@ -21,23 +21,53 @@ class ViewController: UIViewController {
     @IBOutlet weak var hourlyLabel: UILabel!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var moreButton: UIButton!
+    @IBOutlet weak var tipsTextLabel: UILabel!
+    @IBOutlet weak var hoursTextLabel: UILabel!
+    @IBOutlet weak var hourlyTextLabel: UILabel!
+    @IBOutlet weak var reportsButton: UIButton!
+    @IBOutlet weak var coloredPlusView: UIView!
+    @IBOutlet weak var selectedCircleView: UIView!
+    @IBOutlet weak var leftGearConstraint: NSLayoutConstraint!
+    @IBOutlet weak var rightReportsConstraint: NSLayoutConstraint!
+    @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
+    
+    
+    @IBOutlet weak var clearButton: UIButton!
+    @IBOutlet weak var editButton: UIButton!
+    
+    @IBOutlet weak var sun: UILabel!
+    @IBOutlet weak var mon: UILabel!
+    @IBOutlet weak var tue: UILabel!
+    @IBOutlet weak var wed: UILabel!
+    @IBOutlet weak var thu: UILabel!
+    @IBOutlet weak var fri: UILabel!
+    @IBOutlet weak var sat: UILabel!
+
+    @IBOutlet weak var blueDataView: UIView!
+    @IBOutlet weak var blueTopView: UIView!
+    
+    @IBOutlet weak var addButtonIcon: UIButton!
+    
     
     //Variables
     let managedObjectContext = CoreDataStack().managedObjectContext
-   // var selectedCellState: [CellState] = []
-    //var selectedCell: [JTAppleCell] = []
     lazy var dataSource: DataSource = {
         return DataSource(context: self.managedObjectContext, calendar: self.calendar)
     }()
     
     //MARK: - View Controller
     override func viewWillAppear(_ animated: Bool) {
+        reportsButton.isHidden = true
+        Helper.ChangeTheme(topView: blueTopView, otherView: blueDataView, buttonView: coloredPlusView)
+        isSelectedCellDataHidden(true)
         if calendar != nil {
             calendar.resetCalendar()
         }
         updateLabels()
-        setUpCalendarLabels(date: Date())
+        setUpCalendarLabels(date: calendar.visibleDates().monthDates.first?.date)
         moreButton.isEnabled = false
+        calendar.minimumLineSpacing = 0
+        calendar.minimumInteritemSpacing = 0
     }
     
     override func viewDidLoad() {
@@ -50,6 +80,7 @@ class ViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.tapToToday))
         monthLabel.isUserInteractionEnabled = true
         monthLabel.addGestureRecognizer(tap)
+        calendar.dynamicText()
         scrollToToday()
     }
     
@@ -60,7 +91,17 @@ class ViewController: UIViewController {
         }
         moreButton.isEnabled = false
     }
-
+    
+    @IBAction func plusButton() {
+        
+        if calendar.selectedCellStates.last?.date == Helper.removeTimeStamp(fromDate: Date()) {
+            performSegue(withIdentifier: SegueIdentifier.detailSegue.rawValue , sender: nil)
+            return
+        }
+        calendar.selectDates([Helper.removeTimeStamp(fromDate: Date())])
+        performSegue(withIdentifier: SegueIdentifier.detailSegue.rawValue , sender: nil)
+    }
+    
     @IBAction func moreButton(_ sender: Any) {
         if calendar.selectedCellStates.count > 0 {
             performSegue(withIdentifier: SegueIdentifier.moreButtonSegue.rawValue, sender: nil)
@@ -72,15 +113,19 @@ class ViewController: UIViewController {
             CalendarError.presentErrorWith(title: ErrorTitle.fetchingError, message: ErrorMessage.fetching, view: self)
             return
         }
-        let alertController = UIAlertController(title: nil, message: ErrorMessage.delete.rawValue, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: formatDeleteDate(), message: ErrorMessage.delete.rawValue, preferredStyle: .actionSheet)
         let actionOne = UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
             for entry in entries {
-                if entry.date == self.calendar.selectedCellStates.last?.date {
+                let dateOne = entry.date!
+                let dateTwo = self.calendar.selectedCellStates.last?.date
+                if Helper.removeTimeStamp(fromDate: dateOne) == Helper.removeTimeStamp(fromDate: dateTwo!)  {
                     self.managedObjectContext.delete(entry)
                     self.managedObjectContext.saveChanges()
-                    self.calendar.resetCalendar()
+                    //self.calendar.resetCalendar()
+                    
                 }
             }
+            self.calendar.resetCalendar()
         })
         let actionTwo = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(actionOne)
@@ -111,6 +156,10 @@ class ViewController: UIViewController {
             newView.dataSource = self.dataSource
             newView.cellState = calendar.selectedCellStates.last
             newView.managedObjectContext = managedObjectContext
+        } else if segue.identifier == SegueIdentifier.settings.rawValue {
+            
+            //CODE
+            
         } else {
             CalendarError.presentErrorWith(title: ErrorTitle.segueError, message: ErrorMessage.segue, view: self)
         }
@@ -133,10 +182,37 @@ class ViewController: UIViewController {
         hoursLabel.text = hours
     }
     
-    func setUpCalendarLabels(date: Date) {
-        monthLabel.text = CalendarFormatter.formatWith(date: date, style: .month)
-        yearLabel.text = CalendarFormatter.formatWith(date: date, style: .year)
+    func setUpCalendarLabels(date: Date?) {
+        guard let unwrappedDate = date else {
+            return
+        }
+        monthLabel.text = CalendarFormatter.formatWith(date: unwrappedDate, style: .month)
+        yearLabel.text = CalendarFormatter.formatWith(date: unwrappedDate, style: .year)
     }
+    
+    func isSelectedCellDataHidden (_ bool: Bool) {
+        tipsTextLabel.isHidden = bool
+        tipsLabel.isHidden = bool
+        hoursTextLabel.isHidden = bool
+        hoursLabel.isHidden = bool
+        hourlyTextLabel.isHidden = bool
+        hourlyLabel.isHidden = bool
+        clearButton.isHidden = bool
+        editButton.isHidden = bool
+        deleteButton.isHidden = bool
+    }
+    
+    private func formatDeleteDate() -> String {
+            let date = CalendarFormatter.formatWith(date: calendar.selectedCellStates.last!.date, style: .display)
+        return date
+    }
+    
+    func setButtonPlacement() {
+        
+        
+    }
+    
+    
 
 }
 
