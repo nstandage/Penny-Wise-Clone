@@ -57,7 +57,6 @@ class ViewController: UIViewController {
     
     //MARK: - View Controller
     override func viewWillAppear(_ animated: Bool) {
-        reportsButton.isHidden = true
         Helper.ChangeTheme(topView: blueTopView, otherView: blueDataView, buttonView: coloredPlusView)
         isSelectedCellDataHidden(true)
         if calendar != nil {
@@ -159,6 +158,14 @@ class ViewController: UIViewController {
         } else if segue.identifier == SegueIdentifier.settings.rawValue {
             
             //CODE
+            
+        } else if segue.identifier == SegueIdentifier.reportsSegue.rawValue {
+            let destinationNativationController = segue.destination as! UINavigationController
+            guard let newView = destinationNativationController.topViewController as? ReportsViewController else {
+                CalendarError.presentErrorWith(title: ErrorTitle.segueError, message: ErrorMessage.segue, view: self)
+                return
+            }
+            newView.dataSource = self.dataSource
             
         } else {
             CalendarError.presentErrorWith(title: ErrorTitle.segueError, message: ErrorMessage.segue, view: self)

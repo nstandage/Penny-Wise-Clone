@@ -689,7 +689,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUK-nx-79K">
-                                <rect key="frame" x="47" y="763" width="32" height="32"/>
+                                <rect key="frame" x="47" y="729" width="32" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="hf7-0r-snJ"/>
                                     <constraint firstAttribute="height" constant="32" id="iyB-Qa-9x2"/>
@@ -709,15 +709,18 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LDR-a6-HpP">
-                                <rect key="frame" x="304" y="763" width="24" height="32"/>
+                                <rect key="frame" x="304" y="729" width="24" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="9hj-Du-0H0"/>
                                     <constraint firstAttribute="height" constant="32" id="g8P-SK-aDG"/>
                                 </constraints>
                                 <state key="normal" title="Reports" image="reports_icon"/>
+                                <connections>
+                                    <segue destination="xR9-Fn-bnb" kind="show" identifier="reportsSegue" id="RwN-9y-d3p"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o94-ap-5jP">
-                                <rect key="frame" x="159.66666666666666" y="742" width="58" height="58"/>
+                                <rect key="frame" x="159.66666666666666" y="708" width="58" height="58"/>
                                 <color key="backgroundColor" red="0.0" green="0.53725490200000003" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="58" id="Y2S-Fa-Jx6"/>
@@ -730,7 +733,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S8Q-Bj-e3c">
-                                <rect key="frame" x="159.66666666666666" y="742" width="58" height="58"/>
+                                <rect key="frame" x="159.66666666666666" y="708" width="58" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="58" id="TOL-yg-dZa"/>
                                     <constraint firstAttribute="height" constant="58" id="W5g-pM-vli"/>
@@ -905,6 +908,45 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Ia-IC-54J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1582" y="114"/>
+        </scene>
+        <!--Reports View Controller-->
+        <scene sceneID="qR8-S1-Tsf">
+            <objects>
+                <viewController id="Kfm-9f-EG2" customClass="ReportsViewController" customModule="Tipsy_Driver" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pL0-aN-tTI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u7Q-RJ-eeN">
+                                <rect key="frame" x="120.66666666666669" y="383.66666666666669" width="134" height="45"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <state key="normal" title="Export CSV"/>
+                                <connections>
+                                    <action selector="exportCSV" destination="Kfm-9f-EG2" eventType="touchUpInside" id="JFk-jo-L34"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="u7Q-RJ-eeN" firstAttribute="centerY" secondItem="pL0-aN-tTI" secondAttribute="centerY" id="0fv-ct-sNM"/>
+                            <constraint firstItem="u7Q-RJ-eeN" firstAttribute="centerX" secondItem="pL0-aN-tTI" secondAttribute="centerX" id="jPQ-VF-qGo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Bi6-i6-9EN"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="TAF-9k-0Yq">
+                        <barButtonItem key="leftBarButtonItem" title="Done" id="gxL-Zq-H4R">
+                            <connections>
+                                <action selector="backButton:" destination="Kfm-9f-EG2" id="RDW-V5-7yD"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="ExportCSVButton" destination="u7Q-RJ-eeN" id="u5J-uo-fQw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lgu-h8-wxv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3402.4000000000001" y="740.39408866995075"/>
         </scene>
         <!--About-->
         <scene sceneID="Vkf-9P-sRA">
@@ -1177,6 +1219,24 @@
             </objects>
             <point key="canvasLocation" x="923.20000000000005" y="-591.00449775112452"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="1oC-fi-Ywe">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xR9-Fn-bnb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nJM-ad-rRd">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Kfm-9f-EG2" kind="relationship" relationship="rootViewController" id="JTy-TO-KHX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PvP-ey-h57" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2460" y="740.39408866995075"/>
+        </scene>
     </scenes>
     <resources>
         <image name="gear_icon" width="102" height="102"/>
@@ -1191,6 +1251,6 @@
         <image name="today_circle" width="200" height="200"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ZRN-vg-xDH"/>
+        <segue reference="bR0-x9-fbo"/>
     </inferredMetricsTieBreakers>
 </document>

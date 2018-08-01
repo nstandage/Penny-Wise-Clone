@@ -23,6 +23,7 @@
 		D83DD6541FD77CD4006FC066 /* JTAppleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83DD6551FD77CD4006FC066 /* JTAppleCalendar.framework */; };
 		D83FB56C20508576003674D3 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83FB56B20508575003674D3 /* Defaults.swift */; };
 		D85CF2871FCC80E2006AE617 /* Calculate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85CF2861FCC80E2006AE617 /* Calculate.swift */; };
+		D86363A120E5B4580036D375 /* ReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86363A020E5B4580036D375 /* ReportsViewController.swift */; };
 		D8649F661FCDF93700E7CFCE /* Error Handling.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8649F651FCDF93700E7CFCE /* Error Handling.swift */; };
 		D868885A20265A000041F837 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D868885920265A000041F837 /* StoreKit.framework */; };
 		D868885C20265E400041F837 /* In App Purchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D868885B20265E400041F837 /* In App Purchase.swift */; };
@@ -76,6 +77,7 @@
 		D83DD6551FD77CD4006FC066 /* JTAppleCalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JTAppleCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D83FB56B20508575003674D3 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		D85CF2861FCC80E2006AE617 /* Calculate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculate.swift; sourceTree = "<group>"; };
+		D86363A020E5B4580036D375 /* ReportsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsViewController.swift; sourceTree = "<group>"; };
 		D8649F651FCDF93700E7CFCE /* Error Handling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error Handling.swift"; sourceTree = "<group>"; };
 		D868885920265A000041F837 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		D868885B20265E400041F837 /* In App Purchase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "In App Purchase.swift"; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				D881C7241FC52BB600018BD1 /* LaunchScreen.storyboard */,
 				D8E7373D1FCF39FD00F16001 /* customCell.swift */,
 				D8E7373E1FCF39FD00F16001 /* customCell.xib */,
+				D86363A020E5B4580036D375 /* ReportsViewController.swift */,
 				D81E10EA201FC77000040E4F /* Settings VC */,
 			);
 			path = Views;
@@ -431,6 +434,7 @@
 				D8371D5C1FC615AC00ADA7E1 /* CalendarColors.swift in Sources */,
 				D83FB56C20508576003674D3 /* Defaults.swift in Sources */,
 				D8353F8B1FD0D16600C25FA1 /* Segue.swift in Sources */,
+				D86363A120E5B4580036D375 /* ReportsViewController.swift in Sources */,
 				D8371D5E1FC64F3800ADA7E1 /* detailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
