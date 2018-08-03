@@ -10,6 +10,9 @@ import UIKit
 
 class ReportsCell: UITableViewCell {
 
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var tipsLabel: UILabel!
+    @IBOutlet weak var hoursLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

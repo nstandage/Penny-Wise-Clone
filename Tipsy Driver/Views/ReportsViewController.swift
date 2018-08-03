@@ -20,10 +20,13 @@ class ReportsViewController: UIViewController {
     @IBAction func backButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
+
+    
+    
     
 
     @IBAction func exportCSV() {
-        let fileName = "exportedCSV.csv"
+        let fileName = "exported_tip_data.csv"
         let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
         let entries = dataSource.fetchEntries()
         var text = "Date, Tips, Hours\n"

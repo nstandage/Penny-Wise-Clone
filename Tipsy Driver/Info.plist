@@ -2,63 +2,69 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Penny Wise</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIcons</key>
 	<dict>
 		<key>CFBundleAlternateIcons</key>
 		<dict>
-			<key>blueGrey</key>
-			<dict>
-				<key>UIPrerenderedIcon</key>
-				<string>NO</string>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>blueGrey</string>
-				</array>
-			</dict>
-			<key>purpleRed</key>
-			<dict>
-				<key>UIPrerenderedIcon</key>
-				<string>NO</string>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>purpleRed</string>
-				</array>
-			</dict>
 			<key>black</key>
 			<dict>
-				<key>UIPrerenderedIcon</key>
-				<string>NO</string>
 				<key>CFBundleIconFiles</key>
 				<array>
 					<string>black</string>
 				</array>
-			</dict>
-			<key>red</key>
-			<dict>
 				<key>UIPrerenderedIcon</key>
 				<string>NO</string>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>red</string>
-				</array>
-			</dict>
-			<key>green</key>
-			<dict>
-				<key>UIPrerenderedIcon</key>
-				<string>NO</string>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>green</string>
-				</array>
 			</dict>
 			<key>blue</key>
 			<dict>
-				<key>UIPrerenderedIcon</key>
-				<string>NO</string>
 				<key>CFBundleIconFiles</key>
 				<array>
 					<string>blue</string>
 				</array>
+				<key>UIPrerenderedIcon</key>
+				<string>NO</string>
+			</dict>
+			<key>blueGrey</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>blueGrey</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<string>NO</string>
+			</dict>
+			<key>green</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>green</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<string>NO</string>
+			</dict>
+			<key>purpleRed</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>purpleRed</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<string>NO</string>
+			</dict>
+			<key>red</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>red</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<string>NO</string>
 			</dict>
 		</dict>
 		<key>CFBundlePrimaryIcon</key>
@@ -76,18 +82,12 @@
 			<array>
 				<string></string>
 			</array>
-			<key>UINewsstandBindingType</key>
-			<string>UINewsstandBindingTypeMagazine</string>
 			<key>UINewsstandBindingEdge</key>
 			<string>UINewsstandBindingEdgeLeft</string>
+			<key>UINewsstandBindingType</key>
+			<string>UINewsstandBindingTypeMagazine</string>
 		</dict>
 	</dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>$(DEVELOPMENT_LANGUAGE)</string>
-	<key>CFBundleDisplayName</key>
-	<string>Penny Wise</string>
-	<key>CFBundleExecutable</key>
-	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.nathanstandage.Tipsy-Driver</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -97,7 +97,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.41</string>
+	<string>2.1</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>

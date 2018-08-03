@@ -16,6 +16,8 @@
 		D81E10F6201FC7DF00040E4F /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81E10F5201FC7DF00040E4F /* Feedback.swift */; };
 		D81E10F8201FC7EE00040E4F /* About.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81E10F7201FC7EE00040E4F /* About.swift */; };
 		D8353F8B1FD0D16600C25FA1 /* Segue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8353F8A1FD0D16600C25FA1 /* Segue.swift */; };
+		D836C01B2114638300F13568 /* ReportsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D836C0192114638300F13568 /* ReportsCell.swift */; };
+		D836C01C2114638300F13568 /* ReportsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D836C01A2114638300F13568 /* ReportsCell.xib */; };
 		D8371D5C1FC615AC00ADA7E1 /* CalendarColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8371D5B1FC615AC00ADA7E1 /* CalendarColors.swift */; };
 		D8371D5E1FC64F3800ADA7E1 /* detailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8371D5D1FC64F3800ADA7E1 /* detailViewController.swift */; };
 		D8371D6D1FC655A500ADA7E1 /* Entry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8371D6B1FC655A500ADA7E1 /* Entry+CoreDataClass.swift */; };
@@ -37,6 +39,7 @@
 		D881C7261FC52BB600018BD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D881C7241FC52BB600018BD1 /* LaunchScreen.storyboard */; };
 		D881C7321FC5372000018BD1 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D881C7311FC5372000018BD1 /* CalendarCell.swift */; };
 		D8933F3B200FA34F00557930 /* CalendarDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8933F3A200FA34F00557930 /* CalendarDisplay.swift */; };
+		D8A41A422111350400F2B134 /* ReportsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A41A412111350400F2B134 /* ReportsTableViewController.swift */; };
 		D8B606E82089971300DE4DD2 /* purpleRed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8B606DC2089971200DE4DD2 /* purpleRed@3x.png */; };
 		D8B606E92089971300DE4DD2 /* red@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8B606DD2089971200DE4DD2 /* red@3x.png */; };
 		D8B606EA2089971300DE4DD2 /* black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8B606DE2089971200DE4DD2 /* black@2x.png */; };
@@ -70,6 +73,8 @@
 		D81E10F5201FC7DF00040E4F /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
 		D81E10F7201FC7EE00040E4F /* About.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = About.swift; sourceTree = "<group>"; };
 		D8353F8A1FD0D16600C25FA1 /* Segue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segue.swift; sourceTree = "<group>"; };
+		D836C0192114638300F13568 /* ReportsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsCell.swift; sourceTree = "<group>"; };
+		D836C01A2114638300F13568 /* ReportsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportsCell.xib; sourceTree = "<group>"; };
 		D8371D5B1FC615AC00ADA7E1 /* CalendarColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarColors.swift; sourceTree = "<group>"; };
 		D8371D5D1FC64F3800ADA7E1 /* detailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailViewController.swift; sourceTree = "<group>"; };
 		D8371D6B1FC655A500ADA7E1 /* Entry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entry+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -93,6 +98,7 @@
 		D881C7271FC52BB600018BD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D881C7311FC5372000018BD1 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		D8933F3A200FA34F00557930 /* CalendarDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDisplay.swift; sourceTree = "<group>"; };
+		D8A41A412111350400F2B134 /* ReportsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsTableViewController.swift; sourceTree = "<group>"; };
 		D8B606DC2089971200DE4DD2 /* purpleRed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "purpleRed@3x.png"; path = "Design Assets/App Icons/purpleRed@3x.png"; sourceTree = SOURCE_ROOT; };
 		D8B606DD2089971200DE4DD2 /* red@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "red@3x.png"; path = "Design Assets/App Icons/red@3x.png"; sourceTree = SOURCE_ROOT; };
 		D8B606DE2089971200DE4DD2 /* black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "black@2x.png"; path = "Design Assets/App Icons/black@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -227,7 +233,10 @@
 				D881C7241FC52BB600018BD1 /* LaunchScreen.storyboard */,
 				D8E7373D1FCF39FD00F16001 /* customCell.swift */,
 				D8E7373E1FCF39FD00F16001 /* customCell.xib */,
+				D836C0192114638300F13568 /* ReportsCell.swift */,
+				D836C01A2114638300F13568 /* ReportsCell.xib */,
 				D86363A020E5B4580036D375 /* ReportsViewController.swift */,
+				D8A41A412111350400F2B134 /* ReportsTableViewController.swift */,
 				D81E10EA201FC77000040E4F /* Settings VC */,
 			);
 			path = Views;
@@ -346,6 +355,7 @@
 				D8B606F32089971300DE4DD2 /* green@3x.png in Resources */,
 				D8B606F12089971300DE4DD2 /* blueGrey@2x.png in Resources */,
 				D8E2BD322085B43600101C3F /* Graphics.xcassets in Resources */,
+				D836C01C2114638300F13568 /* ReportsCell.xib in Resources */,
 				D8B606F02089971300DE4DD2 /* red@2x.png in Resources */,
 				D8B606F7208E74D200DE4DD2 /* pig_icon.png in Resources */,
 				D8B606EF2089971300DE4DD2 /* purpleRed@2x.png in Resources */,
@@ -419,11 +429,13 @@
 				D8E737421FCF529D00F16001 /* moreTableView.swift in Sources */,
 				D81E10EE201FC7A700040E4F /* Icon.swift in Sources */,
 				D87021261FE20EE5004C1501 /* Helper.swift in Sources */,
+				D8A41A422111350400F2B134 /* ReportsTableViewController.swift in Sources */,
 				D8371D701FC657A600ADA7E1 /* CoreDataStack.swift in Sources */,
 				D81E10F8201FC7EE00040E4F /* About.swift in Sources */,
 				D881C7191FC52BB600018BD1 /* AppDelegate.swift in Sources */,
 				D81E10EC201FC79400040E4F /* Theme.swift in Sources */,
 				D8D14F471FC77829005E486D /* DataSource.swift in Sources */,
+				D836C01B2114638300F13568 /* ReportsCell.swift in Sources */,
 				D81E10F4201FC7C900040E4F /* Tip.swift in Sources */,
 				D81E10F0201FC7B100040E4F /* Wage.swift in Sources */,
 				D870212A1FE21766004C1501 /* CalendarFormatter.swift in Sources */,
