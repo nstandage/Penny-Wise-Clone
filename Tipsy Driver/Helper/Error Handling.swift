@@ -52,6 +52,7 @@ enum ErrorTitle: String {
     case savingError = "Saving Error"
     case invalidText = "Invalid Text"
     case delete = "Delete Entry?"
+    case exportError = "Exporting Error"
 }
 
 enum ErrorMessage: String {
@@ -61,6 +62,7 @@ enum ErrorMessage: String {
     case saving = "Sorry, we had an error saving your data."
     case invalidText = "Sorry, Invalid Text. Please check text and try again."
     case delete = "Delete all entries for selected date?"
+    case exportError = "There was a problem exporting your data. Please try again"
 }
 
 

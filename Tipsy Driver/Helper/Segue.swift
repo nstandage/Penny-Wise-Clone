@@ -32,4 +32,5 @@ enum SegueIdentifier: String {
     case settingsTipDeveloper
     case settingsSendFeedback
     case settingsAbout
+    case reportsSegue
 }
