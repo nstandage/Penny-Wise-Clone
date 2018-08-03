@@ -31,7 +31,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var rightReportsConstraint: NSLayoutConstraint!
     @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
     
-    
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var editButton: UIButton!
     
@@ -45,9 +44,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var blueDataView: UIView!
     @IBOutlet weak var blueTopView: UIView!
-    
     @IBOutlet weak var addButtonIcon: UIButton!
-    
     
     //Variables
     let managedObjectContext = CoreDataStack().managedObjectContext
@@ -57,7 +54,6 @@ class ViewController: UIViewController {
     
     //MARK: - View Controller
     override func viewWillAppear(_ animated: Bool) {
-        reportsButton.isHidden = true
         Helper.ChangeTheme(topView: blueTopView, otherView: blueDataView, buttonView: coloredPlusView)
         isSelectedCellDataHidden(true)
         if calendar != nil {
@@ -160,7 +156,18 @@ class ViewController: UIViewController {
             
             //CODE
             
+        } else if segue.identifier == SegueIdentifier.reportsSegue.rawValue {
+            let destinationNativationController = segue.destination as! UINavigationController
+            guard let newView = destinationNativationController.topViewController as? ReportsTableViewController else {
+                print("1")
+                CalendarError.presentErrorWith(title: ErrorTitle.segueError, message: ErrorMessage.segue, view: self)
+                return
+            }
+            newView.dataSource = self.dataSource
+            
+            
         } else {
+            print("2")
             CalendarError.presentErrorWith(title: ErrorTitle.segueError, message: ErrorMessage.segue, view: self)
         }
     }
@@ -215,35 +222,3 @@ class ViewController: UIViewController {
     
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
