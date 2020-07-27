@@ -94,9 +94,6 @@ class CalendarDisplay {
             setDisplayForGivenCell(cell: cell, style: .todayData)
             return
         }
-        
-        print("YOU'RE MISSING SOMETHING!!! THE DISPLAY CELL ISN'T FUNTIONING PROPERLY!!!!")
-        
     }
     
     private static func doesDateBelongToCurrentMonth(cellState: CellState) -> Bool {

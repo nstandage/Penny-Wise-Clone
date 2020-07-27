@@ -45,7 +45,6 @@ class ReportsViewController: UIViewController {
             
             try text.write(to: path!, atomically: true, encoding: String.Encoding.utf8)
         } catch {
-            print(error)
             CalendarError.presentErrorWith(title: .exportError, message: .exportError, view: self)
         }
             // Lets the CSV be shared

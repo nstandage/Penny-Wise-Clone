@@ -15,4 +15,5 @@ enum CalendarDefaults: String {
     case userHasDonated
     case theme
     case icon
+    case darkTheme
 }

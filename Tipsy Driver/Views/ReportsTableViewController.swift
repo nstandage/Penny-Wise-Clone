@@ -12,6 +12,7 @@ class ReportsTableViewController: UITableViewController {
 
     var dataSource: DataSource!
     var entries: [Entry]!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,19 +20,17 @@ class ReportsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         entries = dataSource.fetchEntries()
-        print(entries.count)
         return entries.count
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if entries == nil {
-            print("ENTRIES was equal to nil")
             fatalError()
         }
         
         let cell = Bundle.main.loadNibNamed("ReportsCell", owner: self, options: nil)?.first as! ReportsCell
-        let currentEntry = entries[indexPath.row]
+        let currentEntry = entries[entries.count - 1 - indexPath.row]
         
         cell.hoursLabel.text = String(currentEntry.hours)
         cell.tipsLabel.text = Calculate.format(number: currentEntry.tips)
@@ -64,7 +63,6 @@ class ReportsTableViewController: UITableViewController {
             
             try text.write(to: path!, atomically: true, encoding: String.Encoding.utf8)
         } catch {
-            print(error)
             CalendarError.presentErrorWith(title: .exportError, message: .exportError, view: self)
         }
         // Lets the CSV be shared

@@ -79,6 +79,7 @@ class MyCalendar: JTAppleCalendarView, JTAppleCalendarViewDelegate {
     
     //Other Methods
     func resetCalendar() {
+        print("-----------------------------RESET-------------------")
         view.updateLabels()
         view.isSelectedCellDataHidden(true)
         deselectAllDates()

@@ -21,23 +21,14 @@ class Feedback: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func twitterButton() {
-        
-        if let twitterUrl = URL(string: "https://twitter.com/nstandage") {
-            UIApplication.shared.open(twitterUrl)
-        } else {
-            //ERROR HANDLING
-        }
-        
-    }
-    
+
     @IBAction func emailButton() {
-        if let emailURL = URL(string: "mailto:developer@nathanstandage.com") {
-            UIApplication.shared.open(emailURL)
-        } else {
-            //ERROR HANDLING
+
+            if let emailURL = URL(string: "mailto:developer@nathanstandage.com") {
+                UIApplication.shared.open(emailURL)
+            } else {
+                //ERROR HANDLING
+            }
         }
+        
     }
-
-
-}

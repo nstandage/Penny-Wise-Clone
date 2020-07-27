@@ -20,10 +20,10 @@ class detailViewController: UIViewController {
     var managedObjectContext = CoreDataStack().managedObjectContext
     var entryBeingEdited: Entry?
     var cellState: CellState!
+    var calendar: MyCalendar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
         
         titleLabel.text = CalendarFormatter.formatWith(date: cellState.date, style: .display)
         hoursTextField.becomeFirstResponder()
@@ -35,7 +35,7 @@ class detailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
-        Helper.ChangeTheme(topView: blueTopView)
+        Helper.ChangeTheme(controller: self, topView: blueTopView)
         if entryBeingEdited != nil {
             setUpDisplayForEditingCell()
         }
@@ -80,8 +80,10 @@ class detailViewController: UIViewController {
             
             managedObjectContext.saveChanges()
             entryBeingEdited = nil
+            calendar.resetCalendar()
             self.dismiss(animated: true, completion: nil)
         }
+        
     }
     
     func setUpDisplayForEditingCell() {

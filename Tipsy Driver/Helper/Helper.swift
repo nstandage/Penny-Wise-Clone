@@ -45,8 +45,33 @@ class Helper {
         }
     }
     
-    static func ChangeTheme(topView: UIView, otherView: UIView? = nil, buttonView: UIView? = nil) {
+    
+    
+
+    
+    static func ChangeTheme(controller: UIViewController, topView: UIView, otherView: UIView? = nil, buttonView: UIView? = nil) {
+        
+        
+    
+        if #available(iOS 12.0, *) {
+            if controller.traitCollection.userInterfaceStyle == .dark {
+                controller.view.backgroundColor = CalendarColors.backgroundTrueBlack
+                controller.view.backgroundColor = UIColor.darkGray
+            } else {
+                 changelightTheme(controller: controller, topView: topView, otherView: otherView, buttonView: buttonView)
+            }
+        } else {
+            // Fallback on earlier versions
+             changelightTheme(controller: controller, topView: topView, otherView: otherView, buttonView: buttonView)
+        }
+        
+    }
+    
+    static private func changelightTheme(controller: UIViewController, topView: UIView, otherView: UIView? = nil, buttonView: UIView? = nil) {
         var theme: CalendarThemeColors = .blue
+        
+        controller.view.backgroundColor = UIColor.white
+        
         if let themeString = UserDefaults.standard.object(forKey: "theme") as? String {
             switch themeString {
             case "blue": theme = .blue
@@ -66,6 +91,7 @@ class Helper {
             buttonView?.backgroundColor = theme.color
         }
     }
+    
     
     static func setSelectedCircleView(_ view: UIView) {
         view.layer.cornerRadius = (view.frame.size.height) / 2

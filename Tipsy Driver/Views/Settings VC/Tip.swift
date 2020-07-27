@@ -32,4 +32,13 @@ class Tip: UIViewController {
     @IBAction func largeTipButton(_ sender: Any) {
         IAPService.shared.purchase(product: .largeTip)
     }
+
+//    func tipThankYouDialog() {
+//        
+//        let alertController = UIAlertController(title: "Thank You", message: "Thank you so much for the tip!", preferredStyle: .alert)
+//        let alerAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+//        alertController.addAction(alerAction)
+//        self.present(alertController, animated: true, completion: nil)
+//    }
+    
 }

@@ -31,6 +31,8 @@ enum SegueIdentifier: String {
     case settingsTutorial
     case settingsTipDeveloper
     case settingsSendFeedback
+    case settingsDarkMode
     case settingsAbout
     case reportsSegue
+    
 }

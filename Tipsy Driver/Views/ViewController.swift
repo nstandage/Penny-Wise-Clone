@@ -51,10 +51,16 @@ class ViewController: UIViewController {
     lazy var dataSource: DataSource = {
         return DataSource(context: self.managedObjectContext, calendar: self.calendar)
     }()
+
     
     //MARK: - View Controller
     override func viewWillAppear(_ animated: Bool) {
-        Helper.ChangeTheme(topView: blueTopView, otherView: blueDataView, buttonView: coloredPlusView)
+        if UserDefaults.standard.object(forKey: "darkTheme") == nil {
+            UserDefaults.standard.set("standard", forKey: CalendarDefaults.darkTheme.rawValue)
+        }
+        
+        
+        
         isSelectedCellDataHidden(true)
         if calendar != nil {
             calendar.resetCalendar()
@@ -68,6 +74,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("View Did Load")
+        Helper.ChangeTheme(controller: self, topView: blueTopView, otherView: blueDataView, buttonView: coloredPlusView)
         
         calendar.calendarDataSource = dataSource
         calendar.calendarDelegate = calendar
@@ -140,6 +148,7 @@ class ViewController: UIViewController {
             }
             newView.managedObjectContext = managedObjectContext
             newView.cellState = calendar.selectedCellStates.last
+            newView.calendar = calendar
 
         } else if segue.identifier == SegueIdentifier.moreButtonSegue.rawValue {
 
@@ -154,12 +163,11 @@ class ViewController: UIViewController {
             newView.managedObjectContext = managedObjectContext
         } else if segue.identifier == SegueIdentifier.settings.rawValue {
             
-            //CODE
             
         } else if segue.identifier == SegueIdentifier.reportsSegue.rawValue {
             let destinationNativationController = segue.destination as! UINavigationController
             guard let newView = destinationNativationController.topViewController as? ReportsTableViewController else {
-                print("1")
+            
                 CalendarError.presentErrorWith(title: ErrorTitle.segueError, message: ErrorMessage.segue, view: self)
                 return
             }
@@ -167,7 +175,7 @@ class ViewController: UIViewController {
             
             
         } else {
-            print("2")
+        
             CalendarError.presentErrorWith(title: ErrorTitle.segueError, message: ErrorMessage.segue, view: self)
         }
     }
